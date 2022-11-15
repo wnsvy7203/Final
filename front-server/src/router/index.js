@@ -4,9 +4,22 @@ import MovieView from '../views/MovieView.vue'
 import RandomView from '@/views/RandomView'
 import WatchListView from '@/views/WatchListView'
 import DetailMovie from '@/views/DetailMovie'
+import LoginView from '@/views/LoginView'
+import SignupView from '@/views/SignupView'
+
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    conponent: LoginView
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: SignupView
+  },
   {
     path: '/movie',
     name: 'movie',

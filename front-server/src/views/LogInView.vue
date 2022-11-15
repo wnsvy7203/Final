@@ -8,14 +8,14 @@
       <label for="password">password : </label>
       <input type="password" id="password" v-model="password"><br>
 
-      <input type="submit" value="logIn">
+      <input type="submit" value="LogIn">
     </form>
   </div>
 </template>
   
   <script>
   export default {
-    name: 'LogInView',
+    name: 'LoginView',
     data() {
       return {
         username: null,
@@ -23,7 +23,7 @@
       }
     },
     methods: {
-      logIn() {
+      login() {
         const username = this.username
         const password = this.password
   

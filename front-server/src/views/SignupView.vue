@@ -18,7 +18,7 @@
   
 <script>
 export default {
-  name: 'SignUpView',
+  name: 'SignupView',
   data() {
     return {
       username: null,
