@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>LogIn Page</h1>
+    <p>a</p>
     <form @submit.prevent="logIn">
       <label for="username">username : </label>
       <input type="text" id="username" v-model="username"><br>
@@ -15,7 +16,7 @@
   
   <script>
   export default {
-    name: 'LoginView',
+    name: 'LogInView',
     data() {
       return {
         username: null,
