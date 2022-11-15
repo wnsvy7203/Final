@@ -38,7 +38,8 @@ export default {
             // console.log(this.getMovie)
         },
         moveDetail(){
-            this.$router.push({name:'DetailMovie', params: {id: this.movie.id}})
+            this.$router.push({name:'DetailMovie', params: {movie: this.movie}})
+            console.log(this.movie.id)
         }
     },
     
