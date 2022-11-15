@@ -1,43 +1,31 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import ArticleView from '@/views/ArticleView'
-import CreateView from '@/views/CreateView'
-import DetailView from '@/views/DetailView'
-import SignUpView from '@/views/SignUpView'
-import LogInView from '@/views/LogInView'
-
-
+import MovieView from '../views/MovieView.vue'
+import RandomView from '@/views/RandomView'
+import WatchListView from '@/views/WatchListView'
+import DetailMovie from '@/views/DetailMovie'
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'ArticleView',
-    component: ArticleView
+    path: '/movie',
+    name: 'movie',
+    component: MovieView
   },
- 
   {
-    path: '/create',
-    name: 'CreateView',
-    component: CreateView
+    path: '/random',
+    name: 'random',
+    component: RandomView
   },
-
   {
-    path: '/signup',
-    name: 'SignUpView',
-    component: SignUpView
+    path: '/watch-list',
+    name: 'WatchList',
+    component: WatchListView
   },
-
   {
-    path: '/login',
-    name: 'LogInView',
-    component: LogInView
-  },
-
-  {
-    path: '/:id',
-    name: 'DetailView',
-    component: DetailView,
+    path: 'movie/:id',
+    name: 'DetailMovie',
+    component: DetailMovie,
   },
 
 ]
