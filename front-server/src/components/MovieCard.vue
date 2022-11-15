@@ -2,10 +2,13 @@
 <div class="card justify-content-center">
   <div v-if="movie" class="cards arrange2">
     <br>
-    <img :src="imgSrc" style="width: 300px">
-    <p></p>
+    <img :src="imgSrc" style="width: 300px"
+    @click="moveDetail">
+    
+    <p>{{getMovie}}</p>
     <p class="fonts">{{ movie.title }}</p>
     <p class="str fonts arrange">{{ movie.overview }}</p>
+    
     </div>    
   </div>
 </template>
@@ -16,13 +19,16 @@ export default {
     props:{
         movie: Object
     },
+    
     computed: {
-        // getMovie() {
-        //     return this.$store.getters.getMovieJsonData
-        // },
+        getMovie() {
+            return this.$store.getters.getMovieJsonData
+        },
         imgSrc() {
             return 'https://image.tmdb.org/t/p/original/'+this.movie.poster_path
         },
+        
+        
         
     },
 
@@ -30,6 +36,9 @@ export default {
         MovieJson() {
             this.$store.dispatch('getMovieJson')
             // console.log(this.getMovie)
+        },
+        moveDetail(){
+            this.$router.push({name:'DetailMovie', params: {id: this.movie.id}})
         }
     },
     
