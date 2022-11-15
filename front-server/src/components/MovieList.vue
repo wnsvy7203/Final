@@ -17,7 +17,7 @@ export default {
         MovieListItem
     },
     computed: {
-        movies(){
+        movies() {
             return this.$store.movies
         }
     }
