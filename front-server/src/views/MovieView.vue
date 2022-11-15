@@ -3,7 +3,8 @@
   
       <div
       v-for="(movie, index) in totalMovie"
-      :key="index">
+      :key="index"
+      >
       <MovieCard :movie="movie"/>
 
       </div>

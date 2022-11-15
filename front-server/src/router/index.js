@@ -23,7 +23,7 @@ const routes = [
     component: WatchListView
   },
   {
-    path: 'movie/:id',
+    path: '/:id',
     name: 'DetailMovie',
     component: DetailMovie,
   },
