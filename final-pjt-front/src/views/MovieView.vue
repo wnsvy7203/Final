@@ -10,6 +10,8 @@
 
     </p> 
     </carousel>
+
+
     <div>
       <MovieCard :movie="movie"/>
     </div>
@@ -18,13 +20,14 @@
 
 <script>
 import MovieCard from '@/components/MovieCard.vue';
+import router from '@/router'
 import carousel from 'vue-owl-carousel'
 
 export default {
   name: 'MovieView',
   data() {
     return {
-      movie: null,
+      movie: this.$route.params.movie
     }
   },
   components: {
@@ -32,13 +35,13 @@ export default {
     carousel
   },
   methods: {
-    moveDetail() {
-      this.$router.push({ name:'DetailMovie', params: { movie: this.movie } })
+    moveDetail(movie) {
+      router.push({ name:'DetailMovie', params: { movie } })
     },
   },
   computed: {
     totalMovie() {
-      this.$store.dispatch('getMovieJson')
+      console.log(this.$store.state.MovieJsonData)
       return this.$store.getters.getMovie
     }
   },
