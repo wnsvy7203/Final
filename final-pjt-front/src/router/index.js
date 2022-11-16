@@ -4,7 +4,7 @@ import MovieView from '../views/MovieView.vue'
 import RandomView from '@/views/RandomView'
 import WatchListView from '@/views/WatchListView'
 import DetailMovie from '@/views/DetailMovie'
-import LogInView from '@/views/LogInView'
+import LogInView from '@/views/LogInView.vue'
 import SignupView from '@/views/SignupView'
 
 Vue.use(VueRouter)
@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    conponent: LogInView
+    component: LogInView
   },
   {
     path: '/signup',

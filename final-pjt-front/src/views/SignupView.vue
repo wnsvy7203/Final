@@ -42,7 +42,7 @@ export default {
       }
 
       this.$store.dispatch('signUp', payload)
-
+      
     }
   }
 }

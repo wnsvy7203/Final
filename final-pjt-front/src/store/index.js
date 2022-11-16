@@ -7,7 +7,7 @@ import router from '@/router'
 
 Vue.use(Vuex)
 
-const API_URL = 'https://127.0.0.1:8000'
+const API_URL = 'http://127.0.0.1:8000'
 const API_KEY = '048f1b44f3f7ceec6752538826583420'
 
 export default new Vuex.Store({
@@ -57,7 +57,7 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push({ name: 'MovieView' })
+      router.push({name:'movie'})
     }
   },
   actions: {
@@ -116,7 +116,9 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
+          console.log(response)
           context.commit('SAVE_TOKEN', response.data.key)
+          
         })
     },
     createMovie(context, movieTitle){
