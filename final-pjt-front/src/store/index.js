@@ -2,15 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
-import _ from 'lodash'
 import router from '@/router'
 
 Vue.use(Vuex)
 
-
 const API_URL = 'http://127.0.0.1:8000'
-const API_KEY = process.env.VUE_APP_TMDB_API_KEY
-
 
 export default new Vuex.Store({
   plugins: [
@@ -59,33 +55,20 @@ export default new Vuex.Store({
     SAVE_TOKEN(state, token) {
       state.token = token
       router.push({name:'movie'})
-    }
+    },
   },
   actions: {
     getMovieJson(context) {
-      const url = API_URL + '/api/v1/movies/'
-      axios.get(url)
-      .then((response) => {
-        // console.log(response.data)
-        context.commit('GET_MOVIE_JSON_DATA', response.data.results)
+      axios.get({
+        method: 'get',
+        url: API_URL + '/api/v1/movies/',
+        headers: {
+          Authorization: `Token ${ context.state.token }`
+        }
       })
-    },
-    getRandomJson(context) {
-      const url = API_URL + 'https://api.themoviedb.org/3/movie/top_rated'
-      const params= {
-        api_key: API_KEY,
-        language: 'ko-KR',
-        region: 'KR',
-      }
-      axios.get(url, { params })
-      .then((response) => {
-        context.commit('GET_RANDOM_MOVIE_DATA', _.sample(response.data.results))
-        
-      })
-      .catch((error) => {
-        error
-        context.dispatch('getRandomJson')
-      })
+        .then((response) => {
+          context.commit('GET_MOVIE_JSON_DATA', response.data.results)
+        })
     },
     signUp(context, payload) {
       axios({
