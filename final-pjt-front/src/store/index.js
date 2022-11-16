@@ -8,7 +8,7 @@ import router from '@/router'
 Vue.use(Vuex)
 
 const API_URL = 'https://127.0.0.1:8000'
-const API_KEY = '048f1b44f3f7ceec6752538826583420'
+const API_KEY = process.env.VUE_APP_TMDB_API_KEY
 
 export default new Vuex.Store({
   plugins: [
