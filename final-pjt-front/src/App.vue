@@ -4,11 +4,10 @@
     <hr>
     <nav class="navbar justify-content-end navbar-expand-lg bg-dark">
       <div style="padding-right: 10px;">
+        <router-link :to="{ name: 'movie' }"> Movie | </router-link>
       <router-link :to="{ name: 'login' }">Login | </router-link> 
       <router-link :to="{ name: 'signup' }">Signup | </router-link>
-      <router-link :to="{ name: 'movie' }"> Movie | </router-link>
-      <router-link :to="{ name: 'random' }"> Random | </router-link>
-      <router-link :to="{ name: 'WatchList' }"> WatchList </router-link> 
+      
       </div>
     </nav>
     <router-view/>

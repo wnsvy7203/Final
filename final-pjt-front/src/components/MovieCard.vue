@@ -5,11 +5,11 @@
     <img :src="imgSrc" style="width: 300px"
     @click="moveDetail">
     
-    <p>{{getMovie}}</p>
+    <!-- <p>{{getMovie}}</p>
     <p class="fonts">{{ movie.title }}</p>
-    <p class="str fonts arrange">{{ movie.overview }}</p>
+    <p class="str fonts arrange">{{ movie.overview }}</p> -->
     
-    </div>    
+    </div>
   </div>
 </template>
 

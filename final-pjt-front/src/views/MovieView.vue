@@ -1,23 +1,36 @@
 <template>
-  <div class="row row-cols-1 row-cols-md-3 g-4 mt-2">
-  
-      <div
-      v-for="(movie, index) in totalMovie"
-      :key="index"
-      >
-      <MovieCard :movie="movie"/>
+  <div class="row mt-3 mx-3" style="">
+    
+    <carousel :autoplay="true" :nav="false">
+    <p v-for="(movie,index) in totalMovie"
+    :key="index">
+      <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`">
+    </p> 
+    </carousel>
 
-      </div>
+    <div>
+    <MovieCard :movie="movie"/>
+    </div>
+
+
   </div>
 </template>
 
 <script>
 import MovieCard from '@/components/MovieCard.vue';
+import carousel from 'vue-owl-carousel'
 
 export default {
   name:'MovieView',
+  data(){
+      return {
+          movie: this.$route.params.movie
+      }
+  },
+
   components: {
     MovieCard,
+    carousel
   },
 
   computed: {
