@@ -20,7 +20,6 @@ export default new Vuex.Store({
     MovieJsonData: null,
     randomMovie: null,
     movies:[
-
     ],
     token: null,
   },
@@ -64,21 +63,15 @@ export default new Vuex.Store({
   },
   actions: {
     getMovieJson(context) {
-      const url = 'https://api.themoviedb.org/3/movie/popular'
-      const params= {
-        api_key: API_KEY,
-        language: 'ko-KR',
-        region: 'KR',
-        adult: 'true',
-      }
-      axios.get(url, { params })
+      const url = API_URL + '/api/v1/movies/'
+      axios.get(url)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         context.commit('GET_MOVIE_JSON_DATA', response.data.results)
       })
     },
     getRandomJson(context) {
-      const url = 'https://api.themoviedb.org/3/movie/top_rated'
+      const url = API_URL + 'https://api.themoviedb.org/3/movie/top_rated'
       const params= {
         api_key: API_KEY,
         language: 'ko-KR',
