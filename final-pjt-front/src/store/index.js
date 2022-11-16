@@ -7,8 +7,10 @@ import router from '@/router'
 
 Vue.use(Vuex)
 
-const API_URL = 'https://127.0.0.1:8000'
+
+const API_URL = 'http://127.0.0.1:8000'
 const API_KEY = process.env.VUE_APP_TMDB_API_KEY
+
 
 export default new Vuex.Store({
   plugins: [
@@ -57,7 +59,7 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push({ name: 'MovieView' })
+      router.push({name:'movie'})
     }
   },
   actions: {

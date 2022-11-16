@@ -1,16 +1,17 @@
 <template>
-  <div :style="{ backgroundImage : `url(${this.background})`}">
+  <!-- <div :style="{ backgroundImage : `url(${this.background})`}"> -->
+    <div>
     <div>
       <img :src="imgSrc" style="width: 300px">
       <p class="fonts">{{ movie.title }}</p>
       <p class="str fonts arrange">{{ movie.overview }}</p>
       <p>평점 : {{movie.vote_average}}</p>
       <VideoDetail/>
+      <!-- <iframe width="100%" height="100%" :src="youtube()"></iframe> -->
       <iframe
-      :src="youtube(movie.video)"
+      :src="getYoutubeKey()"
       ></iframe>
-      <p>{{this.movie}}</p>
-      <p>{{this.movie.video}}</p>
+      <p></p>
     </div>
   </div>
 </template>
@@ -20,7 +21,8 @@
 // import axios from 'axios';
 import VideoDetail from '@/components/VideoDetail'
 
-// const API_KEY = '54f36fb75007c2e17a09cf9651dcdae2'
+const API_KEY = '54f36fb75007c2e17a09cf9651dcdae2'
+// const YoutubeUrl = `https://api.themoviedb.org/3/movie/${this.movie.id}/videos?api_key=${API_KEY}&language=en-US`
 
 export default {
     name: 'DetailMovie',
@@ -42,11 +44,16 @@ export default {
         background(){
             return 'https://image.tmdb.org/t/p/original/'+this.movie.backdrop_path
         },
-        youtube(src) {
-          return `https://www.youtube.com/embed/${src}`;
-    },
     },
     methods: {
+        getYoutubeKey() {
+            // console.log(YoutubeUrl)
+            return `https://api.themoviedb.org/3/movie/${this.movie.id}/videos?api_key=${API_KEY}&language=en-US`
+        //   return `https://www.youtube.com/embed/${src}`;
+        },
+        // youtubeUrl(){
+        //     return `https://www.youtube.com/embed/${YoutubeUrl.result[0].key}?autoplay=1`
+        // }
     
 
         // getMovieDetail(){
