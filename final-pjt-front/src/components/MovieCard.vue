@@ -8,7 +8,7 @@
     <!-- <p>{{getMovie}}</p>
     <p class="fonts">{{ movie.title }}</p>
     <p class="str fonts arrange">{{ movie.overview }}</p> -->
-    
+        
     </div>
   </div>
 </template>
@@ -26,10 +26,7 @@ export default {
         },
         imgSrc() {
             return 'https://image.tmdb.org/t/p/original/'+this.movie.poster_path
-        },
-        
-        
-        
+        },        
     },
 
     methods: {

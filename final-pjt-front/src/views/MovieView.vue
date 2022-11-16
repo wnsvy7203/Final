@@ -1,10 +1,11 @@
 <template>
-  <div class="row mt-3 mx-3" style="">
+  <div class="row mt-3 mx-3" style="width:100%; height:30%">
     
-    <carousel :autoplay="true" :nav="false">
+    <carousel :nav="false">
     <p v-for="(movie,index) in totalMovie"
     :key="index">
-      <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`">
+      <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
+      @click="moveDetail">
     </p> 
     </carousel>
 
@@ -31,6 +32,12 @@ export default {
   components: {
     MovieCard,
     carousel
+  },
+  methods:{
+    moveDetail(){
+            this.$router.push({name:'DetailMovie', params: {movie: this.movie}})
+            console.log(this.movie.id)
+        }
   },
 
   computed: {
