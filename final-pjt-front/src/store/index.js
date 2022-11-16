@@ -13,10 +13,9 @@ export default new Vuex.Store({
     createPersistedState()
   ],
   state: {
-    MovieJsonData: null,
+    MovieJsonData: [],
     randomMovie: null,
-    movies:[
-    ],
+    movies:[],
     token: null,
   },
   getters: {
@@ -26,31 +25,14 @@ export default new Vuex.Store({
     getMovieJsonData(state) {
       return state.MovieJsonData
     },
-    getRandomMovieData(state) {
-      return state.randomMovie
-    },
+    getMovie(state) {
+      state.movies = state.MovieJsonData.slice(0, 21)
+      return state.movies
+    }
   },
   mutations: {
     GET_MOVIE_JSON_DATA(state, results) {
       state.MovieJsonData = results
-    },
-    GET_RANDOM_MOVIE_DATA(state, result) {
-      state.randomMovie = result
-    },
-    CREATE_MOVIE(state,movieItem){
-      state.movies.push(movieItem)
-    },
-    DELETE_MOVIE (state, movieItem) {
-      const index = state.movies.indexOf(movieItem)
-      state.movies.splice(index, 1)
-    },
-    UPDATE_MOVIE_STATUS (state, movieItem) {
-      state.movies = state.movies.map((movie) => {
-        if (movie === movieItem) {
-          movie.isCompleted = !movie.isCompleted
-        }
-        return movie
-      })
     },
     SAVE_TOKEN(state, token) {
       state.token = token
@@ -59,15 +41,15 @@ export default new Vuex.Store({
   },
   actions: {
     getMovieJson(context) {
-      axios.get({
+      axios({
         method: 'get',
-        url: API_URL + '/api/v1/movies/',
-        headers: {
-          Authorization: `Token ${ context.state.token }`
-        }
+        url: `${API_URL}/api/v1/movies/`,
       })
         .then((response) => {
-          context.commit('GET_MOVIE_JSON_DATA', response.data.results)
+          context.commit('GET_MOVIE_JSON_DATA', response.data)
+        })
+        .catch(error => {
+          console.log(error)
         })
     },
     signUp(context, payload) {

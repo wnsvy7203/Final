@@ -15,8 +15,7 @@ from movies.models import Movie, Comment
 
 
 
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticated])
+@api_view(['GET'])
 def movie_list(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)
