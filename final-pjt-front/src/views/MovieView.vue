@@ -3,23 +3,22 @@
     <carousel :nav="false">
     <p 
       v-for="(movie, index) in totalMovie"
-      :key="index">
-      <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
-
-      @mouseup="moveDetail(movie)">
-
-    </p> 
+      :key="index"
+    >
+      <img
+        :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
+        @mouseup="moveDetail(movie)"
+      >
+    </p>
     </carousel>
-
-
     <div>
-      <MovieCard :movie="movie"/>
+      <MovieDetail :movie="movie"/>
     </div>
   </div>
 </template>
 
 <script>
-import MovieCard from '@/components/MovieCard.vue';
+import MovieDetail from '@/components/MovieDetail';
 import router from '@/router'
 import carousel from 'vue-owl-carousel'
 
@@ -31,17 +30,16 @@ export default {
     }
   },
   components: {
-    MovieCard,
+    MovieDetail,
     carousel
   },
   methods: {
     moveDetail(movie) {
-      router.push({ name:'DetailMovie', params: { movie } })
+      router.push({ name: 'detail', params: { movie } })
     },
   },
   computed: {
     totalMovie() {
-      console.log(this.$store.state.MovieJsonData)
       return this.$store.getters.getMovie
     }
   },

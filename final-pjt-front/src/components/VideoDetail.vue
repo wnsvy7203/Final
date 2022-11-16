@@ -12,9 +12,7 @@ import _ from 'lodash'
 export default {
   name: 'VideoDetail', 
   props: {
-    video: {
-      type: Object,
-    }
+    video: Object,
   },
   computed: {
     videoURI: function () {

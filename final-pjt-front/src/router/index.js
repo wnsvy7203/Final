@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MovieView from '../views/MovieView.vue'
-import DetailMovie from '@/views/DetailMovie'
+import DetailView from '@/views/DetailView'
 import LogInView from '@/views/LogInView'
 import SignupView from '@/views/SignupView'
 
@@ -25,10 +25,9 @@ const routes = [
   },
   {
     path: '/:id',
-    name: 'DetailMovie',
-    component: DetailMovie,
+    name: 'detail',
+    component: DetailView,
   },
-
 ]
 
 const router = new VueRouter({

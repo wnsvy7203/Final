@@ -79,19 +79,6 @@ export default new Vuex.Store({
           context.commit('SAVE_TOKEN', response.data.key)
         })
     },
-    createMovie(context, movieTitle){
-      const movieItem = {
-        title: movieTitle,
-        isCompleted: false,
-      }
-      context.commit('CREATE_MOVIE', movieItem)
-    },
-    deleteMovie(context, movieItem){
-      context.commit('DELETE_MOVIE', movieItem)
-    },
-    updateMovieStatus (context, movieItem) {
-      context.commit('UPDATE_MOVIE_STATUS', movieItem)
-    },
   },
   modules: {
   }
