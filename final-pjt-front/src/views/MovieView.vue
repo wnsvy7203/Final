@@ -6,7 +6,7 @@
     :key="index"
     >
       <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
-      @click="moveDetail(movie)">
+      @mouseup="moveDetail(movie)">
     </p> 
     </carousel>
 
