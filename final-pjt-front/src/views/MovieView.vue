@@ -5,7 +5,9 @@
       v-for="(movie, index) in totalMovie"
       :key="index">
       <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
-      @click="moveDetail">
+
+      @mouseup="moveDetail(movie)">
+
     </p> 
     </carousel>
     <div>
