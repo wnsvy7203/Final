@@ -26,7 +26,7 @@ export default {
   name: 'MovieView',
   data() {
     return {
-      movie: this.$route.params.movie
+      movie: null,
     }
   },
   components: {

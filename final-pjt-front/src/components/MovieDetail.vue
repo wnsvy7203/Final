@@ -29,7 +29,7 @@ export default {
       this.$store.dispatch('getMovieJson')
     },
     moveDetail() {
-      this.$router.push({ name:'DetailView', params: { movie: this.movie } })
+      this.$router.push({ name:'detail', params: { movie: this.movie } })
     }
   },
   

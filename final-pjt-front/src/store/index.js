@@ -14,8 +14,7 @@ export default new Vuex.Store({
   ],
   state: {
     MovieJsonData: [],
-    randomMovie: null,
-    movies:[],
+    movies: [],
     token: null,
   },
   getters: {
@@ -25,6 +24,7 @@ export default new Vuex.Store({
     getMovieJsonData(state) {
       return state.MovieJsonData
     },
+
     getMovie(state) {
       state.movies = state.MovieJsonData.slice(0, 21)
       return state.movies
