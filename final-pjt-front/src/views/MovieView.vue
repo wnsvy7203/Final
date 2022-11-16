@@ -3,9 +3,10 @@
     
     <carousel :nav="false">
     <p v-for="(movie,index) in totalMovie"
-    :key="index">
+    :key="index"
+    >
       <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
-      @click="moveDetail">
+      @click="moveDetail(movie)">
     </p> 
     </carousel>
 
@@ -19,6 +20,7 @@
 
 <script>
 import MovieCard from '@/components/MovieCard.vue';
+import router from '@/router';
 import carousel from 'vue-owl-carousel'
 
 export default {
@@ -34,10 +36,10 @@ export default {
     carousel
   },
   methods:{
-    moveDetail(){
-            this.$router.push({name:'DetailMovie', params: {movie: this.movie}})
-            console.log(this.movie.id)
-        }
+    moveDetail(movie){
+      router.push({name:'DetailMovie', params:{movie}})
+    },
+
   },
 
   computed: {
