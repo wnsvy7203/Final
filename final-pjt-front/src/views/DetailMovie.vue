@@ -12,7 +12,6 @@
       :src="getYoutubeKey()"
       ></iframe>
       <p></p>
-      
     </div>
   </div>
 </template>

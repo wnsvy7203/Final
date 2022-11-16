@@ -4,7 +4,7 @@ import MovieView from '../views/MovieView.vue'
 import RandomView from '@/views/RandomView'
 import WatchListView from '@/views/WatchListView'
 import DetailMovie from '@/views/DetailMovie'
-import LogInView from '@/views/LogInView.vue'
+import LogInView from '@/views/LogInView'
 import SignupView from '@/views/SignupView'
 
 Vue.use(VueRouter)
