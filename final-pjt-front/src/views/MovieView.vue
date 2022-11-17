@@ -14,11 +14,16 @@
       @sliding-end="onSlideEnd"
     >
       <b-carousel-slide
-        v-for="(movie, index) in totalMovie"
-        :key="index"
-        :img-src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
-        html="moveDetail"
-        >
+        v-for="(movie) in totalMovie"
+        :key="movie.id"
+      >
+        <template #img>
+          <img
+          :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" @click="moveDetail"
+          width="100%"
+          height="100%"
+          >
+        </template>
       </b-carousel-slide>
     </b-carousel>
     <MovieDetail :movie="movie"/>
