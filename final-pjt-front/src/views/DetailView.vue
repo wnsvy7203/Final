@@ -39,7 +39,6 @@ export default {
   },
   computed: {
     imgSrc() {
-      console.log(this.movie)
       return 'https://image.tmdb.org/t/p/original/'+this.movie.poster_path
     },
     background() {
