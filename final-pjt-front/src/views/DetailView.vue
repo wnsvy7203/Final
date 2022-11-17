@@ -8,22 +8,33 @@
     <!-- <iframe
       :src="getYoutubeKey()" 
     ></iframe> -->
+    <CommentForm
+    :movie="movie"
+    />
+    <CommentList
+    :movie="movie"
+    />
+    
   </div>
 </template>
 
 <script>
 import VideoDetail from '@/components/VideoDetail'
-
+import CommentForm from '@/components/CommentForm'
+import CommentList from '@/components/CommentList'
 // const API_KEY = process.env.VUE_APP_TMDB_API_KEY
 
 export default {
   name: 'DetailView',
   components: {
-    VideoDetail
+    VideoDetail,
+    CommentForm,
+    CommentList,
   },
   data() {
     return {
-      movie: this.$route.params.movie
+      movie: this.$route.params.movie,
+      comment: this.$store.state.comment
     }
   },
   computed: {
@@ -33,6 +44,7 @@ export default {
     background() {
       return 'https://image.tmdb.org/t/p/original/'+this.movie.backdrop_path
     },
+
   },
 }
 </script>
