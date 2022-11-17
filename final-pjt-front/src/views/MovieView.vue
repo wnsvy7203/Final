@@ -1,5 +1,7 @@
 <template>
-  <div class="row mt-3 mx-3 d-flex justify-content-center" style="width: 50%; height: 30%">
+  <div v-if="totalMovie"
+
+  class="row mt-3 mx-3 d-flex justify-content-center" style="width: 50%; height: 30%">
     <b-carousel
       id="carousel-1"
       v-model="slide"
@@ -19,39 +21,40 @@
       >
         <template #img>
           <img
-          :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" @click="moveDetail"
+          :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" @click="moveDetail(movie)"
           width="100%"
           height="100%"
           >
         </template>
       </b-carousel-slide>
     </b-carousel>
-    <MovieDetail :movie="movie"/>
+    
   </div>
 </template>
 
 <script>
-import MovieDetail from '@/components/MovieDetail';
+
 import router from '@/router'
 
 export default {
   name: 'MovieView',
   data() {
     return {
-      movie: null,
+
       slide: 0,
       sliding: null
     }
   },
   components: {
-    MovieDetail,
+    
   },
   methods: {
     // doMouseOver(movie) {
     //   movie.
     // },
     moveDetail(movie) {
-      router.push({ name: 'detail', params: { movie } })
+      console.log(movie.id)      
+      router.push({ name: 'detail', params: { movie, id: movie.id } })
     },
     getMovieJson() {
       this.$store.dispatch('getMovieJson')
@@ -62,6 +65,7 @@ export default {
     onSlideEnd() {
       this.sliding = false
     },
+
   },
   computed: {
     totalMovie() {
