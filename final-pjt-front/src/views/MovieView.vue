@@ -1,39 +1,33 @@
 <template>
-  <div v-if="totalMovie"
-
-  class="row mt-3 mx-3 d-flex justify-content-center" style="width: 50%; height: 30%">
+  <div class="row mt-3 mx-3 d-flex" style="height: 30%">
     <b-carousel
       id="carousel-1"
+      class="justify-content-center"
       v-model="slide"
       :interval="4000"
       controls
       indicators
-      background="#ababab"
-      img-width="1024"
-      img-height="480"
-      style="text-shadow: 1px 1px 2px #333;"
+      style="text-shadow: 1px 1px 2px #333; width: 100%; height: 30%"
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
       <b-carousel-slide
-        v-for="(movie) in totalMovie"
+        v-for="movie in totalMovie"
         :key="movie.id"
       >
         <template #img>
           <img
-          :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" @click="moveDetail(movie)"
-          width="100%"
-          height="100%"
+            :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
+            @click="moveDetail(movie)"
+            style="width: 100%; height: 70%;"
           >
         </template>
       </b-carousel-slide>
     </b-carousel>
-    
   </div>
 </template>
 
 <script>
-
 import router from '@/router'
 
 export default {
@@ -45,15 +39,8 @@ export default {
       sliding: null
     }
   },
-  components: {
-    
-  },
   methods: {
-    // doMouseOver(movie) {
-    //   movie.
-    // },
     moveDetail(movie) {
-      console.log(movie.id)      
       router.push({ name: 'detail', params: { movie, id: movie.id } })
     },
     getMovieJson() {
@@ -79,7 +66,6 @@ export default {
 </script>
 
 <style>
-
 
 
 </style>
