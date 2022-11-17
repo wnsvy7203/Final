@@ -37,12 +37,18 @@ export default {
     moveDetail(movie) {
       router.push({ name: 'detail', params: { movie } })
     },
+    getMovieJson(){
+      this.$store.dispatch('getMovieJson')
+    }
   },
   computed: {
     totalMovie() {
       return this.$store.getters.getMovie
     }
   },
+  created() {
+    this.getMovieJson()
+  }
 }
 </script>
 
