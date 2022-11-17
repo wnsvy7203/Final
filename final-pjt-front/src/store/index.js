@@ -16,6 +16,7 @@ export default new Vuex.Store({
     MovieJsonData: [],
     movies: [],
     token: null,
+    comments: [],
   },
   getters: {
     isLogin(state) {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     getMovie(state) {
       state.movies = state.MovieJsonData.slice(0, 21)
       return state.movies
+    },
+    getComment(state){
+      return state.comments
     }
   },
   mutations: {
@@ -38,6 +42,9 @@ export default new Vuex.Store({
       state.token = token
       router.push({name:'movie'})
     },
+    CREATE_COMMENT(state, commentItem){
+      state.comments.push(commentItem)
+    }
   },
   actions: {
     getMovieJson(context) {
@@ -79,6 +86,15 @@ export default new Vuex.Store({
           context.commit('SAVE_TOKEN', response.data.key)
         })
     },
+    createComment(context, payload){
+      const commentItem = {
+        context: payload.comment,
+        movie_id : payload.movie_id,
+        isCompleted: false,
+      }
+      console.log(commentItem)
+      context.commit('CREATE_COMMENT', commentItem)
+    }
   },
   modules: {
   }
