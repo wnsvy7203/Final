@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'MovieCard',
+  name: 'MovieDetail',
   props:{
       movie: Object
   },
@@ -25,9 +25,6 @@ export default {
     },        
   },
   methods: {
-    MovieJson() {
-      this.$store.dispatch('getMovieJson')
-    },
     moveDetail() {
       this.$router.push({ name:'detail', params: { movie: this.movie } })
     }

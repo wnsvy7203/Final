@@ -1,24 +1,22 @@
 <template>
   <div id="app">
-    <h1>Best Film</h1>
-    <hr>
-    <nav class="navbar justify-content-end navbar-expand-lg bg-dark">
-      <div style="padding-right: 10px;">
-        <router-link :to="{ name: 'movie' }"> Movie | </router-link>
-      <router-link :to="{ name: 'login' }">Login | </router-link> 
-      <router-link :to="{ name: 'signup' }">Signup | </router-link>
-      
+    <nav class="navbar justify-content-end navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <router-link :to="{ name: 'movie' }" class="navbar-brand" style="font-size: 50px">Best Film</router-link>
+
+        <b-dropdown id="dropdown-dropleft" dropleft text="Drop-Left" size="lg" variant="link" toggle-class="text-decoration-none">
+          <template #button-content>
+            <span class="navbar-toggler-icon"></span>
+          </template>
+          <b-dropdown-item-button><router-link :to="{ name: 'login' }" class="dropdown-item"> Login </router-link></b-dropdown-item-button>
+          <b-dropdown-divider></b-dropdown-divider>
+          <b-dropdown-item-button><router-link :to="{ name: 'signup' }" class="dropdown-item"> Signup </router-link></b-dropdown-item-button>
+        </b-dropdown>
       </div>
     </nav>
     <router-view/>
   </div>
 </template>
-
-<script>
-// API_KEY = 54f36fb75007c2e17a09cf9651dcdae2
-// API_URL = https://api.themoviedb.org/3/movie/popular?api_key=
-
-</script>
 
 <style>
 #app {
@@ -31,16 +29,12 @@
 
 nav {
   padding: 30px;
-  height: 40px;
+  height: 95px;
 }
 
 nav a {
   font-weight: bold;
   color: #eee;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
 }
 
 </style>

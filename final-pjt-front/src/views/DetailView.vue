@@ -34,11 +34,6 @@ export default {
       return 'https://image.tmdb.org/t/p/original/'+this.movie.backdrop_path
     },
   },
-  // methods: {
-  //   getYoutubeKey() {
-  //     return `https://api.themoviedb.org/3/movie/${this.movie.id}/videos?api_key=${API_KEY}&language=ko-KR`
-  //   },
-  // },
 }
 </script>
 
