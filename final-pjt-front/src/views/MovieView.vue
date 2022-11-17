@@ -34,7 +34,7 @@ export default {
   name: 'MovieView',
   data() {
     return {
-      movie: null,
+
       slide: 0,
       sliding: null
     }
@@ -52,6 +52,7 @@ export default {
     onSlideEnd() {
       this.sliding = false
     },
+
   },
   computed: {
     totalMovie() {
