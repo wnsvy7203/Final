@@ -1,9 +1,10 @@
 <template>
   <div>
-    <img :src="imgSrc" style="width: 300px">
+    <img :src="imgSrc" style="width: 300px">  
     <p class="fonts">{{ movie.title }}</p>
-    <p class="str fonts arrange">{{ movie.overview }}</p>
-    <p>평점 : {{ movie.vote_average }}</p>
+    <p class="fonts str fonts arrange">{{ movie.overview }}</p>
+    <h5 style="margin-bottom:10px" class="content-font">평점 : {{ movie.vote_average }}점</h5>
+    
     <VideoDetail/>
     <!-- <iframe
       :src="getYoutubeKey()" 
