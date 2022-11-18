@@ -5,9 +5,13 @@
     <p class="fonts">{{ movie.title }}</p>
     <p class="fonts str fonts arrange">{{ movie.overview }}</p>
     <h5 style="margin-bottom:10px" class="content-font">평점 : {{ movie.vote_average }}점</h5>
+<<<<<<< HEAD
     <p>{{movie}}</p>
     <DetailVideoView
     :movie="movie"/>
+=======
+
+>>>>>>> 31df5b3b801762cc46b85fa37bdd596b4554b57a
     <!-- <iframe
       :src="getYoutubeKey()" 
     ></iframe> -->

@@ -6,6 +6,7 @@
         <router-link :to="{ name: 'movie' }" class="navbar-brand" style="font-size: 50px">Best Film</router-link>
         
         <router-link :to="{ name: 'search' }" class="navbar-brand" style="font-size: 50px"> Search </router-link>
+<<<<<<< HEAD
         <b-dropdown
 <<<<<<< HEAD
           id="dropdown-dropleft"
@@ -28,12 +29,18 @@
           toggle-class="text-decoration-none"
           v-else
 =======
+=======
+        <b-dropdown
+>>>>>>> 31df5b3b801762cc46b85fa37bdd596b4554b57a
         id="dropdown-dropleft"
         dropleft text="Drop-Left"
         size="lg"
         variant="link"
         toggle-class="text-decoration-none"
+<<<<<<< HEAD
 >>>>>>> b49c86901367269f0f00214ce5af9d1f2edbba87
+=======
+>>>>>>> 31df5b3b801762cc46b85fa37bdd596b4554b57a
         >
           <template #button-content>
             <span class="navbar-toggler-icon"></span>
