@@ -1,8 +1,12 @@
 <template>
-  <div v-if="video" class="video-detail">
+  <div>
     <div class="video-container">
       <iframe :src="videoURI" frameborder="0"></iframe> 
     </div>
+    <h1>가나다라마</h1>
+    <p>
+      {{videoURI}}
+    </p>
   </div>
 </template>
 
@@ -10,7 +14,7 @@
 import _ from 'lodash'
 
 export default {
-  name: 'VideoDetail', 
+  name: 'DetailVideo', 
   props: {
     video: Object,
   },
@@ -25,6 +29,7 @@ export default {
       return _.unescape(rawText)
     }
   },
+  
 }
 </script>
 

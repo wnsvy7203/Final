@@ -1,10 +1,13 @@
 <template>
+  
   <div>
-    <img :src="imgSrc" style="width: 300px">
+    <img :src="imgSrc" style="width: 300px">  
     <p class="fonts">{{ movie.title }}</p>
-    <p class="str fonts arrange">{{ movie.overview }}</p>
-    <p>평점 : {{ movie.vote_average }}</p>
-    <VideoDetail/>
+    <p class="fonts str fonts arrange">{{ movie.overview }}</p>
+    <h5 style="margin-bottom:10px" class="content-font">평점 : {{ movie.vote_average }}점</h5>
+    <p>{{movie}}</p>
+    <DetailVideoView
+    :movie="movie"/>
     <!-- <iframe
       :src="getYoutubeKey()" 
     ></iframe> -->
@@ -15,11 +18,12 @@
     :movie="movie"
     />
     
+    
   </div>
 </template>
 
 <script>
-import VideoDetail from '@/components/VideoDetail'
+import DetailVideoView from '@/components/DetailVideoView'
 import CommentForm from '@/components/CommentForm'
 import CommentList from '@/components/CommentList'
 // const API_KEY = process.env.VUE_APP_TMDB_API_KEY
@@ -27,7 +31,7 @@ import CommentList from '@/components/CommentList'
 export default {
   name: 'DetailView',
   components: {
-    VideoDetail,
+    DetailVideoView,
     CommentForm,
     CommentList,
   },
