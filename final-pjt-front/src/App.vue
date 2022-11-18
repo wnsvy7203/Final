@@ -10,6 +10,20 @@
           size="lg"
           variant="link"
           toggle-class="text-decoration-none"
+          v-if="tokenType"
+        >
+          <template #button-content>
+            <span class="navbar-toggler-icon"></span>
+          </template>
+            <b-dropdown-item-button><router-link :to="{ name: 'profile' }" class="dropdown-item"> Profile </router-link></b-dropdown-item-button>
+        </b-dropdown>
+        <b-dropdown
+          id="dropdown-dropleft"
+          dropleft text="Drop-Left"
+          size="lg"
+          variant="link"
+          toggle-class="text-decoration-none"
+          v-else
         >
           <template #button-content>
             <span class="navbar-toggler-icon"></span>
@@ -17,14 +31,27 @@
           <b-dropdown-item-button><router-link :to="{ name: 'login' }" class="dropdown-item"> Login </router-link></b-dropdown-item-button>
           <b-dropdown-divider></b-dropdown-divider>
           <b-dropdown-item-button><router-link :to="{ name: 'signup' }" class="dropdown-item"> Signup </router-link></b-dropdown-item-button>
-          <b-dropdown-divider></b-dropdown-divider>
-          <b-dropdown-item-button><router-link :to="{ name: 'profile' }" class="dropdown-item"> Profile </router-link></b-dropdown-item-button>
         </b-dropdown>
       </div>
     </nav>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    tokenType() {
+      if (typeof this.$store.state.token === String) {
+        return true
+      } else {
+        return false
+      }
+    },
+  }
+}
+
+</script>
 
 <style>
 #app {
