@@ -42,7 +42,6 @@ export default {
   components:{
     [Glide.name]: Glide,
     [GlideSlide.name]: GlideSlide,
-  }, 
   methods: {
     moveDetail(movie) {
       router.push({ name: 'detail', params: { movie, id: movie.id } })
@@ -63,6 +62,33 @@ export default {
 </script>
 
 <style>
+.imgmouserOver{
+  width: 100%;
+  height: auto;
+  margin: 0px auto;
+}
+.imgmouserOver:hover img{
+  transform: scale(1.5,1.5); transition-duration: 0.5s;
+  opacity: 1;
+}
 
+.info {
+  color: #fff;
+  position: absolute; left: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.35s ease-in-out;
+}
+.info h3 {
+  font-size: 24px;
+  padding-bottom: 0.4em;
+  overflow:hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
 
 </style>
