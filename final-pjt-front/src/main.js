@@ -3,15 +3,21 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-import Carousel3d from 'vue-carousel-3d'
+import VueGlide from 'vue-glide-js'
+import 'vue-glide-js/dist/vue-glide.css'
 
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+
+import Vuetify from 'vuetify'
+
+Vue.use(Vuetify)
+
 Vue.use(BootstrapVue)
 
-Vue.use(Carousel3d)
+Vue.use(VueGlide)
 
 Vue.config.productionTip = false
 

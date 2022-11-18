@@ -2,9 +2,12 @@
   <div id="app">
     <nav class="navbar justify-content-end navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
+        
         <router-link :to="{ name: 'movie' }" class="navbar-brand" style="font-size: 50px">Best Film</router-link>
-
+        
+        <router-link :to="{ name: 'search' }" class="navbar-brand" style="font-size: 50px"> Search </router-link>
         <b-dropdown
+<<<<<<< HEAD
           id="dropdown-dropleft"
           dropleft text="Drop-Left"
           size="lg"
@@ -24,6 +27,13 @@
           variant="link"
           toggle-class="text-decoration-none"
           v-else
+=======
+        id="dropdown-dropleft"
+        dropleft text="Drop-Left"
+        size="lg"
+        variant="link"
+        toggle-class="text-decoration-none"
+>>>>>>> b49c86901367269f0f00214ce5af9d1f2edbba87
         >
           <template #button-content>
             <span class="navbar-toggler-icon"></span>
@@ -33,6 +43,7 @@
           <b-dropdown-item-button><router-link :to="{ name: 'signup' }" class="dropdown-item"> Signup </router-link></b-dropdown-item-button>
         </b-dropdown>
       </div>
+      
     </nav>
     <router-view/>
   </div>

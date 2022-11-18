@@ -1,0 +1,2 @@
+npm i vue-glide-js
+npm install @nuxtjs/vuetify -D
