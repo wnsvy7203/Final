@@ -1,6 +1,2 @@
-<<<<<<< HEAD
 npm i vue-glide-js
 npm install @nuxtjs/vuetify -D
-=======
-npm i vue-glide-js
->>>>>>> 31df5b3b801762cc46b85fa37bdd596b4554b57a

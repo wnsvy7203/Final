@@ -1,9 +1,5 @@
 <template>
   <div id="app" >
-<<<<<<< HEAD
-    
-=======
->>>>>>> 31df5b3b801762cc46b85fa37bdd596b4554b57a
     <h1>인기 영화</h1>
     <div class="mt-3 mx-3">
       <vue-glide class="glide__track"
@@ -14,22 +10,6 @@
       >
         <vue-glide-slide 
           v-for="movie in totalMovie"
-<<<<<<< HEAD
-          :key="movie.id"
-          class="box">
-          <div class="imgmouserOver">
-            
-            <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" style="width: 100%; "
-            @click="moveDetail(movie)">
-            
-          </div>
-          <div class="info">
-            <h3>제목출력</h3>
-          </div>
-        </vue-glide-slide>
-      </vue-glide>
-
-=======
           :key="movie.id">
           
           <img
@@ -40,7 +20,6 @@
           >
         </vue-glide-slide>
       </vue-glide>
->>>>>>> 31df5b3b801762cc46b85fa37bdd596b4554b57a
     </div>
 
     <!-- 다음 영화 목록 -->
@@ -63,16 +42,6 @@ export default {
   components:{
     [Glide.name]: Glide,
     [GlideSlide.name]: GlideSlide,
-<<<<<<< HEAD
-    
-  }, 
-  data(){
-    return{
-      modalState: false,
-    }
-  },
-=======
->>>>>>> 31df5b3b801762cc46b85fa37bdd596b4554b57a
   methods: {
     moveDetail(movie) {
       router.push({ name: 'detail', params: { movie, id: movie.id } })
