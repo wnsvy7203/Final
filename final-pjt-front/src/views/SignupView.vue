@@ -1,3 +1,6 @@
+<!-- 여기서 Signup할 때, 다른 정보도 넘기도록 하자 -->
+<!-- 지금 넘어가는 정보는 username, password -->
+
 <template>
   <div class="my-3">
     <h1>Sign Up Page</h1>

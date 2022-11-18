@@ -40,11 +40,11 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push({name:'movie'})
+      router.push({ name:'movie' })
     },
     CREATE_COMMENT(state, commentItem){
       state.comments.push(commentItem)
-    }
+    },
   },
   actions: {
     getMovieJson(context) {
@@ -94,7 +94,19 @@ export default new Vuex.Store({
       }
       console.log(commentItem)
       context.commit('CREATE_COMMENT', commentItem)
-    }
+    },
+    getProfile(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/movies/`,
+        headers: {
+          Authorization: `Token ${ context.state.token }`
+        }
+      })
+        .then(res =>
+          context.commit('GET_PROFILE', res.data)
+        )
+    },
   },
   modules: {
   }

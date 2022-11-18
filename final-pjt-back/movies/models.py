@@ -18,6 +18,7 @@ class Movie(models.Model):
     overview = models.TextField()
     poster_path = models.TextField()
     genres = models.ManyToManyField(Genre)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
 
 
 class Comment(models.Model):
