@@ -9,6 +9,12 @@
       <input type="password" id="password" v-model="password"><br>
 
       <input type="submit" value="LogIn">
+
+      
+        
+      <button @click="moveSignUp">회원가입 </button>
+      
+      
     </form>
   </div>
 </template>
@@ -32,7 +38,11 @@
           password: password,
         }
         this.$store.dispatch('logIn', payload)
+      },
+      moveSignUp(){
+        this.$router.push({ name : 'signup'})
       }
+
     }
   }
   </script>
