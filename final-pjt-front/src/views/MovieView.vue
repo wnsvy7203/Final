@@ -42,6 +42,7 @@ export default {
   components:{
     [Glide.name]: Glide,
     [GlideSlide.name]: GlideSlide,
+  },
   methods: {
     moveDetail(movie) {
       router.push({ name: 'detail', params: { movie, id: movie.id } })

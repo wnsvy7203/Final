@@ -14,7 +14,7 @@
     <CommentList
     :movie="movie"
     />
-    
+    <DetailVideoView/>
     
   </div>
 </template>
