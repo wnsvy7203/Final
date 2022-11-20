@@ -12,7 +12,7 @@
           size="lg"
           variant="link"
           toggle-class="text-decoration-none"
-          v-show="tokenType"
+          v-if="tokenType"
         >
           <template #button-content>
             <span class="navbar-toggler-icon"></span>
@@ -27,6 +27,7 @@
           size="lg"
           variant="link"
           toggle-class="text-decoration-none"
+          v-else
         >
           <template #button-content>
             <span class="navbar-toggler-icon"></span>
