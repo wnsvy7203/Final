@@ -40,6 +40,11 @@ const routes = [
     name: 'search',
     component: MovieSearch,
   },
+  {
+    path: '/my',
+    name: 'myprofile',
+    component: ProfileView,
+  }
 ]
 
 const router = new VueRouter({
