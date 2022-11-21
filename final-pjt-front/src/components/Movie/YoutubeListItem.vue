@@ -5,19 +5,20 @@
     hide-overlay
     width="1000px"
     >
+
       <template 
       v-slot:activator="{on, attrs}">
-      <img :src="imgSrc"
+      
+      <img :src="imgSrc" alt="없어용"
       v-bind="attrs"
-      v-on="on">
+      v-on="on"
+      width="160px" 
+      >
       </template>
 
-      <div class="youtube-line">
-
-        <div class="video-container">
-          <iframe :src="YoutubeUrl"></iframe>
-        </div>
-      </div>
+      <div class="video-container">
+        <iframe :src="YoutubeUrl"></iframe>
+      </div>      
     </v-dialog>
   </span>
 </template>
@@ -48,10 +49,10 @@ export default {
 
 <style>
 .youtube-video{
-  display: flex;
   margin-bottom: 1rem;
   cursor: pointer;
   transition: transform 500ms;
+  
 }
 
 .youtube-video:hover{

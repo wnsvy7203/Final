@@ -1,6 +1,6 @@
 <template>
   <div>
-    <YoutubeListItem
+    <YoutubeListItem class="container"
     v-for="(video) in this.youtubeVideo"
     :key="video.idx"
     :video="video"
@@ -24,6 +24,7 @@ export default {
   data(){
     return{
       youtubeVideo: this.$store.state.youtubeVideos
+      
     }
   },
   created(){
@@ -33,4 +34,5 @@ export default {
 </script>
 
 <style>
+
 </style>
