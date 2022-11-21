@@ -7,6 +7,8 @@ import router from '@/router'
 Vue.use(Vuex)
 
 const API_URL = 'http://127.0.0.1:8000'
+const YOUTUBE_URL = 'https://www.googleapis.com/youtube/v3/search'
+const YOUTUBE_KEY = 'AIzaSyDlxxWeu6OMB8ZmSn-RPbwlzEqPSB0RReU'
 
 export default new Vuex.Store({
   plugins: [
@@ -14,9 +16,9 @@ export default new Vuex.Store({
   ],
   state: {
     MovieJsonData: [],
-    movies: [],
     token: null,
     comments: [],
+    youtubeVideos: [],
   },
   getters: {
     isLogin(state) {
@@ -45,6 +47,9 @@ export default new Vuex.Store({
     CREATE_COMMENT(state, commentItem){
       state.comments.push(commentItem)
     },
+    GET_YOUTUBE(state, res){
+      state.youtubeVideos = res.data.items
+    }
   },
   actions: {
     getMovieJson(context) {
@@ -107,6 +112,25 @@ export default new Vuex.Store({
           context.commit('GET_PROFILE', res.data)
         )
     },
+    getYoutube(context, title){
+      const params = {
+        q: title + 'movie',
+        key: YOUTUBE_KEY,
+        part: 'snippet',
+        type: 'video'
+      }
+      axios({
+        method: 'get',
+        url: YOUTUBE_URL,
+        params,
+      })
+        .then(res =>{
+          context.commit('GET_YOUTUBE', res)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+    }
   },
   modules: {
   }

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import CommentListItem from '@/components/CommentListItem'
+import CommentListItem from '@/components/Movie/CommentListItem'
 export default {
     name:'CommentList',
     components:{
