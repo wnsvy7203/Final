@@ -3,7 +3,7 @@
 
 <template>
   <div class="my-3">
-    <h1>Sign Up Page</h1>
+    <h1 style="color: white">Sign Up Page</h1>
     <form @submit.prevent="signUp">
       <label for="username">username : </label>
       <input type="text" id="username" v-model="username"><br>
@@ -14,6 +14,15 @@
       <label for="password2"> password confirmation : </label>
       <input type="password" id="password2" v-model="password2">
       
+      <!-- <table>
+        <tbody>
+          <tr v-for="line in genres">
+            <td v-for="item in line"><button>{{ item }}</button></td>
+          </tr>
+        </tbody>
+        </table> -->
+
+
       <input type="submit" value="SignUp">
     </form>
   </div>
@@ -27,6 +36,14 @@ export default {
       username: null,
       password1: null,
       password2: null,
+      genre_pk: null,
+      genres: [
+        ['액션', '모험', '애니메이션', '코미디'],
+        ['범죄', '다큐멘터리', '드라마', '가족'],
+        ['판타지', '역사', '공포', '음악'],
+        ['미스터리', '로맨스', 'SF', 'TV 영화'],
+        ['스릴러', '전쟁', '서부']
+      ]
     }
   },
   methods: {
@@ -34,18 +51,19 @@ export default {
       const username = this.username
       const password1 = this.password1
       const password2 = this.password2
+      
+      const genre_pk = this.genre_pk
 
       const payload = {
-        // username,
-        // password1,
-        // password2,
         username: username,
         password1: password1,
         password2: password2,
+        genre_pk: genre_pk
       }
 
       this.$store.dispatch('signUp', payload)
-    }
+    },
+
   }
 }
   </script>

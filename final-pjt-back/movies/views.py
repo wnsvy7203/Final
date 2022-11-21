@@ -1,16 +1,18 @@
 
+from django.shortcuts import get_list_or_404, get_object_or_404
+from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
+
+from movies.models import Comment, Genre, Movie
+from movies.serializers import (CommentSerializer, GenreSerializer,
+                                MovieListSerializer, MovieSerializer)
+
 # Authentication Decorators
 # from rest_framework.decorators import authentication_classes
 
-from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated
 
-from rest_framework import status
-from django.shortcuts import get_object_or_404, get_list_or_404
-from movies.serializers import MovieListSerializer, MovieSerializer, CommentSerializer
-from movies.models import Movie, Comment
 
 
 
@@ -71,3 +73,11 @@ def comment_create(request, movie_pk):
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+@api_view(['GET'])
+def get_genre(request):
+
+    genre = get_object_or_404(Genre, pk=request.data.key)
+    serializer = GenreSerializer(genre)
+
+    return Response(serializer.data)

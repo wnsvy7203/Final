@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>My Profile</h1>
+    <h1 class="mt-3">My Profile</h1>
     <div>
       찜한 영화
     </div>
@@ -25,7 +25,7 @@ export default {
   methods: {
     getMyName() {
       axios({
-        method: 'POST',
+        method: 'post',
         url: `${API_URL}/accounts/my/`,
         headers: {
           Authorization: `Token ${ this.$store.state.token }`
@@ -34,7 +34,6 @@ export default {
         .then(res => {
           console.log(res.data)
           this.token = res.data
-          console.log(this.token)
         })
         .catch((error) => {
           console.log(error)
