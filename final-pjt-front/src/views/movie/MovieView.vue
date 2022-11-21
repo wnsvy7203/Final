@@ -1,6 +1,12 @@
 <template>
   <div id="app" >
-    <h1>인기 영화</h1>
+    <div class="row row-cols-1 row-cols-md-5 gy-3 imgmouserOver">
+      <MovieCard
+        v-for="(movie, idx) in totalMovie"
+        :key="idx"
+        :movie="movie"/>
+    </div>
+    <!-- <h1>인기 영화</h1>
     <div class="mt-3 mx-3">
       <vue-glide class="glide__track"
         data-glide-el="track"
@@ -10,9 +16,12 @@
       >
         <vue-glide-slide 
           v-for="movie in totalMovie"
-          :key="movie.id">
+          :key="movie.id"
+          class="imgmouserOver"
+          >
           
           <img
+            
             :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
             @click="moveDetail(movie)"
             style="width: 100%; height: 70%;"
@@ -20,9 +29,9 @@
           >
         </vue-glide-slide>
       </vue-glide>
-    </div>
+    </div> -->
 
-    <!-- 다음 영화 목록 -->
+    
     <div>
       <h1> 다음 영화 리스트</h1>
     </div>
@@ -35,13 +44,14 @@
 <script>
 import router from '@/router'
 import { Glide, GlideSlide } from 'vue-glide-js'
-
+import MovieCard from '@/components/Movie/MovieCard'
 
 export default {
   name: 'MovieView',
   components:{
     [Glide.name]: Glide,
     [GlideSlide.name]: GlideSlide,
+    MovieCard,
   },
   methods: {
     moveDetail(movie) {
@@ -72,6 +82,8 @@ export default {
   transform: scale(1.5,1.5); transition-duration: 0.5s;
   opacity: 1;
 }
+
+
 
 .info {
   color: #fff;

@@ -2,12 +2,12 @@ import requests
 import os
 import json
 
-# BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-# secret_file = os.path.join(BASE_DIR, 'secret.json')
+secret_file = os.path.join(BASE_DIR, 'secret.json')
 
-# with open(secret_file) as f:
-#     secrets = json.loads(f.read())
+with open(secret_file) as f:
+    secrets = json.loads(f.read())
 
 TMDB_API_KEY = '048f1b44f3f7ceec6752538826583420'
 
@@ -23,14 +23,13 @@ def get_movie_datas():
         for movie in movies['results']:
             if movie.get('release_date', ''):
                 fields = {
-                    'id': movie['id'],
                     'title': movie['title'],
                     'released_date': movie['release_date'],
                     'vote_count': movie['vote_count'],
                     'vote_average': movie['vote_average'],
                     'overview': movie['overview'],
                     'poster_path': movie['poster_path'],
-                    'genres': movie['genre_ids']
+                    'genres': movie['genre_ids'],
                 }
 
                 data = {
