@@ -84,7 +84,7 @@
         </div>
       </div>
       <div style="color:white;">
-        <CommentVue
+        <CommentForm
         :movie="movie"
         />
         <!-- <CommentForm
@@ -93,6 +93,10 @@
         <CommentList
         :movie="movie"
         /> -->
+        <CommentList
+        :movie="movie"
+        />
+
       </div>
     </div>
     comment
@@ -107,7 +111,8 @@
 // import CommentForm from '@/components/Movie/CommentForm'
 // import CommentList from '@/components/Movie/CommentList'
 import YoutubeList from '@/components/Movie/YoutubeList'
-import CommentVue from '@/components/Movie/CommentVue'
+import CommentList from '@/components/Movie/CommentList.vue'
+import CommentForm from './CommentForm.vue'
 
 export default {
   name:'MovieCard',
@@ -115,12 +120,12 @@ export default {
     movie: Object
   },
   components: {
-
     // CommentForm,
     // CommentList,
     YoutubeList,
-    CommentVue,
-  },
+    CommentList,
+    CommentForm
+},
   data(){
     return{
       dialog: false
@@ -131,7 +136,7 @@ export default {
   imgSrc: function () {
     return "https://image.tmdb.org/t/p/original" + this.movie.poster_path
   },
-}
+}}
 </script>
 
 <style>
