@@ -18,6 +18,8 @@
             <span class="navbar-toggler-icon"></span>
           </template>
             <b-dropdown-item-button><router-link :to="{ name: 'profile' }" class="dropdown-item"> Profile </router-link></b-dropdown-item-button>
+            <b-dropdown-divider></b-dropdown-divider>
+            <b-dropdown-item-button @click="logOut"> Logout </b-dropdown-item-button>
         </b-dropdown>
 
         <b-dropdown v-else
