@@ -135,7 +135,7 @@ export default new Vuex.Store({
         )
     },
     getYoutube(context, title){
-      const params = {
+      const params={
         q: title + 'movie',
         key: YOUTUBE_KEY,
         part: 'snippet',
@@ -148,9 +148,6 @@ export default new Vuex.Store({
       })
         .then(res =>{
           context.commit('GET_YOUTUBE', res)
-        })
-        .catch(err=>{
-          console.log(err)
         })
     }
   },

@@ -2,7 +2,8 @@
   <div>
     <input type="text"
     v-model.trim="comment"
-    @keyup.enter="createComment">
+    @keyup.enter="createComment"
+    id="input1">
     <p>{{movie.id}}</p>
   </div>
 </template>
@@ -34,5 +35,9 @@ export default {
 </script>
 
 <style>
-
+#input1 {
+    background-color: white;
+    color: black;
+    
+}
 </style>
