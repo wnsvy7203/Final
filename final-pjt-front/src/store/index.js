@@ -19,6 +19,7 @@ export default new Vuex.Store({
     token: null,
     comments: [],
     youtubeVideos: [],
+    num: null,
   },
   getters: {
     isLogin(state) {
@@ -29,7 +30,7 @@ export default new Vuex.Store({
     },
 
     getMovie(state) {
-      state.movies = state.MovieJsonData.slice(0, 21)
+      state.movies = state.MovieJsonData.slice(0, 25)
       return state.movies
     },
     getComment(state){
@@ -49,6 +50,12 @@ export default new Vuex.Store({
     },
     GET_YOUTUBE(state, res){
       state.youtubeVideos = res.data.items
+    },
+    GET_GENRES(state, res){
+      state.num = res.data
+    },
+    DELETE_TOKEN(state){
+      state.token = null
     }
   },
   actions: {
@@ -77,6 +84,18 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('SAVE_TOKEN', response.data.key)
         })
+        .then(
+          axios({
+            method: 'get',
+            url: `${API_URL}/api/v1/genres/`,
+            data: {
+              pk: payload.genre_pk
+            }
+          })
+            .then((response) => {
+              context.commit('GET_GENRES', response.data.key)
+            })
+        )
     },
     logIn(context, payload) {
       axios({
@@ -90,6 +109,9 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('SAVE_TOKEN', response.data.key)
         })
+    },
+    logOut(context){
+      context.commit('DELETE_TOKEN')
     },
     createComment(context, payload){
       const commentItem = {
