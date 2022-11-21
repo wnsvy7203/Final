@@ -1,6 +1,7 @@
-import requests
-import os
 import json
+import os
+
+import requests
 
 # BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
@@ -23,14 +24,15 @@ def get_movie_datas():
         for movie in movies['results']:
             if movie.get('release_date', ''):
                 fields = {
-                    'id': movie['id'],
+                    'get_id': movie['id'],
                     'title': movie['title'],
                     'released_date': movie['release_date'],
                     'vote_count': movie['vote_count'],
                     'vote_average': movie['vote_average'],
                     'overview': movie['overview'],
                     'poster_path': movie['poster_path'],
-                    'genres': movie['genre_ids']
+                    'genres': movie['genre_ids'],
+                    'get_backdrop_path': movie['backdrop_path'],
                 }
 
                 data = {

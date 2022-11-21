@@ -1,7 +1,7 @@
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from django.urls import path
-from movies import views
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
+from movies import views
 
 urlpatterns = [
     path('movies/', views.movie_list),
@@ -9,6 +9,7 @@ urlpatterns = [
     path('comments/', views.comment_list),
     path('comments/<int:comment_pk>/', views.comment_detail),
     path('movies/<int:movie_pk>/comments/', views.comment_create),
+    path('genres/', views.get_genre),
     # # 필수 작성
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     # # optional UI

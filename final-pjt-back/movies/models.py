@@ -1,5 +1,5 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
 
 
 # Create your models here.
@@ -19,7 +19,8 @@ class Movie(models.Model):
     poster_path = models.TextField()
     genres = models.ManyToManyField(Genre)
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
-
+    get_id = models.TextField()
+    get_backdrop_path = models.TextField(null=True)
 
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

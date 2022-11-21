@@ -1,12 +1,13 @@
 <template>
   <div class="container">
-    <h1>My Profile</h1>
+    <h1 class="mt-3">My Profile</h1>
     <div>
       찜한 영화
     </div>
     <div>
       선호 장르 추천 영화
     </div>
+    <!-- <p>{{comment.username}}</p> -->
   </div>
 </template>
 
@@ -25,7 +26,7 @@ export default {
   methods: {
     getMyName() {
       axios({
-        method: 'POST',
+        method: 'post',
         url: `${API_URL}/accounts/my/`,
         headers: {
           Authorization: `Token ${ this.$store.state.token }`
@@ -34,7 +35,6 @@ export default {
         .then(res => {
           console.log(res.data)
           this.token = res.data
-          console.log(this.token)
         })
         .catch((error) => {
           console.log(error)

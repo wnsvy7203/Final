@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MovieView from '../views/MovieView.vue'
-import DetailView from '@/views/DetailView'
-import LogInView from '@/views/LogInView'
-import SignupView from '@/views/SignupView'
-import ProfileView from '@/views/ProfileView'
-import MovieSearch from '@/views/MovieSearch'
+import MovieView from '../views/movie/MovieView.vue'
+// import DetailView from '@/components/movie/DetailView'
+import LogInView from '@/views/account/LogInView'
+import SignupView from '@/views/account/SignupView'
+import ProfileView from '@/views/account/ProfileView'
+import MovieSearch from '@/views/movie/MovieSearch'
 
 Vue.use(VueRouter)
 
@@ -30,21 +30,16 @@ const routes = [
     name: 'movie',
     component: MovieView
   },
-  {
-    path: '/movies/:id',
-    name: 'detail',
-    component: DetailView,
-  },
+  // {
+  //   path: '/movies/:id',
+  //   name: 'detail',
+  //   component: DetailView,
+  // },
   {
     path: '/movies/search',
     name: 'search',
     component: MovieSearch,
   },
-  {
-    path: '/my',
-    name: 'myprofile',
-    component: ProfileView,
-  }
 ]
 
 const router = new VueRouter({

@@ -6,13 +6,13 @@
         <router-link :to="{ name: 'movie' }" class="navbar-brand" style="font-size: 50px">Best Film</router-link>
         
         <router-link :to="{ name: 'search' }" class="navbar-brand" style="font-size: 50px"> Search </router-link>
-        <b-dropdown
-          id="dropdown-dropleft"
-          dropleft text="Drop-Left"
-          size="lg"
-          variant="link"
-          toggle-class="text-decoration-none"
-          v-if="tokenType"
+        
+        <b-dropdown v-if="isLogin===true"
+            id="dropdown-dropleft"
+            dropleft text="Drop-Left"
+            size="lg"
+            variant="link"
+            toggle-class="text-decoration-none"
         >
           <template #button-content>
             <span class="navbar-toggler-icon"></span>
@@ -21,13 +21,13 @@
             <b-dropdown-divider></b-dropdown-divider>
             <b-dropdown-item-button @click="logOut"> Logout </b-dropdown-item-button>
         </b-dropdown>
-        <b-dropdown
+
+        <b-dropdown v-else
           id="dropdown-dropleft"
           dropleft text="Drop-Left"
           size="lg"
           variant="link"
           toggle-class="text-decoration-none"
-          v-else
         >
           <template #button-content>
             <span class="navbar-toggler-icon"></span>
@@ -40,25 +40,20 @@
       
     </nav>
     <router-view/>
+    <v-app>
+        <MyComponent/>
+    </v-app>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-import router from './router'
-
-const API_URL = 'http://127.0.0.1:8000'
+import axios from 'axios';
 
 export default {
+  name: 'App',
   methods: {
-    tokenType() {
-      if (typeof this.$store.state.token === String) {
-        return true
-      } else {
-        return false
-      }
-    },
     logOut() {
+      const API_URL = 'http://127.0.0.1:8000'
       axios({
         method: 'post',
         url: `${API_URL}/accounts/logout/`,
@@ -66,19 +61,25 @@ export default {
           Authorization: `Token ${ this.$store.state.token }`
         }
       })
-        .then( res => {
-          console.log(res)
-          router.push({ name : 'movie' })
-        })
-
+        .then(
+          this.$store.dispatch('logOut')
+        )
+        .catch(() => {}
+        )
     }
-  }
+  },
+  computed: {
+    isLogin() {
+      return this.$store.getters.isLogin
+    }
+  },
 }
 
 </script>
 
 <style>
 #app {
+  background-color: black;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
