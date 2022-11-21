@@ -21,6 +21,7 @@ export default new Vuex.Store({
     youtubeVideos: [],
     user_id: null,
     genres: [],
+    rated: [1,2,3,4,5,6,7,8,9,10],
   },
   getters: {
     isLogin(state) {
@@ -170,6 +171,9 @@ export default new Vuex.Store({
       })
         .then(res =>{
           context.commit('GET_YOUTUBE', res)
+        })
+        .catch(err=>{
+          console.log(err)
         })
     }
   },

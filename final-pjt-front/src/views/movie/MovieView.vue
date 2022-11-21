@@ -7,7 +7,7 @@
         :movie="movie"/>
     </div>
     
-    <h1>인기 영화</h1>
+    <!-- <h1>인기 영화</h1>
     <div class="mt-3 mx-3">
       <vue-glide class="glide__track"
         data-glide-el="track"
@@ -30,7 +30,7 @@
           >
         </vue-glide-slide>
       </vue-glide>
-    </div>
+    </div> -->
 
     
     <div>

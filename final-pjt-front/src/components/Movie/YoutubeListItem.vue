@@ -9,17 +9,17 @@
       <template 
       v-slot:activator="{on, attrs}">
       
-      <img :src="imgSrc" alt="없어용"
+      <img :src="imgSrc"
       v-bind="attrs"
       v-on="on"
-      width="160px" 
       >
-      {{ video }}
       </template>
+      <div class="youtube-dialog-card">
 
-      <div class="video-container">
+        <div class="video-container">
         <iframe :src="YoutubeUrl"></iframe>
-      </div>      
+        </div>      
+      </div>
     </v-dialog>
   </span>
 </template>
@@ -61,18 +61,30 @@ export default {
   transform: scale(1.2);
   transition-duration: 0.5s
 }
-
-.video-container {
-  position: relative;   /* iframe을 container를 기준으로 위치를 지정 */
-  padding-top: 56.25%;  /* 유튜브 비디오 비율을 맞추기 위한 높이 설정 */
+.youtube-video > img {
+  height: fit-content;
+  width: 200px;
+  border: 1px solid #eee;
 }
 
-.video-container > iframe {
-  position: absolute;   /* container를 기준으로 위치를 지정*/
-  top: 0;               /* container의 가장 위쪽으로 위치를 지정 */
-  left: 0;
-  width: 100%;
-  height: 100%;
+.video-container {
+  display: flex;
+  flex-flow: column wrap;
+  background-color: #000000;
+}
+
+.youtube-dialog-card {
+  display: flex;
+  flex-flow: column wrap;
+  background-color: #000000;
+}
+
+.youtube-container > iframe {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
 }
 
 

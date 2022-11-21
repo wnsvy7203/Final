@@ -1,17 +1,16 @@
 <template>
-  <div>
+  <ul class="youtube-list">
     <YoutubeListItem class="container"
     v-for="(video) in this.youtubeVideo"
     :key="video.idx"
     :video="video"
-    
-    />
-    
-  </div>
+    />    
+  </ul>
 </template>
 
 <script>
 import YoutubeListItem from '@/components/Movie/YoutubeListItem'
+
 
 export default {
   name: 'YoutubeList',
@@ -24,7 +23,6 @@ export default {
   data(){
     return{
       youtubeVideo: this.$store.state.youtubeVideos
-      
     }
   },
   created(){
@@ -34,5 +32,13 @@ export default {
 </script>
 
 <style>
+.youtube-list{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  list-style-type: none;
+  padding-left: 0;
+}
+
 
 </style>
