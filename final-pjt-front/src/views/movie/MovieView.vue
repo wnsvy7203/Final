@@ -1,13 +1,11 @@
 <template>
   <div id="app" >
-    <div class="row row-cols-1 row-cols-md-5 gy-3">
+    <div class="row row-cols-1 row-cols-md-5 gy-3 imgmouserOver">
       <MovieCard
         v-for="(movie, idx) in totalMovie"
         :key="idx"
         :movie="movie"/>
     </div>
-
-
     
     <h1>인기 영화</h1>
     <div class="mt-3 mx-3">

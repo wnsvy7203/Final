@@ -1,6 +1,5 @@
 <template>
   <span class="youtube-video">
-    
     <v-dialog 
     v-model="dialog"
     hide-overlay
@@ -15,7 +14,7 @@
       v-on="on"
       width="160px" 
       >
-      {{ video}}
+      {{ video }}
       </template>
 
       <div class="video-container">

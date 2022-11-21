@@ -19,8 +19,8 @@ export default new Vuex.Store({
     token: null,
     comments: [],
     youtubeVideos: [],
-    num: null,
     user_id: null,
+    genres: [],
   },
   getters: {
     isLogin(state) {
@@ -46,17 +46,18 @@ export default new Vuex.Store({
       state.token = token
       router.push({ name:'movie' })
     },
-    CREATE_COMMENT(state, commentItem){
+    CREATE_COMMENT(state, commentItem) {
       state.comments.push(commentItem)
     },
     GET_YOUTUBE(state, res){
       state.youtubeVideos = res.data.items
     },
-    GET_GENRES(state, res){
-      state.num = res.data
-    },
-    DELETE_TOKEN(state){
+    DELETE_TOKEN(state) {
       state.token = null
+    },
+    PICK_GENRE(state, res) {
+      state.genres = res.data
+      console.log(res.data)
     }
   },
   actions: {
@@ -97,6 +98,24 @@ export default new Vuex.Store({
               context.commit('GET_GENRES', response.data.key)
             })
         )
+    },
+    pickGenre(context, genre_list) {
+      const local_genre = []
+      for (let i=0; i<genre_list.length; i++) {
+        console.log(genre_list[i])
+        axios({
+          method: 'get',
+          url: `${API_URL}/api/v1/genres/`,
+        })
+          .then((response) => {
+            for (let j=0; j<response.data.length; j++) {
+              if (genre_list[i] === response.data[j].name) {
+                local_genre.push(response.data[j].id)
+              }
+            }
+            context.commit('PICK_GENRE', local_genre)
+          })
+      }
     },
     logIn(context, payload) {
       axios({

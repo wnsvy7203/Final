@@ -76,8 +76,14 @@ def comment_create(request, movie_pk):
 
 @api_view(['GET'])
 def get_genre(request):
-
-    genre = get_object_or_404(Genre, pk=request.data.key)
-    serializer = GenreSerializer(genre)
+    genres = get_list_or_404(Genre)
+    serializer = GenreSerializer(genres)
+    # ['모험', '애니메이션']
+    # for i in range(len(genres)):
+    #     genre = get_object_or_404(Genre, name=request.data.name)
+    #     if genres[i] == genre:
+            
 
     return Response(serializer.data)
+
+    # return hi

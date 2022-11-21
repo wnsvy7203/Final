@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <YoutubeListItem class="container"
     v-for="(video) in this.youtubeVideo"
     :key="video.idx"

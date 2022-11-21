@@ -1,6 +1,7 @@
 from django import forms
 
-from .models import Movie, Genre
+from .models import Genre, Movie
+
 
 class GenreForm(forms.ModelForm):
 

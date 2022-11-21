@@ -92,7 +92,7 @@
         />
         <CommentList
         :movie="movie"
-        />     -->
+        /> -->
       </div>
     </div>
     comment
@@ -109,29 +109,29 @@
 import YoutubeList from '@/components/Movie/YoutubeList'
 import CommentVue from '@/components/Movie/CommentVue'
 
-  export default {
-    name:'MovieCard',
-    props:{
-      movie: Object
-    },
-    components: {
-      // CommentForm,
-      // CommentList,
-      YoutubeList,
-      CommentVue,
-    },
-    data(){
-      return{
-        dialog: false
-        
-      }
-    },
-    computed: {
-    imgSrc: function () {
-      return "https://image.tmdb.org/t/p/original" + this.movie.poster_path
-    },
+export default {
+  name:'MovieCard',
+  props:{
+    movie: Object
   },
-  }
+  components: {
+
+    // CommentForm,
+    // CommentList,
+    YoutubeList,
+    CommentVue,
+  },
+  data(){
+    return{
+      dialog: false
+
+    }
+  },
+  computed: {
+  imgSrc: function () {
+    return "https://image.tmdb.org/t/p/original" + this.movie.poster_path
+  },
+}
 </script>
 
 <style>

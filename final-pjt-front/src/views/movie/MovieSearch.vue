@@ -16,8 +16,8 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
-import router from '@/router';
+import axios from 'axios'
+import router from '@/router'
 
 const API_KEY = '048f1b44f3f7ceec6752538826583420'
 

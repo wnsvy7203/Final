@@ -38,4 +38,4 @@ class GenreSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Genre
-        fields = '__all__'
+        fields = ('id', 'name',)
