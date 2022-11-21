@@ -14,6 +14,7 @@
       v-on="on"
       width="160px" 
       >
+      {{ video }}
       </template>
 
       <div class="video-container">

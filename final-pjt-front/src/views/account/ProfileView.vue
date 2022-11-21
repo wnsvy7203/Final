@@ -7,6 +7,7 @@
     <div>
       선호 장르 추천 영화
     </div>
+    <!-- <p>{{comment.username}}</p> -->
   </div>
 </template>
 

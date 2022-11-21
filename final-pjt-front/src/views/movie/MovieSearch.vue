@@ -8,7 +8,7 @@
     >
     <span class="imgmouserOver">
       <img v-bind:src="'http://image.tmdb.org/t/p/w500/'+result.poster_path" width='50%'
-      @click="moveDetail(result)">
+      @click="moveCard(result)">
       <p>{{ result.title }}</p>
 
     </span>
@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
+import axios from 'axios'
 import router from '@/router'
 
 const API_KEY = '048f1b44f3f7ceec6752538826583420'
@@ -37,7 +37,7 @@ export default {
         })
         console.log(this.results)
     },
-    moveDetail(movie) {
+    moveCard(movie) {
       router.push({ name: 'detail', params: { movie, id: movie.id } })
     },
   }

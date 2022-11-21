@@ -75,7 +75,7 @@ def comment_create(request, movie_pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 @api_view(['GET'])
-def get_genre(request, genre_id):
+def get_genre(request):
     genres = get_list_or_404(Genre)
     serializer = GenreSerializer(genres)
     # ['모험', '애니메이션']

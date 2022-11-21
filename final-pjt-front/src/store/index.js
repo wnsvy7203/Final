@@ -19,6 +19,7 @@ export default new Vuex.Store({
     token: null,
     comments: [],
     youtubeVideos: [],
+    user_id: null,
     genres: [],
   },
   getters: {
@@ -48,7 +49,7 @@ export default new Vuex.Store({
     CREATE_COMMENT(state, commentItem) {
       state.comments.push(commentItem)
     },
-    GET_YOUTUBE(state, res) {
+    GET_YOUTUBE(state, res){
       state.youtubeVideos = res.data.items
     },
     DELETE_TOKEN(state) {
@@ -85,6 +86,18 @@ export default new Vuex.Store({
         .then((response) => {
           context.commit('SAVE_TOKEN', response.data.key)
         })
+        .then(
+          axios({
+            method: 'get',
+            url: `${API_URL}/api/v1/genres/`,
+            data: {
+              pk: payload.genre_pk
+            }
+          })
+            .then((response) => {
+              context.commit('GET_GENRES', response.data.key)
+            })
+        )
     },
     pickGenre(context, genre_list) {
       const local_genre = []
@@ -115,6 +128,8 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('SAVE_TOKEN', response.data.key)
+          context.commit('SET_USER_DATA', response.user)
+          console.log(response)
         })
     },
     logOut(context){
