@@ -88,7 +88,7 @@ export default {
       
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/genres/`,
+        url: `${API_URL}/api/v1/add_genres/`,
       })
         .then((response) => {
           for (let i=0; i<local_genre.length; i++) {
