@@ -31,4 +31,5 @@ def like_genres(request):
         # serializer = UserGenreSerializer(id=user.id, data=i)
         # print(serializer)
         # serializer.save()
+        user.like_genres.add(i)
         pass
