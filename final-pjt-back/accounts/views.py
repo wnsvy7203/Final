@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserGenreSerializer, UserSerializer
 
 
 # Create your views here.
@@ -19,10 +19,16 @@ def my_profile(request):
     return Response(serializer.data)
 
 
-@api_view(['GET'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def profile(request):
-    user = get_object_or_404(get_user_model(), pk=request.data.get('user_pk'))
-    serializer = UserSerializer(user)
+def like_genres(request):
+    user = request.user
+    data = request.data
 
-    return Response(serializer.data)
+    print(data)
+
+    for i in data['push_genre']:
+        # serializer = UserGenreSerializer(id=user.id, data=i)
+        # print(serializer)
+        # serializer.save()
+        pass

@@ -42,6 +42,10 @@
 </template>
   
 <script>
+import axios from 'axios'
+
+const API_URL = 'http://127.0.0.1:8000'
+
 export default {
   name: 'SignupView',
   data() {
@@ -77,7 +81,24 @@ export default {
       const username = this.username
       const password1 = this.password1
       const password2 = this.password2
-      const genre = this.genre
+      
+      const local_genre = this.genre
+      
+      const genre = []
+      
+      axios({
+        method: 'get',
+        url: `${API_URL}/api/v1/genres/`,
+      })
+        .then((response) => {
+          for (let i=0; i<local_genre.length; i++) {
+            for (let j=0; j<response.data.length; j++) {
+              if (local_genre[i] === response.data[j].name) {
+                genre.push(response.data[j].id)
+              }
+            }
+          }
+        })
 
       const payload = {
         username: username,

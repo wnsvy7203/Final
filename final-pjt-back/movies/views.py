@@ -77,10 +77,9 @@ def genre_list(request):
 
 @api_view(['GET'])
 def get_genre(request, genre_pk):
+
     genre = get_object_or_404(Genre, pk=genre_pk)
 
     serializer = GenreMovieSerializer(genre)
-
-    print(type(Response(serializer.data)))
 
     return Response(serializer.data)

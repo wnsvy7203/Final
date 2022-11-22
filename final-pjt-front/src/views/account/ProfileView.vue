@@ -19,7 +19,7 @@
 
 <script>
 import axios from 'axios'
-import _ from 'lodash'
+// import _ from 'lodash'
 
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -33,9 +33,13 @@ export default {
   },
   methods: {
     getMyName() {
+      console.log(this.$store.state.token.username)
       axios({
         method: 'post',
         url: `${API_URL}/accounts/my/`,
+        params: {
+          username: this.$store.state.token.username
+        },
         headers: {
           Authorization: `Token ${ this.$store.state.token }`
         }
@@ -51,8 +55,8 @@ export default {
           url: `${API_URL}/api/v1/genres/${this.$store.state.genres[i]}/`,
         })
           .then(res => {
-            this.movie_list = _.sampleSize(res.data.array, 10)
-            console.log(this.movie_list)
+            // this.movie_list = _.sampleSize(res.data.array, 10)
+            console.log(res.data)
           })
       }
       

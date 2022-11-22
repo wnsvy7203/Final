@@ -16,5 +16,5 @@ class UserGenreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'genres')
-        read_only_fields = ('id', 'genres')
+        fields = ('id', 'like_genres')
+        read_only_fields = ('id', 'like_genres')

@@ -22,6 +22,7 @@ export default new Vuex.Store({
     user_id: null,
     genres: [],
     rated: [1,2,3,4,5],
+    payload: [],
   },
   getters: {
     isLogin(state) {
@@ -79,8 +80,8 @@ export default new Vuex.Store({
         })
     },
     signUp(context, payload) {
-      const local_genre = []
-      console.log(payload)
+      // const local_genre = []
+      console.log('PAYLOAD', payload)
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
@@ -92,23 +93,21 @@ export default new Vuex.Store({
         }
       })
         .then((response) => {
-          context.commit('SAVE_TOKEN', response.data)
-          console.log('DATA', response.data)
-        
-          for (let i=0; i<payload.genre.length; i++) {
-            axios({
-              method: 'get',
-              url: `${API_URL}/api/v1/genres/`
-            })
-              .then((response) => {
-                for (let j=0; j<response.data.length; j++) {
-                  if (payload.genre[i] === response.data[j].name) {
-                    local_genre.push(response.data[j].id)
-                  }
-                }
-                context.commit('PICK_GENRE', local_genre)
-              })
-          }
+          context.commit('SAVE_TOKEN', response.data.key)
+        })
+        .then(() => {
+          const push_genre = payload.genre
+          console.log('TOKEN', this.state.token)
+          axios({
+            method: 'post',
+            url: `${API_URL}/accounts/genres/`,
+            headers: {
+              Authorization: `Token ${this.state.token}`
+            },
+            data: {
+              push_genre
+            }
+          })
         })
     },
     // pickGenre(context, genre_list) {
