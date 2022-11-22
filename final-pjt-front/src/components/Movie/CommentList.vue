@@ -49,7 +49,6 @@ export default {
                 data: {
                     movie: commentItemSet.movie,
                     content: commentItemSet.content,
-                    
                 },
                 headers: {
                   Authorization: `Token ${commentItemSet.token}`
