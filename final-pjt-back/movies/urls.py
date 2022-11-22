@@ -5,11 +5,11 @@ from movies import views
 
 urlpatterns = [
     path('movies/', views.movie_list),
-    path('movies/<int:movie_pk>/', views.movie_detail),
     path('comments/', views.comment_list),
     path('comments/<int:comment_pk>/', views.comment_detail),
     path('movies/<int:movie_pk>/comments/', views.comment_create),
-    path('genres/', views.get_genre),
+    path('genres/', views.genre_list),
+    path('genres/<int:genre_pk>/', views.get_genre),
     # # 필수 작성
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     # # optional UI

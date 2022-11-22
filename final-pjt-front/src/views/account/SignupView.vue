@@ -64,12 +64,14 @@ export default {
       if (this.genre.length < 3) {
         this.genre.push(item)
       }
+      console.log(this.genre)
     },
     deleteGenres(item) {
       if (this.genre.includes(item)) {
         const idx = this.genre.indexOf(item)
         this.genre.splice(idx, 1)
       }
+      console.log(this.genre)
     },
     signUp() {
       const username = this.username
@@ -81,9 +83,9 @@ export default {
         username: username,
         password1: password1,
         password2: password2,
+        genre: genre
       }
       this.$store.dispatch('signUp', payload)
-      this.$store.dispatch('pickGenre', genre)
     },
 
   }

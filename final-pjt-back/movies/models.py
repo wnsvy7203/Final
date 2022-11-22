@@ -17,10 +17,13 @@ class Movie(models.Model):
     vote_average = models.FloatField()
     overview = models.TextField()
     poster_path = models.TextField()
-    genres = models.ManyToManyField(Genre)
+    genres = models.ManyToManyField(Genre, related_name='genre_movies')
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
     get_id = models.TextField()
     get_backdrop_path = models.TextField(null=True)
+
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):
