@@ -45,7 +45,7 @@ export default new Vuex.Store({
     },
     SAVE_TOKEN(state, token) {
       state.token = token
-      router.push({ name:'movie' })
+      router.push({ name: 'movie' })
     },
     GET_YOUTUBE(state, res){
       state.youtubeVideos = res.data.items
@@ -79,6 +79,8 @@ export default new Vuex.Store({
         })
     },
     signUp(context, payload) {
+      const local_genre = []
+      console.log(payload)
       axios({
         method: 'post',
         url: `${API_URL}/accounts/signup/`,
@@ -86,42 +88,47 @@ export default new Vuex.Store({
           username: payload.username,
           password1: payload.password1,
           password2: payload.password2,
+          genre: payload.genre
         }
       })
         .then((response) => {
-          context.commit('SAVE_TOKEN', response.data.key)
-        })
-        .then(
-          axios({
-            method: 'get',
-            url: `${API_URL}/api/v1/genres/`,
-            data: {
-              pk: payload.genre_pk
-            }
-          })
-            .then((response) => {
-              context.commit('GET_GENRES', response.data.key)
+          context.commit('SAVE_TOKEN', response.data)
+          console.log('DATA', response.data)
+        
+          for (let i=0; i<payload.genre.length; i++) {
+            axios({
+              method: 'get',
+              url: `${API_URL}/api/v1/genres/`
             })
-        )
-    },
-    pickGenre(context, genre_list) {
-      const local_genre = []
-      for (let i=0; i<genre_list.length; i++) {
-        console.log(genre_list[i])
-        axios({
-          method: 'get',
-          url: `${API_URL}/api/v1/genres/`,
+              .then((response) => {
+                for (let j=0; j<response.data.length; j++) {
+                  if (payload.genre[i] === response.data[j].name) {
+                    local_genre.push(response.data[j].id)
+                  }
+                }
+                context.commit('PICK_GENRE', local_genre)
+              })
+          }
         })
-          .then((response) => {
-            for (let j=0; j<response.data.length; j++) {
-              if (genre_list[i] === response.data[j].name) {
-                local_genre.push(response.data[j].id)
-              }
-            }
-            context.commit('PICK_GENRE', local_genre)
-          })
-      }
     },
+    // pickGenre(context, genre_list) {
+    //   const local_genre = []
+    //   for (let i=0; i<genre_list.length; i++) {
+    //     console.log(genre_list[i])
+    //     axios({
+    //       method: 'get',
+    //       url: `${API_URL}/api/v1/genres/`,
+    //     })
+    //       .then((response) => {
+    //         for (let j=0; j<response.data.length; j++) {
+    //           if (genre_list[i] === response.data[j].name) {
+    //             local_genre.push(response.data[j].id)
+    //           }
+    //         }
+    //         context.commit('PICK_GENRE', local_genre)
+    //       })
+    //   }
+    // },
     logIn(context, payload) {
       axios({
         method: 'post',
@@ -138,7 +145,9 @@ export default new Vuex.Store({
         })
     },
     logOut(context){
+      console.log(this.state.token)
       context.commit('DELETE_TOKEN')
+      console.log(this.state.token)
     },
     getProfile(context) {
       axios({

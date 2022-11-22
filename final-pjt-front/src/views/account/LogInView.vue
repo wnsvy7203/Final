@@ -1,21 +1,40 @@
 <template>
-  <div class="my-3">
+  <div style="color: white" class="my-3">
     <h1>LogIn Page</h1>
-    <form @submit.prevent="logIn">
-      <label for="username">username : </label>
-      <input type="text" id="username" v-model="username"><br>
+    <b-form @submit.prevent="logIn" @reset="onReset" v-if="show">
+      <b-form-group
+        id="input-group-1"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.username"
+          type="username"
+          placeholder="Enter username"
+          required
+        ></b-form-input>
+      </b-form-group>
 
-      <label for="password">password : </label>
-      <input type="password" id="password" v-model="password"><br>
+      <b-form-group
+        id="input-group-2"
+        label-for="input-2"
+      >
+        <b-form-input
+          type="password"
+          id="input-2"
+          v-model="form.password"
+          placeholder="Enter password"
+          required
+        ></b-form-input>
+      </b-form-group>
 
-      <input type="submit" value="LogIn">
+      <b-button type="submit" variant="outline-primary">Submit</b-button>
+      <b-button type="reset" variant="outline-danger">Reset</b-button>
+      <b-button type="submit" variant="outline-success" @click="moveSignUp">회원가입 </b-button>
+    </b-form>
 
-      
-        
-      <button @click="moveSignUp">회원가입 </button>
-      
-      
-    </form>
+
+
   </div>
 </template>
   
@@ -24,14 +43,17 @@
     name: 'LogInView',
     data() {
       return {
-        username: null,
-        password: null,
+        form: {
+          username: null,
+          password: null,
+        },
+        show: true
       }
     },
     methods: {
       logIn() {
-        const username = this.username
-        const password = this.password
+        const username = this.form.username
+        const password = this.form.password
   
         const payload = {
           username: username,
@@ -41,8 +63,18 @@
       },
       moveSignUp(){
         this.$router.push({ name : 'signup'})
-      }
+      },
+      onReset(event) {
+        event.preventDefault()
+        // Reset our form values
+        this.form.username = null
+        this.form.password = null
 
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
+      }
     }
   }
   </script>

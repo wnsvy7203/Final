@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from movies.models import Comment, Genre, Movie
 from movies.serializers import (CommentSerializer, GenreSerializer,
-                                MovieListSerializer, MovieSerializer)
+                                GenreMovieSerializer, MovieListSerializer)
 
 # Authentication Decorators
 # from rest_framework.decorators import authentication_classes
@@ -23,15 +23,6 @@ def movie_list(request):
         serializer = MovieListSerializer(movies, many=True)
         return Response(serializer.data)
 
-
-@api_view(['GET'])
-def movie_detail(request, movie_pk):
-    movie = get_object_or_404(Movie, pk=movie_pk)
-
-    if request.method == 'GET':
-        serializer = MovieSerializer(movie)
-        return Response(serializer.data)
-    
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -74,16 +65,22 @@ def comment_create(request, movie_pk):
         serializer.save(movie=movie, user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+
 @api_view(['GET'])
-def get_genre(request):
+def genre_list(request):
     genres = get_list_or_404(Genre)
-    serializer = GenreSerializer(genres)
-    # ['모험', '애니메이션']
-    # for i in range(len(genres)):
-    #     genre = get_object_or_404(Genre, name=request.data.name)
-    #     if genres[i] == genre:
-            
+
+    serializer = GenreSerializer(genres, many=True)
 
     return Response(serializer.data)
 
-    # return hi
+
+@api_view(['GET'])
+def get_genre(request, genre_pk):
+    genre = get_object_or_404(Genre, pk=genre_pk)
+
+    serializer = GenreMovieSerializer(genre)
+
+    print(type(Response(serializer.data)))
+
+    return Response(serializer.data)

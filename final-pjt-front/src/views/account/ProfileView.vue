@@ -6,6 +6,12 @@
     </div>
     <div>
       선호 장르 추천 영화
+      <div
+        class="container"
+        v-for="genre in pickedGenre"
+        :key="genre.id"
+      >
+      </div>
     </div>
     <!-- <p>{{comment.username}}</p> -->
   </div>
@@ -13,6 +19,7 @@
 
 <script>
 import axios from 'axios'
+import _ from 'lodash'
 
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -20,7 +27,8 @@ export default {
   name: 'ProfileView',
   data() {
     return {
-      token: null
+      token: null,
+      movie_list: [],
     }
   },
   methods: {
@@ -34,15 +42,25 @@ export default {
       })
         .then(res => {
           console.log(res.data)
-          this.token = res.data
         })
-        .catch((error) => {
-          console.log(error)
+    },
+    pickedGenre() {
+      for (let i=0; i<this.$store.state.genres.length; i++) {
+        axios({
+          method: 'get',
+          url: `${API_URL}/api/v1/genres/${this.$store.state.genres[i]}/`,
         })
+          .then(res => {
+            this.movie_list = _.sampleSize(res.data.array, 10)
+            console.log(this.movie_list)
+          })
+      }
+      
     }
   },
   created() {
     this.getMyName()
+    this.pickedGenre()
   }
 }
 </script>

@@ -26,7 +26,7 @@ const routes = [
     component: ProfileView
   },
   {
-    path: '/movie',
+    path: '/',
     name: 'movie',
     component: MovieView
   },
