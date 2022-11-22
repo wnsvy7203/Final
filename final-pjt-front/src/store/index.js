@@ -22,7 +22,10 @@ export default new Vuex.Store({
     user_id: null,
     genres: [],
     rated: [1,2,3,4,5],
-    payload: [],
+    payload: {
+      username: null,
+      password: null
+    },
   },
   getters: {
     isLogin(state) {
@@ -48,11 +51,19 @@ export default new Vuex.Store({
       state.token = token
       router.push({ name: 'movie' })
     },
+    SET_USER_DATA(state, payload) {
+      state.payload = {
+        username: payload.username,
+        password: payload.password
+      }
+    },
     GET_YOUTUBE(state, res){
       state.youtubeVideos = res.data.items
     },
     DELETE_TOKEN(state) {
       state.token = null
+      state.payload.username = null
+      state.payload.password = null
     },
     PICK_GENRE(state, res) {
       state.genres = res.data
@@ -110,24 +121,6 @@ export default new Vuex.Store({
           })
         })
     },
-    // pickGenre(context, genre_list) {
-    //   const local_genre = []
-    //   for (let i=0; i<genre_list.length; i++) {
-    //     console.log(genre_list[i])
-    //     axios({
-    //       method: 'get',
-    //       url: `${API_URL}/api/v1/genres/`,
-    //     })
-    //       .then((response) => {
-    //         for (let j=0; j<response.data.length; j++) {
-    //           if (genre_list[i] === response.data[j].name) {
-    //             local_genre.push(response.data[j].id)
-    //           }
-    //         }
-    //         context.commit('PICK_GENRE', local_genre)
-    //       })
-    //   }
-    // },
     logIn(context, payload) {
       axios({
         method: 'post',
@@ -139,7 +132,7 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('SAVE_TOKEN', response.data.key)
-          context.commit('SET_USER_DATA', response.user)
+          context.commit('SET_USER_DATA', payload)
           console.log(response)
         })
     },
