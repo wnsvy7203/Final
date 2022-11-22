@@ -20,6 +20,7 @@ export default new Vuex.Store({
     comments: [],
     youtubeVideos: [],
     user_id: null,
+    user_name: null,
     genres: [],
     rated: [1,2,3,4,5],
     payload: {
@@ -75,6 +76,10 @@ export default new Vuex.Store({
     },
     GET_COMMENTS(state, res){
       state.comments = res
+    },
+    GET_USER(state,user){
+      state.user_id = user.pk
+      state.user_name = user.username
     }
   },
   actions: {
@@ -207,6 +212,19 @@ export default new Vuex.Store({
           console.log(res.data)
         })
         .catch(err=>{console.log(err)})
+    },
+    getUser(context){
+      axios({
+        method: 'get',
+        url: `${API_URL}/accounts/my/`,
+      })
+      .then(res=>{
+        console.log(res)
+        context.commit('GET_USER', res.data)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
     }
   },
   modules: {
