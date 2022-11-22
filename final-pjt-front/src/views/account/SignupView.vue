@@ -88,7 +88,7 @@ export default {
       
       axios({
         method: 'get',
-        url: `${API_URL}/api/v1/genres/`,
+        url: `${API_URL}/api/v1/add_genres/`,
       })
         .then((response) => {
           for (let i=0; i<local_genre.length; i++) {
@@ -113,3 +113,16 @@ export default {
 }
   </script>
   
+<style>
+#username{
+  background-color: white;
+}
+
+#password1{
+  background-color: white;
+}
+
+#password2{
+  background-color: white;
+}
+</style>

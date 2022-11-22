@@ -1,36 +1,91 @@
 <template>
-  <div>
+  <div class="app">
+    <input type="text" placeholder="댓글 내용" v-model="content">
+    <button class="btn btn-create" @click="mainfunction">댓글 작성</button>
+
     <CommentListItem
-    :movie="movie"
-    v-for="(comment, idx) in comments"
+    v-for="comment in comments"
+    :key="comment.id"
     :comment="comment"
-    :key="idx"
+    :movie="movie"
     />
+  
   </div>
 </template>
 
 <script>
 import CommentListItem from '@/components/Movie/CommentListItem'
+import axios from 'axios'
+const API_URL = 'http://127.0.0.1:8000'
+
 export default {
-  name:'CommentList',
-  props:{
-    movie:Object,
-  },
-  components:{
-    CommentListItem,
-  },
-  computed:{
-    comments(){
-      return this.$store.getters.getComment.data
+    name: "CommentList",
+    components: {
+      CommentListItem
+    },
+    data(){
+      return{
+        content: null,
+        comments: [],
+      }
+    },
+    props:{
+        movie:Object,
+    },
+    methods: {
+      mainfunction(){
+        this.createComment()
+        this.getComment()
+      },
+        createComment() {
+            const commentItemSet = {
+                content: this.content,
+                movie: this.movie.id,
+                token: this.$store.state.token,
+            }
+            axios({
+                method: 'post',
+                url: `${API_URL}/api/v1/movies/${commentItemSet.movie}/comments/`,
+                data: {
+                    movie: commentItemSet.movie,
+                    content: commentItemSet.content,
+                },
+                headers: {
+                  Authorization: `Token ${commentItemSet.token}`
+                }
+            })
+            .then((res)=>{
+                this.comments.push(res.data)
+
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+        getComment(){
+            const token = this.$store.state.token
+            axios({
+                method: 'get',
+                url: `${API_URL}/api/v1/comments/`,
+                headers: {
+                    Authorization: `Token ${token}`
+                }
+            })
+                .then((res) =>{
+                    this.comments = res.data
+                })
+        }
+    },
+    created(){
+      this.getComment()
     }
-  },
-  created() {
-    const token = this.$store.state.token
-    this.$store.dispatch('getComment', token)
-  }
+
 }
 </script>
 
 <style>
-
+.app{
+  background-color: white;
+  color: black
+}
 </style>

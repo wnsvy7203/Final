@@ -18,7 +18,8 @@ class CommentListSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-
+    username = serializers.CharField(source='user.username', read_only=True)
+    
     class Meta:
         model = Comment
         fields = '__all__'
@@ -53,7 +54,7 @@ class MovieGenreSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = ('id', 'title', 'poster_path')
+        fields = '__all__'
 
 
 class GenreMovieSerializer(serializers.ModelSerializer):

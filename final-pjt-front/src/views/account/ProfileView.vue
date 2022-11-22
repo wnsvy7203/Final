@@ -4,68 +4,96 @@
     <div>
       찜한 영화
     </div>
-    <div>
+    <div
+      v-if="movie_list.length !== 0"
+      class="row row-cols-1 row-cols-md-5 gy-3 imgmouserOver"
+    >
       선호 장르 추천 영화
+      <hr>
       <div
-        class="container"
-        v-for="genre in pickedGenre"
-        :key="genre.id"
+        v-for="(list, idx) in movie_list"
+        :key="idx"
       >
+        <MovieCard
+          v-for="(movie, idx) in list"
+          :key="idx"
+          :movie="movie"
+        />
       </div>
     </div>
-    <!-- <p>{{comment.username}}</p> -->
+    <div
+      v-else
+      class="row row-cols-1 row-cols-md-5 gy-3 imgmouserOver"
+    >
+      선호 장르가 없습니다
+      <hr>
+      <MovieCard
+        v-for="(movie, idx) in totalMovie"
+        :key="idx"
+        :movie="movie"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-// import _ from 'lodash'
+import _ from 'lodash'
+import MovieCard from '@/components/Movie/MovieCard'
 
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'ProfileView',
+  components: {
+    MovieCard
+  },
   data() {
     return {
       token: null,
-      movie_list: [],
+      movie_pk: [],
+      movie_list: {
+        0: [],
+        1: [],
+        2: [],
+      },
+      else_movie_list: []
     }
   },
   methods: {
-    getMyName() {
-      console.log(this.$store.state.token.username)
+    getMyMovie() {
       axios({
         method: 'post',
         url: `${API_URL}/accounts/my/`,
-        params: {
-          username: this.$store.state.token.username
-        },
         headers: {
           Authorization: `Token ${ this.$store.state.token }`
         }
       })
         .then(res => {
-          console.log(res.data)
+          this.movie_pk = res.data.like_genres
+        })
+        .then(() => {
+          if (this.movie_pk.length !== 0) {
+            for (let i=0; i<this.movie_pk.length; i++) {
+              axios({
+                method: 'get',
+                url: `${API_URL}/api/v1/genres/${this.movie_pk[i]}/`,
+              })
+                .then(res => {
+                  this.movie_list[i] = _.sampleSize(res.data.genre_movies, 10)
+                  console.log('MOVIE', this.movie_list[i], typeof this.movie_list[i])
+                })
+            }
+          }
         })
     },
-    pickedGenre() {
-      for (let i=0; i<this.$store.state.genres.length; i++) {
-        axios({
-          method: 'get',
-          url: `${API_URL}/api/v1/genres/${this.$store.state.genres[i]}/`,
-        })
-          .then(res => {
-            // this.movie_list = _.sampleSize(res.data.array, 10)
-            console.log(res.data)
-          })
-      }
-      
+    totalMovie() {
+      this.else_movie_list = _.sampleSize(this.$store.state.MovieJsonData, 10)
     }
   },
   created() {
-    this.getMyName()
-    this.pickedGenre()
-  }
+    this.getMyMovie()
+  },
 }
 </script>
 

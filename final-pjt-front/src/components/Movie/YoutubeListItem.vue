@@ -15,7 +15,6 @@
       >
       </template>
       <div class="youtube-dialog-card">
-
         <div class="video-container">
         <iframe :src="YoutubeUrl"></iframe>
         </div>      
@@ -68,9 +67,8 @@ export default {
 }
 
 .video-container {
-  display: flex;
-  flex-flow: column wrap;
-  background-color: #000000;
+  position: relative;   /* iframe을 container를 기준으로 위치를 지정 */
+  padding-top: 56.25%;  /* 유튜브 비디오 비율을 맞추기 위한 높이 설정 */
 }
 
 .youtube-dialog-card {
@@ -79,12 +77,12 @@ export default {
   background-color: #000000;
 }
 
-.youtube-container > iframe {
-  position: absolute;
-  top: 25%;
-  left: 25%;
-  width: 50%;
-  height: 50%;
+.video-container > iframe {
+  position: absolute;   /* container를 기준으로 위치를 지정*/
+  top: 0;               /* container의 가장 위쪽으로 위치를 지정 */
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 

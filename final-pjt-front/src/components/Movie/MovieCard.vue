@@ -69,6 +69,10 @@
               </div>
             </div>
             <br>
+            <LikeMovie
+            :movie="movie"
+            @add-like="addLike"
+            />
             <div class="movie-lower">
               <!-- youtube -->
               <div class="movie-youtube-area">
@@ -82,12 +86,9 @@
             </div>
           </div>
         </div>
+        
       </div>
       <div style="color:white;">
-        <CommentForm
-        :movie="movie"
-        />
-
         <CommentList
         :movie="movie"
         />
@@ -106,7 +107,7 @@
 
 import YoutubeList from '@/components/Movie/YoutubeList'
 import CommentList from '@/components/Movie/CommentList'
-import CommentForm from '@/components/Movie/CommentForm.vue'
+import LikeMovie from '@/components/Movie/LikeMovie'
 
 export default {
   name:'MovieCard',
@@ -114,14 +115,18 @@ export default {
     movie: Object
   },
   components: {
-    CommentForm,
     CommentList,
     YoutubeList,
-
+    LikeMovie,
 },
   data(){
     return{
-      dialog: false
+      dialog: false,
+      likeUserId : [],
+    }
+  },
+  methods:{
+    addLike(){
 
     }
   },
@@ -129,7 +134,12 @@ export default {
   imgSrc: function () {
     return "https://image.tmdb.org/t/p/original" + this.movie.poster_path
   },
-}}
+},
+created() {
+  this.$store.dispatch('getUser')
+}
+
+}
 </script>
 
 <style>
