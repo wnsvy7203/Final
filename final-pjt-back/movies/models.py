@@ -22,7 +22,6 @@ class Movie(models.Model):
     get_id = models.TextField()
     get_backdrop_path = models.TextField(null=True)
 
-
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)

@@ -21,7 +21,7 @@ export default new Vuex.Store({
     youtubeVideos: [],
     user_id: null,
     genres: [],
-    rated: [1,2,3,4,5,6,7,8,9,10],
+    rated: [1,2,3,4,5],
   },
   getters: {
     isLogin(state) {
@@ -47,9 +47,6 @@ export default new Vuex.Store({
       state.token = token
       router.push({ name:'movie' })
     },
-    CREATE_COMMENT(state, commentItem) {
-      state.comments.push(commentItem)
-    },
     GET_YOUTUBE(state, res){
       state.youtubeVideos = res.data.items
     },
@@ -59,6 +56,13 @@ export default new Vuex.Store({
     PICK_GENRE(state, res) {
       state.genres = res.data
       console.log(res.data)
+    },
+    CREATE_COMMENT(state, res){
+      console.log(typeof res)
+      state.comments.push(res)
+    },
+    GET_COMMENTS(state, res){
+      state.comments = res
     }
   },
   actions: {
@@ -136,15 +140,6 @@ export default new Vuex.Store({
     logOut(context){
       context.commit('DELETE_TOKEN')
     },
-    createComment(context, payload){
-      const commentItem = {
-        context: payload.comment,
-        movie_id : payload.movie_id,
-        isCompleted: false,
-      }
-      console.log(commentItem)
-      context.commit('CREATE_COMMENT', commentItem)
-    },
     getProfile(context) {
       axios({
         method: 'get',
@@ -175,6 +170,42 @@ export default new Vuex.Store({
         .catch(err=>{
           console.log(err)
         })
+    },
+    createComment(context, commentItemSet){
+      console.log(commentItemSet)
+      
+      axios({
+        method: 'post',
+        url: `${API_URL}/api/v1/movies/${commentItemSet.movie}/comments/`,
+        data: {
+          movie: commentItemSet.movie,
+          content: commentItemSet.content,
+        },
+        headers: {
+          Authorization: `Token ${commentItemSet.token}`
+        }
+      })
+        .then(res => {
+          console.log('res.data', res.data)
+          context.commit('CREATE_COMMENT', res.data)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+    },
+    getComment(context,token){
+      axios({
+        method:'get',
+        url: `${API_URL}/api/v1/comments/`,
+        headers: {
+          Authorization: `Token ${token}`
+        }
+      })
+        .then((res) =>{
+          context.commit('GET_COMMENTS', res)
+          console.log(res.data)
+        })
+        .catch(err=>{console.log(err)})
     }
   },
   modules: {

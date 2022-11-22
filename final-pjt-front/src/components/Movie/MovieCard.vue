@@ -87,12 +87,7 @@
         <CommentForm
         :movie="movie"
         />
-        <!-- <CommentForm
-        :movie="movie"
-        />
-        <CommentList
-        :movie="movie"
-        /> -->
+
         <CommentList
         :movie="movie"
         />
@@ -108,11 +103,10 @@
 </template>
 
 <script>
-// import CommentForm from '@/components/Movie/CommentForm'
-// import CommentList from '@/components/Movie/CommentList'
+
 import YoutubeList from '@/components/Movie/YoutubeList'
-import CommentList from '@/components/Movie/CommentList.vue'
-import CommentForm from './CommentForm.vue'
+import CommentList from '@/components/Movie/CommentList'
+import CommentForm from '@/components/Movie/CommentForm.vue'
 
 export default {
   name:'MovieCard',
@@ -120,11 +114,10 @@ export default {
     movie: Object
   },
   components: {
-    // CommentForm,
-    // CommentList,
-    YoutubeList,
+    CommentForm,
     CommentList,
-    CommentForm
+    YoutubeList,
+
 },
   data(){
     return{
