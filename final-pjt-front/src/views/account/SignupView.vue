@@ -113,3 +113,16 @@ export default {
 }
   </script>
   
+<style>
+#username{
+  background-color: white;
+}
+
+#password1{
+  background-color: white;
+}
+
+#password2{
+  background-color: white;
+}
+</style>

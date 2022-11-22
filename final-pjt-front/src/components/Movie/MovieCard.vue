@@ -84,10 +84,6 @@
         </div>
       </div>
       <div style="color:white;">
-        <CommentForm
-        :movie="movie"
-        />
-
         <CommentList
         :movie="movie"
         />
@@ -106,7 +102,6 @@
 
 import YoutubeList from '@/components/Movie/YoutubeList'
 import CommentList from '@/components/Movie/CommentList'
-import CommentForm from '@/components/Movie/CommentForm.vue'
 
 export default {
   name:'MovieCard',
@@ -114,7 +109,6 @@ export default {
     movie: Object
   },
   components: {
-    CommentForm,
     CommentList,
     YoutubeList,
 
