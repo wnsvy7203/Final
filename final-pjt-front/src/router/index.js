@@ -6,7 +6,7 @@ import LogInView from '@/views/account/LogInView'
 import SignupView from '@/views/account/SignupView'
 import ProfileView from '@/views/account/ProfileView'
 import MovieSearch from '@/views/movie/MovieSearch'
-
+// import CommunityView from '@/views/community/CommunityView'
 Vue.use(VueRouter)
 
 const routes = [
@@ -40,6 +40,11 @@ const routes = [
     name: 'search',
     component: MovieSearch,
   },
+  // {
+  //   path: '/community',
+  //   name: 'community',
+  //   component: CommunityView,
+  // },
 ]
 
 const router = new VueRouter({

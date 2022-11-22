@@ -1,8 +1,7 @@
 <template>
-    <div class="app">
+    <div>
       <input type="text" class="input-box" placeholder="댓글 내용" v-model="content">
       <button class="btn btn-create" @click="createComment">댓글 작성</button>
-      
     </div>
   </template>
   
@@ -11,30 +10,31 @@
     name: 'CommentForm',
     data() {
       return { 
-        content: null,        
+        content: null,
       }
     },
-    props:{
-      movie:  Object,
-    },
     methods: {
+      setToken() {
+        const token = localStorage.getItem('jwt')
+        const config = {
+          Authorization: `JWT ${token}`
+        }
+        return config
+      },
       createComment() {
         const commentItemSet = {
           content: this.content,
-          movie: this.movie.id,
-          
-          token: this.$store.state.token,
+
+          token: this.setToken()
         }
-        this.$store.dispatch('createComment', commentItemSet)
-        this.content = null
+        this.$store.dispatch('CommunitycreateComment', commentItemSet)
+        this.commentItem.content = null
       },
     },
   }
   </script>
   
   <style>
-  .app{
-    background-color: white;
-  }
+  
   </style>
   

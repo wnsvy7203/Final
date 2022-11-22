@@ -25,7 +25,6 @@ class Movie(models.Model):
     def __str__(self):
         return self.title
 
-
 class Comment(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
