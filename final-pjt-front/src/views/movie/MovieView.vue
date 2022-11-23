@@ -81,8 +81,6 @@ export default {
   opacity: 1;
 }
 
-
-
 .info {
   color: #fff;
   position: absolute; left: 0; bottom: 0;
@@ -93,6 +91,7 @@ export default {
   opacity: 0;
   transition: opacity 0.35s ease-in-out;
 }
+
 .info h3 {
   font-size: 24px;
   padding-bottom: 0.4em;

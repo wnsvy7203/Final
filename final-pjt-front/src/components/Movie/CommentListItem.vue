@@ -38,7 +38,7 @@ export default {
         this.updatedStatus = false
       }
     },
-    updateComment(){
+    updateComment (){
       console.log(this.updateContent)
       const CommentItemSet = {
         movie: this.movie.id,
@@ -48,11 +48,6 @@ export default {
       }
       this.$store.dispatch('updataComment',CommentItemSet)
     },
-        .then(() =>{
-          
-          console.log('r')
-        })
-    }
   }
 }
 </script>

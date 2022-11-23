@@ -4,10 +4,10 @@
     <button class="btn btn-create" @click="createComment">댓글 작성</button>
 
     <CommentListItem
-    v-for="comment in this.comments"
-    :key="comment.id"
-    :comment="comment"
-    :movie="movie"
+      v-for="comment in this.comments"
+      :key="comment.id"
+      :comment="comment"
+      :movie="movie"
     />
   </div>
 </template>
@@ -23,13 +23,13 @@ export default {
       CommentListItem
     },
     data(){
-      return{
+      return {
         content: null,
         comments: this.$store.state.comments
       }
     },
     props:{
-        movie:Object,
+        movie: Object,
     },
     methods: {
       getComment() {
@@ -63,7 +63,7 @@ export default {
           )
       },
     },
-    created(){
+    created() {
       this.getComment()
     }
 
