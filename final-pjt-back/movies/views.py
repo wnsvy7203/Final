@@ -88,6 +88,9 @@ def movie_like_users(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     user = request.user
 
-    movie.like_users.add(user)
-
+    if movie.like_users.filter(pk=request.user.pk).exists():
+        movie.like_users.remove(user)
+    else:
+        movie.like_users.add(user)
+    
     return Response(status=status.HTTP_201_CREATED)
