@@ -1,9 +1,9 @@
 <template>
   <div>
     <div v-if="comment.movie===movie.id">
-      작성자 : {{comment.username}}<br>
-              {{comment.content}}
-      <!-- <button class="btn btn-primary" @click="updataComment">댓글 수정</button> -->
+      작성자 : {{ comment.username }}<br>
+              {{ comment.content }}
+      <button class="btn btn-primary" @click="updateComment">댓글 수정</button>
       <button class="btn btn-danger" @click="deleteComment">X</button>
     </div>
   </div>
@@ -16,7 +16,7 @@ const API_URL = 'http://127.0.0.1:8000'
 export default {
   name:'CommentListItem',
   props: {
-    comment:Object,
+    comment: Object,
     movie: Object,
   },
   data(){
@@ -26,52 +26,53 @@ export default {
     }
   },
   methods:{
-    // updataComment(){
-    //   const commentItemSet = {
-    //     content: this.comment.content,
-    //     comment: this.comment.id,
-    //     movie: this.movie,
-    //     token: this.$store.state.token,
-    //   }
+    errorMessage() {
       
-    //   axios({
-    //     method:'PUT',
-    //     url: `${API_URL}/api/v1/comments/${commentItemSet.comment}/`,
-    //     data: {
-    //       content: commentItemSet.content,
-    //       comment: commentItemSet.comment,
-    //       movie: commentItemSet.movie,
-    //     },
-    //     headers: {
-    //       Authorization: `Token ${commentItemSet.token}`
-    //     }
-    //   })
-    //     .then(res => {
-    //       console.log(res)
-    //     })
-    //     .catch(err => {console.log(err)})
-    // },
+    },
+    updateComment() {
+      const commentItemSet = {
+        comment_pk: this.comment.id,
+        content: this.comment.content,
+        token: this.$store.state.token,
+      }
+      axios({
+        method: 'put',
+        url: `${API_URL}/api/v1/comments/${commentItemSet.comment_pk}/`,
+        data: {
+          comment_pk: commentItemSet.comment_pk,
+          content: commentItemSet.content,
+        },
+        headers: {
+          Authorization: `Token ${commentItemSet.token}`
+        }
+      })
+        .then(res => {
+          console.log('COMMENT', res)
+        })
+        .catch(() => {
+
+        })
+    },
 
     deleteComment() {
       const commentItemSet = {
+        comment_pk: this.comment.id,
         content: this.comment.content,
-        comment_id: this.comment.id,
         token: this.$store.state.token,
       }
       axios({
         method: 'delete',
-        url: `${API_URL}/api/v1/comments/${commentItemSet.comment_id}/`,
+        url: `${API_URL}/api/v1/comments/${commentItemSet.comment_pk}/`,
         headers:{
           Authorization: `Token ${commentItemSet.token}`
         }
       })
-        .then(res =>{
-          console.log(res)
-          // const index = res.data.indexOf(res)
+        .then(res => {
+          console.log('DELETE', res)
         })
-        .catch(err => {
-          console.log(err)
-        }) 
+        .catch(() => {
+          
+        })
     }
   }
 }

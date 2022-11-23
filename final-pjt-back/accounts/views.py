@@ -1,9 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
+from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework import status
 
 from .models import User
 from .serializers import UserGenreSerializer, UserSerializer
@@ -26,13 +26,6 @@ def like_genres(request):
 @permission_classes([IsAuthenticated])
 def my_profile(request):
     user = request.user
-
     serializer = UserGenreSerializer(user)
 
     return Response(serializer.data)
-
-
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def genre_recommendation(request):
-    pass

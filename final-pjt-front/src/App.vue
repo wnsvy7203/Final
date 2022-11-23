@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="lg" type="dark" variant="dark" style="display: flex">
+    <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand>
         <router-link :to="{ name: 'movie' }" class="navbar-brand" style="font-size: 50px">SIXth Sense</router-link>
       </b-navbar-brand>
