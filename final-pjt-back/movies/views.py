@@ -13,9 +13,6 @@ from movies.serializers import (CommentSerializer, GenreSerializer,
 # from rest_framework.decorators import authentication_classes
 
 
-
-
-
 @api_view(['GET'])
 def movie_list(request):
     if request.method == 'GET':

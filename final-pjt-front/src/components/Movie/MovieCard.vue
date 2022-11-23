@@ -69,10 +69,12 @@
               </div>
             </div>
             <br>
-            <LikeMovie
-            :movie="movie"
-            @add-like="addLike"
-            />
+            <div>
+              <LikeMovie
+              :movie="movie"
+              @add-like="addLike"
+              />
+            </div>
             <div class="movie-lower">
               <!-- youtube -->
               <div class="movie-youtube-area">
