@@ -1,0 +1,4 @@
+search의 검색결과가 없습니다
+<div v-if="query===true && movies!==true">
+   <h1>검색 결과가 없습니다</h1>
+</div>

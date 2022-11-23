@@ -1,13 +1,13 @@
 <template>
   <div class="app">
-    <input type="text" placeholder="댓글 내용" v-model="content">
+    <input type="text" placeholder="댓글 내용" @keyup.enter="createComment" v-model="content">
     <button class="btn btn-create" @click="createComment">댓글 작성</button>
 
     <CommentListItem
-      v-for="comment in comments"
-      :key="comment.id"
-      :comment="comment"
-      :movie="movie"
+    v-for="comment in this.comments"
+    :key="comment.id"
+    :comment="comment"
+    :movie="movie"
     />
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
     data(){
       return{
         content: null,
-        comments: [],
+        comments: this.$store.state.comments
       }
     },
     props:{

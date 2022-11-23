@@ -1,10 +1,13 @@
 <template>
   <div>
     <div v-if="comment.movie===movie.id">
-      작성자 : {{ comment.username }}<br>
-              {{ comment.content }}
-      <button class="btn btn-primary" @click="updateComment">댓글 수정</button>
-      <button class="btn btn-danger" @click="deleteComment">X</button>
+      작성자 : {{comment.username}}<br>
+              {{comment.content}}
+      <input type="text" v-if="updatedStatus===true" v-model="updateContent" @keyup.enter="updateComment">
+      <button class="btn btn-primary" @click="turnOn" v-if="updatedStatus===false">댓글 재작성</button>
+
+      <button class="btn btn-primary" @click="updateComment" v-if="updatedStatus===true">수정</button>
+      <button class="btn btn-danger" @click="deleteComment">삭제</button>
     </div>
   </div>
 </template>
@@ -21,57 +24,33 @@ export default {
   },
   data(){
     return{
-      content: this.comment.content
-      
+      content: this.comment.content,
+      updatedStatus: false,
+      updateContent: null,
     }
   },
+  
   methods:{
-    errorMessage() {
-      
+    turnOn(){
+      if (this.updatedStatus === false){
+        this.updatedStatus=true
+      } else{
+        this.updatedStatus = false
+      }
     },
-    updateComment() {
-      const commentItemSet = {
-        comment_pk: this.comment.id,
-        content: this.comment.content,
+    updateComment(){
+      console.log(this.updateContent)
+      const CommentItemSet = {
+        movie: this.movie.id,
+        content: this.updateContent,
+        comment_id: this.comment.id,
         token: this.$store.state.token,
       }
-      axios({
-        method: 'put',
-        url: `${API_URL}/api/v1/comments/${commentItemSet.comment_pk}/`,
-        data: {
-          comment_pk: commentItemSet.comment_pk,
-          content: commentItemSet.content,
-        },
-        headers: {
-          Authorization: `Token ${commentItemSet.token}`
-        }
-      })
-        .then(res => {
-          console.log('COMMENT', res)
-        })
-        .catch(() => {
-
-        })
+      this.$store.dispatch('updataComment',CommentItemSet)
     },
-
-    deleteComment() {
-      const commentItemSet = {
-        comment_pk: this.comment.id,
-        content: this.comment.content,
-        token: this.$store.state.token,
-      }
-      axios({
-        method: 'delete',
-        url: `${API_URL}/api/v1/comments/${commentItemSet.comment_pk}/`,
-        headers:{
-          Authorization: `Token ${commentItemSet.token}`
-        }
-      })
-        .then(res => {
-          console.log('DELETE', res)
-        })
-        .catch(() => {
+        .then(() =>{
           
+          console.log('r')
         })
     }
   }
