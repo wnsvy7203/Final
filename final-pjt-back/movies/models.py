@@ -20,7 +20,7 @@ class Movie(models.Model):
     genres = models.ManyToManyField(Genre, related_name='genre_movies')
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
     get_id = models.TextField()
-    get_backdrop_path = models.TextField(null=True)
+    backdrop_path = models.TextField(null=True)
 
     def __str__(self):
         return self.title

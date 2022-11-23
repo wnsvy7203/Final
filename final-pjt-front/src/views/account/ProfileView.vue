@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
+  <div class="container profileStyle">
     <h1 class="mt-3">My Profile</h1>
     <div>
-      찜한 영화
+      {{this.username}}님이 찜한 영화
     </div>
     <div
       v-if="movie_pk.length !== 0"
@@ -10,6 +10,18 @@
     >
       선호 장르 추천 영화
       <hr>
+      <div>
+        <div v-for="movie in movie_list[0]"
+        :key="movie.id"
+        {{movie}} 
+        >
+
+        </div>
+      </div>
+
+      <div>
+
+      </div>
       <div
         v-for="(list, idx) in movie_list"
         :key="idx"
@@ -18,12 +30,14 @@
           v-for="(movie, idx) in list"
           :key="idx"
           :movie="movie"
+          
+
         />
+        <hr>
       </div>
     </div>
     <div
       v-else
-      class="row row-cols-1 row-cols-md-5 gy-3 imgmouserOver"
     >
       선호 장르가 없습니다
       <hr>
@@ -57,7 +71,8 @@ export default {
         1: [],
         2: [],
       },
-      else_movie_list: []
+      else_movie_list: [],
+      username: this.$store.state.payload.username
     }
   },
   methods: {
@@ -101,5 +116,8 @@ export default {
 </script>
 
 <style>
-
+.profileStyle{
+  background-color: white;
+  color: black
+}
 </style>

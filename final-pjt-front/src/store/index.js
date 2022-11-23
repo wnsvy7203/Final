@@ -19,14 +19,13 @@ export default new Vuex.Store({
     token: null,
     comments: [],
     youtubeVideos: [],
-    user_id: null,
-    user_name: null,
     genres: [],
     rated: [1,2,3,4,5],
     payload: {
       username: null,
       password: null
     },
+    searchQuery: null,
   },
   getters: {
     isLogin(state) {
@@ -42,6 +41,9 @@ export default new Vuex.Store({
     },
     getComment(state){
       return state.comments
+    },
+    getSendQuery(state){
+      return state.searchQuery
     }
   },
   mutations: {
@@ -77,10 +79,13 @@ export default new Vuex.Store({
     GET_COMMENTS(state, res){
       state.comments = res
     },
-    GET_USER(state,user){
-      state.user_id = user.pk
-      state.user_name = user.username
+    SEND_QUERY(state, query){
+      state.searchQuery = query
     }
+    // GET_USER(state,user){
+    //   state.user_id = user.pk
+    //   state.user_name = user.username
+    // }
   },
   actions: {
     getMovieJson(context) {
@@ -213,6 +218,9 @@ export default new Vuex.Store({
         })
         .catch(err=>{console.log(err)})
     },
+    sendQuery(context, query){
+      context.commit('SEND_QUERY', query)
+    }
     // getUser(context){
     //   axios({
     //     method: 'post',
