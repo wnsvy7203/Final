@@ -8,7 +8,7 @@
           :movie="movie"  
         />
       </div>
-      <div v-else class="search">
+      <div v-else class="search ">
         <h1>검색 결과가 없습니다</h1>
       </div>
       

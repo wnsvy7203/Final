@@ -7,7 +7,7 @@
         :movie="movie"/>
     </div>
     
-    <!-- <h1>인기 영화</h1>
+    <h1>인기 영화</h1>
     <div class="mt-3 mx-3">
       <vue-glide class="glide__track"
         data-glide-el="track"
@@ -20,17 +20,14 @@
           :key="movie.id"
           class="imgmouserOver"
           >
-          
-          <img
-            
-            :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`"
-            @click="moveDetail(movie)"
-            style="width: 100%; height: 70%;"
-            
-          >
+          <div>
+            <MovieCard
+              :movie="movie"
+            />
+          </div>
         </vue-glide-slide>
       </vue-glide>
-    </div> -->
+    </div>
 
     
     <div>
