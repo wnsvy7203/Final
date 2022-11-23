@@ -19,7 +19,7 @@ const API_URL = 'http://127.0.0.1:8000'
 export default {
   name:'CommentListItem',
   props: {
-    comment:Object,
+    comment: Object,
     movie: Object,
   },
   data(){
@@ -48,52 +48,10 @@ export default {
       }
       this.$store.dispatch('updataComment',CommentItemSet)
     },
-
-    // updataComment(){
-    //   const commentItemSet = {
-    //     content: this.comment.content,
-    //     comment: this.comment.id,
-    //     movie: this.movie,
-    //     token: this.$store.state.token,
-    //   }
-      
-    //   axios({
-    //     method:'PUT',
-    //     url: `${API_URL}/api/v1/comments/${commentItemSet.comment}/`,
-    //     data: {
-    //       content: commentItemSet.content,
-    //       comment: commentItemSet.comment,
-    //       movie: commentItemSet.movie,
-    //     },
-    //     headers: {
-    //       Authorization: `Token ${commentItemSet.token}`
-    //     }
-    //   })
-    //     .then(res => {
-    //       console.log(res)
-    //     })
-    //     .catch(err => {console.log(err)})
-    // },
-
-    deleteComment() {
-      const commentItemSet = {
-        comment_id: this.comment.id,
-        token: this.$store.state.token,
-      }
-      axios({
-        method: 'delete',
-        url: `${API_URL}/api/v1/comments/${commentItemSet.comment_id}/`,
-        headers:{
-          Authorization: `Token ${commentItemSet.token}`
-        }
-      })
         .then(() =>{
           
           console.log('r')
         })
-        .catch(err => {
-          console.log(err)
-        }) 
     }
   }
 }
