@@ -12,7 +12,6 @@
     <div class="movie-card">
       <div :style="{'background-image' : `url(https://image.tmdb.org/t/p/original/${movie.get_backdrop_path})`}" 
       class="bgImg">
-        
         <div class="movie-toolbar">
           <v-btn
             icon
@@ -72,7 +71,6 @@
             <div>
               <LikeMovie
               :movie="movie"
-              @add-like="addLike"
               />
             </div>
             <div class="movie-lower">
@@ -94,14 +92,9 @@
         <CommentList
         :movie="movie"
         />
-
       </div>
     </div>
-    comment
-    
     </v-dialog>
-
-    
   </div>
 </template>
 

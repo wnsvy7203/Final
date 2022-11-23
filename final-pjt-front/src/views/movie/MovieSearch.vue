@@ -1,24 +1,22 @@
 <template>
   <div class="search">
-    
-    <input type='text' v-model='query' @keyup='getResult(query)'>
-    <div v-for="result in results"
-    :key="result.id"
-    class="d-inline-flex"
-    >
-    <span class="imgmouserOver">
-      <img v-bind:src="'http://image.tmdb.org/t/p/w500/'+result.poster_path" width='50%'
-      @click="moveCard(result)">
-      <p>{{ result.title }}</p>
+    <input id="input1" type='text' v-model='query' @keyup='getResult(query)'>
+    <div class="row row-cols-1 row-cols-md-5 gy-3">
+      <MovieCard
+        v-for="movie in movies"
+        :key="movie.id"
+        :movie="movie"  
+      />
 
-    </span>
     </div>
-  </div>
+
+    </div>
+
 </template>
 <script>
 import axios from 'axios'
-import router from '@/router'
 
+import MovieCard from '@/components/Movie/MovieCard'
 const API_KEY = '048f1b44f3f7ceec6752538826583420'
 
 export default {
@@ -26,26 +24,31 @@ export default {
   data () {
     return {
       query: '',
-      results: '',
+      movies: '',
     }
+  },
+  components:{
+    MovieCard
   },
   methods:{
     getResult(query) {
-      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`)
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=kr-KR&query=${query}`)
         .then(response => {
-          this.results = response.data.results
+          this.movies = response.data.results
         })
-        console.log(this.results)
+        console.log(this.movies)
     },
-    moveCard(movie) {
-      router.push({ name: 'detail', params: { movie, id: movie.id } })
-    },
+
   }
 }
 
 </script>
 
 <style>
+.search{
+  color:white
+}
+
 .imgmouserOver{
   width: 100%;
   height: auto;
@@ -54,5 +57,10 @@ export default {
 .imgmouserOver:hover img{
   transform: scale(1.5,1.5); transition-duration: 0.5s;
   opacity: 1;
+}
+
+#input1{
+  background-color: white;
+  color: black
 }
 </style>
