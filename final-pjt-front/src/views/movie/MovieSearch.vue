@@ -1,18 +1,18 @@
 <template>
-  <div class="search my-5" >
-    <div class="row row-cols-1 row-cols-md-5 gy-3">
-      <div v-if="movies">
-        <MovieCard
-          v-for="movie in movies"
-          :key="movie.id"
-          :movie="movie"  
-        />
-      </div>
-      <div v-else class="search ">
+  <div class="search my-5 container" >
+    <input type="text" id="input1" v-model="query" @keyup="getResult(query)"
+    placeholder="제목을 검색해보세요">
+    <div class="lineUp row row-cols-1 row-cols-md-5 gy-3">
+      
+      <MovieCard
+        v-for="movie in movies"
+        :key="movie.id"
+        :movie="movie"  
+      />
+      
+      <div v-if="query===true && movies!==true">
         <h1>검색 결과가 없습니다</h1>
       </div>
-      
-
     </div>
   </div>
 
@@ -27,7 +27,7 @@ export default {
   name: 'MovieSearch',
   data () {
     return {
-      query: this.$store.state.searchQuery,
+      query: null,
       movies: '',
     }
   },
@@ -35,10 +35,12 @@ export default {
     MovieCard
   },
   methods:{
-    getResult() {
-      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${this.query}`)
+    getResult(query) {
+      console.log(query)
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${query}`)
         .then(response => {
           this.movies = response.data.results
+          console.log(response.data)
           console.log(this.movies)
         })
     }
@@ -49,7 +51,8 @@ export default {
 
 <style>
 .search{
-  color:white
+  color:white;
+
 }
 
 .imgmouserOver{
@@ -63,7 +66,20 @@ export default {
 }
 
 #input1{
+  width:400px;
+  height:40px;
+  font-size: 20px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
   background-color: white;
-  color: black
+  color: black;
+  margin-bottom: 50px;
+}
+.lineUp{
+  display: flex;
+  margin-left: 5rem;
+  margin-right: 5rem;
 }
 </style>

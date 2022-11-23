@@ -3,13 +3,34 @@
     <h1 class="mt-3">My Profile</h1>
     <div>
       {{this.username}}님이 찜한 영화
+
     </div>
 
-    
-    <h1>{{movie_name[0]}} 영화</h1>
-    <!-- <p>{{movie_list[0]}}</p> -->
-    <div class="mt-3 mx-3">
+    <div v-if="movie_list[0]">
+      <h1 id="first">{{movie_name[0]}} 영화</h1>
+      <div class="row row-cols-1 row-cols-md-5 gy-3">
+        <br>
+        <MovieCard
+        v-for="movie in movie_list[1]" 
+        :key="movie.id"
+        :movie="movie"
+        />          
+      </div>
+    </div>
+    <!-- 3d 캐러셀 -->
+    <!-- <div id="example">
+      <carousel-3d :disable3d="true" :space="365" :clickable="false" :controls-visible="true">
+        <slide v-for="(movie, i) in movie_list[0]" :index="i"
+        :key="i">
+          <MovieCard
+            :movie="movie"
+          />
+        </slide>
+      </carousel-3d>
+    </div> -->
 
+    <!-- 글라이드 -->
+    <!-- <div class="mt-3 mx-3">
       <vue-glide class="glide__track"
         data-glide-el="track"
         ref="slider"
@@ -29,7 +50,7 @@
           </div>
         </vue-glide-slide>
       </vue-glide>
-    </div>
+    </div> -->
 
     <!-- <div v-if="movie_list[0]">
       <h1>(장르) 영화</h1>
@@ -43,8 +64,9 @@
       </div>
     </div> -->
     
+
     <div v-if="movie_list[1]">
-      <h1>{{movie_name[1]}} 영화</h1>
+      <h1 id="second">{{movie_name[1]}} 영화</h1>
       <div class="row row-cols-1 row-cols-md-5 gy-3">
         <br>
         <MovieCard
@@ -54,8 +76,9 @@
         />          
       </div>
     </div>
+
     <div v-if="movie_list[2]">
-      <h1>{{movie_name[2]}} 영화</h1>
+      <h1 id="third">{{movie_name[2]}} 영화</h1>
       <div class="row row-cols-1 row-cols-md-5 gy-3">
         <br>
         <MovieCard
@@ -106,7 +129,8 @@
 import axios from 'axios'
 import _ from 'lodash'
 import MovieCard from '@/components/Movie/MovieCard'
-import { Glide, GlideSlide } from 'vue-glide-js'
+// import { Glide, GlideSlide } from 'vue-glide-js'
+// import { Carousel3d, Slide } from 'vue-carousel-3d';
 
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -114,8 +138,10 @@ export default {
   name: 'ProfileView',
   components: {
     MovieCard,
-    [Glide.name]: Glide,
-    [GlideSlide.name]: GlideSlide
+    // [Glide.name]: Glide,
+    // [GlideSlide.name]: GlideSlide,
+    // Carousel3d,
+    // Slide,
   },
   data() {
     return {
@@ -175,14 +201,30 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+
+
 .profileStyle{
-  background-color: white;
-  color: black
+  background-color: black;
+  color: white;
 }
 
 .list0{
   width:100px;
   border: 1px solid red;
+}
+
+#first{
+  
+  margin: 50px;
+}
+
+#second{
+  margin: 50px;
+}
+
+#third{
+  margin: 50px;
 }
 
 </style>

@@ -2,42 +2,97 @@
 <!-- 지금 넘어가는 정보는 username, password -->
 
 <template>
-  <div class="my-3" style="color: white">
-    <h1>Sign Up Page</h1>
+  <div class="check container">
+    
     <form @submit.prevent="signUp">
-      <label for="username">username : </label>
-      <input type="text" id="username" v-model="username"><br>
+      <h2>Sign Up Page</h2>
+      <div class="textForm">
+        <input type="text" id="username" class="id"
+        v-model="username" placeholder="아이디">
+      </div>
 
-      <label for="password1"> password : </label>
-      <input type="password" id="password1" v-model="password1"><br>
+      <div class="textForm">
+        <input type="password" id="password1" class="pwd"
+        v-model="password1" placeholder="비밀번호">
+      </div>
 
-      <label for="password2"> password confirmation : </label>
-      <input type="password" id="password2" v-model="password2">
+      <div class="textForm">
+        <input type="password" id="password2" class="pwd"
+        v-model="password2" placeholder="비밀번호 확인">
+      </div>
+      <div>
+        
+      </div>
+      <h2>선호 장르</h2>
       
-      <input type="submit" value="SignUp">
+        <table class="checkBox">
+            <tbody>
+              <tr style="width: 70px; height: 30px"
+                v-for="(list, idx) in genres"
+                :key="idx">
+                <td
+                  v-for="(item, idx) in list"
+                  :key="idx"
+                >
+                  <button
+                    v-if="genre.includes(item)===false"
+                    @click="getGenres(item)"
+                  >{{ item }}</button>
+                  <button
+                    v-else
+                    @click="deleteGenres(item)"
+                  >{{ item }}</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      
+      <br>
+    <input type="submit" value="SignUp" style="width:150px; height: 50px; font-size: 30px; margin: 30px;">
     </form>
     
-    <table d-flex>
-        <tbody>
-          <tr style="width: 70px; height: 30px"
-            v-for="(list, idx) in genres"
-            :key="idx">
-            <td
-              v-for="(item, idx) in list"
-              :key="idx"
-            >
-              <button
-                v-if="genre.includes(item)===false"
-                @click="getGenres(item)"
-              >{{ item }}</button>
-              <button
-                v-else
-                @click="deleteGenres(item)"
-              >{{ item }}</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    
+
+
+
+
+    <!-- <div class="SignUpForm" style="color: white">
+      <form @submit.prevent="signUp">
+        <h1>Sign Up Page</h1>
+        <label for="username">username : </label>
+        <input type="text" id="username" v-model="username"><br>
+  
+        <label for="password1"> password : </label>
+        <input type="password" id="password1" v-model="password1"><br>
+  
+        <label for="password2"> password confirmation : </label>
+        <input type="password" id="password2" v-model="password2">
+        <br>
+        <input type="submit" value="SignUp">
+      </form>
+      
+      <table>
+          <tbody>
+            <tr style="width: 70px; height: 30px"
+              v-for="(list, idx) in genres"
+              :key="idx">
+              <td
+                v-for="(item, idx) in list"
+                :key="idx"
+              >
+                <button
+                  v-if="genre.includes(item)===false"
+                  @click="getGenres(item)"
+                >{{ item }}</button>
+                <button
+                  v-else
+                  @click="deleteGenres(item)"
+                >{{ item }}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div> -->
   </div>
 </template>
   
@@ -114,15 +169,58 @@ export default {
   </script>
   
 <style>
-#username{
+.check{
   background-color: white;
 }
 
-#password1{
-  background-color: white;
+.SignUpForm{
+  position:absolute;
+  width:400px;
+  height:400px;
+  padding: 30px, 20px;
+  background-color:#FFFFFF;
+  text-align:center;
+  top:40%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius: 15px;
+  color:
+}
+.SignUpForm h2{
+  text-align: center;
+  margin: 30px;
 }
 
-#password2{
-  background-color: white;
+.textForm{
+  display:inline-flex;
+  border-bottom: 2px solid #adadad;
+  margin: 30px;
+  padding: 10px 10px;
+  width: 75%;
+}
+
+.id{
+  width: 75%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.pwd{
+  width: 75%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.checkBox{
+  display: inline;
+  
 }
 </style>
