@@ -11,7 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css'
 
-
 import Vuetify from 'vuetify'
 import vuetify from './plugins/vuetify'
 

@@ -1,10 +1,15 @@
 <template>
   <div style="color: white" class="my-3">
     <h1>LogIn Page</h1>
-    <b-form @submit.prevent="logIn" @reset="onReset" v-if="show">
+    <b-form
+      @submit.prevent="logIn"
+      @reset="onReset"
+      v-if="show"
+    >
       <b-form-group
         id="input-group-1"
         label-for="input-1"
+        style="col-3"
       >
         <b-form-input
           id="input-1"
@@ -14,6 +19,9 @@
           required
         ></b-form-input>
       </b-form-group>
+
+      <br>
+      <br>
 
       <b-form-group
         id="input-group-2"

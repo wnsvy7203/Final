@@ -16,10 +16,10 @@
       
       <input type="submit" value="SignUp">
     </form>
-
-    <table>
+    
+    <table d-flex>
         <tbody>
-          <tr
+          <tr style="width: 70px; height: 30px"
             v-for="(list, idx) in genres"
             :key="idx">
             <td

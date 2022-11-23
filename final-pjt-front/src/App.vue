@@ -2,13 +2,12 @@
   <div id="app">
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <div class="container">
-
         <b-navbar-brand class="col-4">
           <router-link :to="{ name: 'movie' }" class="navbar-brand" style="font-size: 50px">SIXth Sense</router-link>
         </b-navbar-brand>
   
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-        <div >
+        <div>
           <b-collapse id="nav-collapse" is-nav>
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
