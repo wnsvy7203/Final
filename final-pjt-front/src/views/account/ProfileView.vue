@@ -1,9 +1,5 @@
 <template>
-<<<<<<< HEAD
   <div class="container profileStyle">
-=======
-  <div class="profileStyle">
->>>>>>> 36bb25a83f78ad9274f0f1fa61bf80993d527bf4
     <h1 class="mt-3">My Profile</h1>
     <div>
       {{this.username}}님이 찜한 영화
@@ -77,7 +73,6 @@
     >
       선호 장르 추천 영화
       <hr>
-<<<<<<< HEAD
       <div>
         <div v-for="movie in movie_list[0]"
         :key="movie.id"
@@ -86,17 +81,6 @@
 
         </div>
       </div>
-
-      <div>
-
-      </div>
-=======
-
->>>>>>> 36bb25a83f78ad9274f0f1fa61bf80993d527bf4
-      <div
-        v-for="(list, idx) in movie_list"
-        :key="idx"
-      >
         <MovieCard
           v-for="(movie, idx) in list"
           :key="idx"
@@ -198,13 +182,9 @@ export default {
   background-color: white;
   color: black
 }
-<<<<<<< HEAD
-=======
 
 .list0{
   width:100px;
   border: 1px solid red;
 }
-
->>>>>>> 36bb25a83f78ad9274f0f1fa61bf80993d527bf4
-</style>
+/style>

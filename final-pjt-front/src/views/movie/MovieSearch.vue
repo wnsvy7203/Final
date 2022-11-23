@@ -8,11 +8,7 @@
           :movie="movie"  
         />
       </div>
-<<<<<<< HEAD
-      <div v-else class="search">
-=======
       <div v-else class="search ">
->>>>>>> 36bb25a83f78ad9274f0f1fa61bf80993d527bf4
         <h1>검색 결과가 없습니다</h1>
       </div>
       
