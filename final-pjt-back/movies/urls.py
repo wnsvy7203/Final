@@ -10,6 +10,7 @@ urlpatterns = [
     path('movies/<int:movie_pk>/comments/', views.comment_create),
     path('genres/', views.genre_list),
     path('genres/<int:genre_pk>/', views.get_genre),
+    path('movies/<int:movie_pk>/like_users', views.movie_like_users),
     # # 필수 작성
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     # # optional UI

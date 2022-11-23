@@ -34,21 +34,5 @@ def my_profile(request):
 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
-def like_genres(request):
-    user = request.user
-    data = request.data
-
-    print(data)
-
-    for i in data['push_genre']:
-        # serializer = UserGenreSerializer(id=user.id, data=i)
-        # print(serializer)
-        # serializer.save()
-        user.like_genres.add(i)
-        pass
-
-
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
 def genre_recommendation(request):
     pass

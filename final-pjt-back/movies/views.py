@@ -83,3 +83,14 @@ def get_genre(request, genre_pk):
     serializer = GenreMovieSerializer(genre)
 
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def movie_like_users(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    user = request.user
+
+    movie.like_users.add(user)
+
+    return Response(status=status.HTTP_201_CREATED)

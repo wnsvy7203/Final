@@ -63,3 +63,10 @@ class GenreMovieSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
         fields = ('id', 'name', 'genre_movies')
+
+
+class MovieUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Movie
+        fileds = ('id', 'like_users')

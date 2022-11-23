@@ -116,7 +116,7 @@ export default new Vuex.Store({
           console.log('TOKEN', this.state.token)
           axios({
             method: 'post',
-            url: `${API_URL}/accounts/genres/`,
+            url: `${API_URL}/accounts/add_genres/`,
             headers: {
               Authorization: `Token ${this.state.token}`
             },
@@ -213,19 +213,19 @@ export default new Vuex.Store({
         })
         .catch(err=>{console.log(err)})
     },
-    getUser(context){
-      axios({
-        method: 'get',
-        url: `${API_URL}/accounts/my/`,
-      })
-      .then(res=>{
-        console.log(res)
-        context.commit('GET_USER', res.data)
-      })
-      .catch(err=>{
-        console.log(err)
-      })
-    }
+    // getUser(context){
+    //   axios({
+    //     method: 'post',
+    //     url: `${API_URL}/accounts/my/`,
+    //   })
+    //   .then(res=>{
+    //     console.log(res)
+    //     context.commit('GET_USER', res.data)
+    //   })
+    //   .catch(err=>{
+    //     console.log(err)
+    //   })
+    // }
   },
   modules: {
   }

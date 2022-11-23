@@ -5,7 +5,7 @@
       찜한 영화
     </div>
     <div
-      v-if="movie_list.length !== 0"
+      v-if="movie_pk.length !== 0"
       class="row row-cols-1 row-cols-md-5 gy-3 imgmouserOver"
     >
       선호 장르 추천 영화
@@ -67,7 +67,7 @@ export default {
         url: `${API_URL}/accounts/my/`,
         headers: {
           Authorization: `Token ${ this.$store.state.token }`
-        }
+        },
       })
         .then(res => {
           this.movie_pk = res.data.like_genres
@@ -93,6 +93,9 @@ export default {
   },
   created() {
     this.getMyMovie()
+    .then(
+      console.log(this.movie_list)
+    )
   },
 }
 </script>
