@@ -1,0 +1,5 @@
+navbar 검색어 입력 -> $router.push => params에 검색어 넣어서 보내기
+push
+검색결과창에서 검색어 $route.params.${검색어 넣은 데이터 키 값} 에서 가져오기 (computed, created 해도 됨)
+
+axios로 검색어 이용해서 요청 => 이걸로 화면 표현만 하고 새로고침같은 코드를 다 들어내

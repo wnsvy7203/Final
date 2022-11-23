@@ -1,2 +1,12 @@
 npm i vue-glide-js
 npm install @nuxtjs/vuetify -D
+
+
+할거 
+search
+댓글 창
+profile 영화 출력 한줄로 출력
+댓글 
+youtube 새로
+회원가입 버튼
+좋아요 영화 프로필에서 출력

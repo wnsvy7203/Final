@@ -21,6 +21,68 @@ def movie_list(request):
         return Response(serializer.data)
 
 
+<<<<<<< HEAD
+=======
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def comment_list(request):
+    if request.method == 'GET':
+        # comments = Comment.objects.all()
+        comments = get_list_or_404(Comment)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+    elif request.method == 'POST':
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET', 'DELETE', 'PUT'])
+def comment_detail(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+    if request.method == 'GET':
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+    elif request.method == 'DELETE':
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    elif request.method == 'PUT':
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
+
+@api_view(['POST'])
+def comment_create(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    serializer = CommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(movie=movie, user=request.user)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+@api_view(['GET'])
+def genre_list(request):
+    genres = get_list_or_404(Genre)
+
+    serializer = GenreSerializer(genres, many=True)
+
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_genre(request, genre_pk):
+
+    genre = get_object_or_404(Genre, pk=genre_pk)
+
+    serializer = GenreMovieSerializer(genre)
+
+    return Response(serializer.data)
+
+
+>>>>>>> 36bb25a83f78ad9274f0f1fa61bf80993d527bf4
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def movie_like_users(request, movie_pk):
