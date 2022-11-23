@@ -10,7 +10,7 @@
       </v-img>
     </template>
     <div class="movie-card">
-      <div :style="{'background-image' : `url(https://image.tmdb.org/t/p/original/${movie.get_backdrop_path})`}" 
+      <div :style="{'background-image' : `url(https://image.tmdb.org/t/p/original/${movie.backdrop_path})`}" 
       class="bgImg">
         <div class="movie-toolbar">
           <v-btn
@@ -38,7 +38,7 @@
                   v-if="movie.released_date"
                   class="movie-release-date">
                     {{ movie.released_date }}
-                    <p>출연:</p>
+                    
                   </div>
                   <!-- <div
                   v-if="movie.genres">
@@ -69,13 +69,13 @@
             </div>
             <br>
             <div>
-              <LikeMovie
-              :movie="movie"
-              />
             </div>
             <div class="movie-lower">
               <!-- youtube -->
               <div class="movie-youtube-area">
+                <LikeMovie
+                :movie="movie"
+                />
                 <h3>
                   관련 영상
                 </h3>
@@ -130,9 +130,7 @@ export default {
     return "https://image.tmdb.org/t/p/original" + this.movie.poster_path
   },
 },
-created() {
-  this.$store.dispatch('getUser')
-}
+
 
 }
 </script>
@@ -213,6 +211,7 @@ created() {
     background-size: cover;
     width: 100%;
     height: auto;
+
 }
 
 </style>

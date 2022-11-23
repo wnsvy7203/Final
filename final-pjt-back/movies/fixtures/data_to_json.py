@@ -32,7 +32,7 @@ def get_movie_datas():
                     'overview': movie['overview'],
                     'poster_path': movie['poster_path'],
                     'genres': movie['genre_ids'],
-                    'get_backdrop_path': movie['backdrop_path'],
+                    'backdrop_path': movie['backdrop_path'],
                 }
 
                 data = {

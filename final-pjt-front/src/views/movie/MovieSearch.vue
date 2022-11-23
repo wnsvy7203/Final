@@ -1,16 +1,20 @@
 <template>
-  <div class="search">
-    <input id="input1" type='text' v-model='query' @keyup='getResult(query)'>
+  <div class="search my-5" >
     <div class="row row-cols-1 row-cols-md-5 gy-3">
-      <MovieCard
-        v-for="movie in movies"
-        :key="movie.id"
-        :movie="movie"  
-      />
+      <div v-if="movies">
+        <MovieCard
+          v-for="movie in movies"
+          :key="movie.id"
+          :movie="movie"  
+        />
+      </div>
+      <div v-else class="search">
+        <h1>검색 결과가 없습니다</h1>
+      </div>
+      
 
     </div>
-
-    </div>
+  </div>
 
 </template>
 <script>
@@ -23,7 +27,7 @@ export default {
   name: 'MovieSearch',
   data () {
     return {
-      query: '',
+      query: this.$store.state.searchQuery,
       movies: '',
     }
   },
@@ -31,15 +35,14 @@ export default {
     MovieCard
   },
   methods:{
-    getResult(query) {
-      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=kr-KR&query=${query}`)
+    getResult() {
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${this.query}`)
         .then(response => {
           this.movies = response.data.results
+          console.log(this.movies)
         })
-        console.log(this.movies)
-    },
-
-  }
+    }
+  },
 }
 
 </script>
