@@ -1,5 +1,5 @@
 <template>
-  <div class="profileStyle">
+  <div class="container profileStyle">
     <h1 class="mt-3">My Profile</h1>
     <div>
       {{this.username}}님이 찜한 영화
@@ -73,11 +73,14 @@
     >
       선호 장르 추천 영화
       <hr>
+      <div>
+        <div v-for="movie in movie_list[0]"
+        :key="movie.id"
+        {{movie}} 
+        >
 
-      <div
-        v-for="(list, idx) in movie_list"
-        :key="idx"
-      >
+        </div>
+      </div>
         <MovieCard
           v-for="(movie, idx) in list"
           :key="idx"
@@ -184,5 +187,4 @@ export default {
   width:100px;
   border: 1px solid red;
 }
-
-</style>
+/style>

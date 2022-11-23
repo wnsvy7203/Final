@@ -9,7 +9,6 @@
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <div>
           <b-collapse id="nav-collapse" is-nav>
-            <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
               <div>
                 
@@ -50,9 +49,6 @@
       </div>
     </b-navbar>
     <router-view/>
-    <v-app>
-        <MyComponent/>
-    </v-app>
   </div>
 </template>
 

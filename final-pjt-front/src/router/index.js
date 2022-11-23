@@ -10,8 +10,13 @@ import MovieSearch from '@/views/movie/MovieSearch'
 Vue.use(VueRouter)
 
 const routes = [
+  // {
+  //   path: '/',
+  //   name: 'home',
+  //   component: HomeView
+  // },
   {
-    path: '/',
+    path: '/movie',
     name: 'movie',
     component: MovieView
   },

@@ -1,15 +1,14 @@
 <template>
   <div class="app">
     <input type="text" placeholder="댓글 내용" v-model="content">
-    <button class="btn btn-create" @click="mainfunction">댓글 작성</button>
+    <button class="btn btn-create" @click="createComment">댓글 작성</button>
 
     <CommentListItem
-    v-for="comment in comments"
-    :key="comment.id"
-    :comment="comment"
-    :movie="movie"
+      v-for="comment in comments"
+      :key="comment.id"
+      :comment="comment"
+      :movie="movie"
     />
-  
   </div>
 </template>
 
@@ -33,48 +32,36 @@ export default {
         movie:Object,
     },
     methods: {
-      mainfunction(){
-        this.createComment()
-        this.getComment()
+      getComment() {
+        axios({
+          method: 'get',
+          url: `${API_URL}/api/v1/comments/`,
+        })
+          .then((res) =>{
+              this.comments = res.data
+          })
       },
-        createComment() {
-            const commentItemSet = {
-                content: this.content,
-                movie: this.movie.id,
-                token: this.$store.state.token,
-            }
-            axios({
-                method: 'post',
-                url: `${API_URL}/api/v1/movies/${commentItemSet.movie}/comments/`,
-                data: {
-                    movie: commentItemSet.movie,
-                    content: commentItemSet.content,
-                },
-                headers: {
-                  Authorization: `Token ${commentItemSet.token}`
-                }
-            })
-            .then((res)=>{
-                this.comments.push(res.data)
-
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        },
-        getComment(){
-            const token = this.$store.state.token
-            axios({
-                method: 'get',
-                url: `${API_URL}/api/v1/comments/`,
-                headers: {
-                    Authorization: `Token ${token}`
-                }
-            })
-                .then((res) =>{
-                    this.comments = res.data
-                })
+      createComment() {
+        const commentItemSet = {
+          movie_pk: this.movie.id,
+          content: this.content,
+          token: this.$store.state.token,
         }
+        axios({
+          method: 'post',
+          url: `${API_URL}/api/v1/movies/${commentItemSet.movie_pk}/comment_create/`,
+          data: {
+            movie_pk: commentItemSet.movie_pk,
+            content: commentItemSet.content,
+          },
+          headers: {
+            Authorization: `Token ${commentItemSet.token}`
+          }
+        })
+          .then(
+            this.getComment()
+          )
+      },
     },
     created(){
       this.getComment()
