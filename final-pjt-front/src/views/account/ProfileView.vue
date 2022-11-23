@@ -28,7 +28,7 @@
       선호 장르가 없습니다
       <hr>
       <MovieCard
-        v-for="(movie, idx) in totalMovie"
+        v-for="(movie, idx) in else_movie_list"
         :key="idx"
         :movie="movie"
       />
@@ -93,9 +93,7 @@ export default {
   },
   created() {
     this.getMyMovie()
-    .then(
-      console.log(this.movie_list)
-    )
+    this.totalMovie()
   },
 }
 </script>
