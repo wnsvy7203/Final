@@ -26,26 +26,26 @@
       <h2>선호 장르</h2>
       
         <table class="checkBox">
-            <tbody>
-              <tr style="width: 70px; height: 30px"
-                v-for="(list, idx) in genres"
-                :key="idx">
-                <td
-                  v-for="(item, idx) in list"
-                  :key="idx"
-                >
-                  <button
-                    v-if="genre.includes(item)===false"
-                    @click="getGenres(item)"
-                  >{{ item }}</button>
-                  <button
-                    v-else
-                    @click="deleteGenres(item)"
-                  >{{ item }}</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <tbody>
+            <tr style="width: 70px; height: 30px"
+              v-for="(list, idx) in genres"
+              :key="idx">
+              <td
+                v-for="(item, idx) in list"
+                :key="idx"
+              >
+                <button
+                  v-if="genre.includes(item)===false"
+                  @click="getGenres(item)"
+                >{{ item }}</button>
+                <button
+                  v-else
+                  @click="deleteGenres(item)"
+                >{{ item }}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       
       <br>
     <input type="submit" value="SignUp" style="width:150px; height: 50px; font-size: 30px; margin: 30px;">
@@ -184,8 +184,8 @@ export default {
   left:50%;
   transform: translate(-50%,-50%);
   border-radius: 15px;
-  color:
 }
+
 .SignUpForm h2{
   text-align: center;
   margin: 30px;

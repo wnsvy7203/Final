@@ -35,21 +35,11 @@ const routes = [
     name: 'profile',
     component: ProfileView
   },
-  // {
-  //   path: '/movies/:id',
-  //   name: 'detail',
-  //   component: DetailView,
-  // },
   {
     path: '/movies/search',
     name: 'search',
     component: MovieSearch,
   },
-  // {
-  //   path: '/community',
-  //   name: 'community',
-  //   component: CommunityView,
-  // },
 ]
 
 const router = new VueRouter({

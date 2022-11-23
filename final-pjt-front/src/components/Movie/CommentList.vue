@@ -38,7 +38,7 @@ export default {
           url: `${API_URL}/api/v1/comments/`,
         })
           .then((res) =>{
-              this.comments = res.data
+            this.comments = res.data
           })
       },
       createComment() {
@@ -63,10 +63,9 @@ export default {
           )
       },
     },
-    created() {
-      this.getComment()
-    }
-
+    // created() {
+    //   this.getComment()
+    // }
 }
 </script>
 

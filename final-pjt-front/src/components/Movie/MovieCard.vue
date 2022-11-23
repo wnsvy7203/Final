@@ -115,7 +115,7 @@ export default {
     LikeMovie,
 },
   data(){
-    return{
+    return {
       dialog: false,
       likeUserId : [],
     }

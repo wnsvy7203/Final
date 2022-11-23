@@ -40,7 +40,6 @@
 </template>
 
 <script>
-import router from '@/router'
 import { Glide, GlideSlide } from 'vue-glide-js'
 import MovieCard from '@/components/Movie/MovieCard'
 
@@ -52,9 +51,6 @@ export default {
     MovieCard,
   },
   methods: {
-    moveDetail(movie) {
-      router.push({ name: 'detail', params: { movie, id: movie.id } })
-    },
     getMovieJson() {
       this.$store.dispatch('getMovieJson')
     }

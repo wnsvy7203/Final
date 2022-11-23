@@ -65,7 +65,7 @@
     </div> -->
     
 
-    <div v-if="movie_list[1]">
+    <div v-if="movie_list[1].length">
       <h1 id="second">{{movie_name[1]}} 영화</h1>
       <div class="row row-cols-1 row-cols-md-5 gy-3">
         <br>
@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <div v-if="movie_list[2]">
+    <div v-if="movie_list[2].length">
       <h1 id="third">{{movie_name[2]}} 영화</h1>
       <div class="row row-cols-1 row-cols-md-5 gy-3">
         <br>
