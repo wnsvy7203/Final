@@ -7,8 +7,7 @@ from rest_framework.response import Response
 
 from movies.models import Comment, Genre, Movie
 from movies.serializers import (CommentSerializer, GenreMovieSerializer,
-                                GenreSerializer, MovieListSerializer,
-                                MovieSerializer)
+                                GenreSerializer, MovieListSerializer)
 
 # Authentication Decorators
 # from rest_framework.decorators import authentication_classes
@@ -66,30 +65,26 @@ def comment_create(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = CommentSerializer(data=request.data)
 
-
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie, user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET'])
-def comment_list(request):
-    comments = get_list_or_404(Comment, movie=request.movie)
-    print(request.movie)
+def comment_list(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    comments = movie.comment_set.all()
+
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def comment_change(request, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
 
-    if request.method == 'GET':
-        serializer = CommentSerializer(comment)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
+    if request.method == 'PUT':
         serializer = CommentSerializer(comment, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
@@ -98,3 +93,4 @@ def comment_change(request, comment_pk):
     elif request.method == 'DELETE':
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+

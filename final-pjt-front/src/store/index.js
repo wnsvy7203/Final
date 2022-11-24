@@ -82,20 +82,6 @@ export default new Vuex.Store({
     SEND_QUERY(state, query){
       state.searchQuery = query
     },
-    UPDATE_COMMENT(state, response){
-      state.comments = state.comments.map((comment)=>{
-        if (comment === response) {
-          return { ...comment, content: response.content}
-        }
-      })
-    }
-    // DELETE_COMMENT(state, res){
-    //   const index = state.comments.indexOf(res)
-    // }
-    // GET_USER(state,user){
-    //   state.user_id = user.pk
-    //   state.user_name = user.username
-    // }
   },
   actions: {
     getMovieJson(context) {
@@ -216,51 +202,8 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-    getComment(context,token){
-      axios({
-        method:'get',
-        url: `${API_URL}/api/v1/comments/`,
-        headers: {
-          Authorization: `Token ${token}`
-        }
-      })
-        .then((res) =>{
-          context.commit('GET_COMMENTS', res)
-          console.log(res.data)
-        })
-        .catch(err=>{console.log(err)})
-    },
-    // deleteComment(context, commentItemSet){
-    //   axios({
-    //     method:'delete',
-    //     url: `${API_URL}/api/v1/comments/${commentItemSet.comment_id}/`,
-    //     headers: {
-    //       Authorization: `Token ${commentItemSet.token}`
-    //     }
-    //   })
-    //   .then((res)=>{
-    //     context.commit('DELETE_COMMENT', res.data)
-    //     console.log(res.data)
-    //   })
-    // },
     sendQuery(context, query){
       context.commit('SEND_QUERY', query)
-    },
-    updataComment(context, commentItemSet){
-      axios({
-        method:'put',
-        url:`${API_URL}/api/v1/comments/${commentItemSet.comment_id}/`,
-        data:commentItemSet,
-        headers: {
-          Authorization: `Token ${commentItemSet.token}`
-        }
-      })
-      .then((res)=>{
-        context.commit('UPDATE_COMMENT', res.data)
-      })
-      .catch(err=>{
-        console.log(err)
-      })
     },
     getUser(context){
       axios({
