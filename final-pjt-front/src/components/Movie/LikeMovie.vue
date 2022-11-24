@@ -15,8 +15,7 @@
 </template>
 
 <script>
-import axios from "axios";
-const API_URL = 'http://127.0.0.1:8000'
+
 
 export default {
   name: "LikeMovie",
@@ -29,36 +28,44 @@ export default {
     movie: Object
   },
   methods: {
-    likeMovie() {
-      const commentItemSet = {
+    likeMovie(){
+      const likeItemSet = {
         content: this.content,
-          movie: this.movie
-
-        }
-      axios({
+        movie: this.movie.id,
+        likestatus: this.likestatus
+      }
+      this.$store.dispatch('likeMovie', likeItemSet)
+    }
+  }
+    // likeMovie() {
+    //   const commentItemSet = {
+    //     content: this.content,
+    //       movie: this.movie
+    //     }
+    //   axios({
         
-        method: "post",
-        url: `${API_URL}/api/v1/movies/${this.movie.id}/like_users/`,
-        data: {
-          movie: commentItemSet.movie,
-        },
-        headers:{
-          Authorization: `Token ${this.$store.state.token}`
-        }
-      })
-        .then(() => {
-          if (this.likestatus === false){
-            this.likestatus = true
-          }else{
-            this.likestatus = false
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-  },
-};
+    //     method: "post",
+    //     url: `${API_URL}/api/v1/movies/${this.movie.id}/like_users/`,
+    //     data: {
+    //       movie: commentItemSet.movie,
+    //     },
+    //     headers:{
+    //       Authorization: `Token ${this.$store.state.token}`
+    //     }
+    //   })
+    //     .then(() => {
+    //       if (this.likestatus === false){
+    //         this.likestatus = true
+    //       }else{
+    //         this.likestatus = false
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     })
+    // },
+
+}
 </script>
 
 <style>

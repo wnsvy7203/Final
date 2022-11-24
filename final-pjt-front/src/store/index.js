@@ -180,42 +180,24 @@ export default new Vuex.Store({
           console.log(err)
         })
     },
-    createComment(context, commentItemSet){
-      console.log(commentItemSet)
-      
-      axios({
-        method: 'post',
-        url: `${API_URL}/api/v1/movies/${commentItemSet.movie}/comments/`,
-        data: {
-          movie: commentItemSet.movie,
-          content: commentItemSet.content,
-        },
-        headers: {
-          Authorization: `Token ${commentItemSet.token}`
-        }
-      })
-        .then(res => {
-          console.log('res.data', res.data)
-          context.commit('CREATE_COMMENT', res.data)
-        })
-        .catch(err=>{
-          console.log(err)
-        })
-    },
     sendQuery(context, query){
       context.commit('SEND_QUERY', query)
     },
-    getUser(context){
+    likeMovie(context, likeItemSet){
       axios({
-        method: 'post',
-        url: `${API_URL}/accounts/my/`,
+        method:'post',
+        url: `${API_URL}/api/v1/movies/${this.movie.id}/like_users/`,
+        data:{
+          movie: likeItemSet.movie,
+          likeStatus: likeItemSet.likeStatus
+        },
+        headers:{
+          Authorization: `Token ${this.$store.state.token}`
+        }
       })
-      .then(res=>{
-        console.log(res)
-        context.commit('GET_USER', res.data)
-      })
-      .catch(err=>{
-        console.log(err)
+      .then((res)=>{
+        console.log('댓글',res)
+        context.commit('LIKE_MOVIE', res)
       })
     },
     makeDefault(context) {
