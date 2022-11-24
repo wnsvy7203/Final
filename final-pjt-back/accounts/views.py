@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import User
-from .serializers import UserGenreSerializer, UserSerializer
+from .serializers import UserGenreSerializer, UserSerializer, UserMovieSerializer
 
 
 # Create your views here.
@@ -20,6 +20,15 @@ def like_genres(request):
         user.like_genres.add(i)
 
     return Response(status=status.HTTP_201_CREATED)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def like_movies(request):
+    user = request.user
+    serializer = UserMovieSerializer(user)
+
+    return Response(serializer.data)
 
 
 @api_view(['POST'])

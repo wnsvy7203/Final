@@ -85,18 +85,19 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
+
+const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'App',
   data(){
-    return{
+    return {
       query: null,
     }
   },
   methods: {
     logOut() {
-      const API_URL = 'http://127.0.0.1:8000'
       axios({
         method: 'post',
         url: `${API_URL}/accounts/logout/`,
@@ -119,7 +120,9 @@ export default {
     sendQuery(){
       this.$store.dispatch('sendQuery', this.query)
     },
-  
+    makeDefault() {
+      this.$store.dispatch('makeDefault')
+    }
   },
   computed:{
     isLogin() {
@@ -128,7 +131,7 @@ export default {
   },
   created() {
     this.isLogin()
-  },
+  }
 }
 
 </script>

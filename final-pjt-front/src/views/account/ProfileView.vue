@@ -1,9 +1,17 @@
 <template>
   <div class="container profileStyle">
     <h1 class="mt-3">My Profile</h1>
+    <hr>
     <div>
-      {{this.username}}님이 찜한 영화
-
+      <h1 id="first">{{this.username}}님이 찜한 영화</h1>
+      <div class="row row-cols-1 row-cols-md-5 gy-3">
+        <br>
+        <MovieCard
+          v-for="movie in like_movie" 
+          :key="movie.id"
+          :movie="movie"
+          />
+      </div>
     </div>
 
     <div v-if="movie_list[0]">
@@ -11,7 +19,7 @@
       <div class="row row-cols-1 row-cols-md-5 gy-3">
         <br>
         <MovieCard
-        v-for="movie in movie_list[1]" 
+        v-for="movie in movie_list[0]" 
         :key="movie.id"
         :movie="movie"
         />          
@@ -125,6 +133,9 @@
         :movie="movie"
       />
     </div> -->
+    <div data-app>
+      <MyComponent/>
+    </div>
   </div>
 </template>
 
@@ -149,6 +160,8 @@ export default {
   data() {
     return {
       token: null,
+      like: [],
+      like_movie: [],
       movie_pk: [],
       movie_name: [],
       movie_list: {
@@ -173,12 +186,39 @@ export default {
           this.movie_pk = res.data.like_genres
         })
         .then(() => {
+          axios({
+            method: 'post',
+            url: `${API_URL}/accounts/movies/`,
+            headers: {
+              Authorization: `Token ${ this.$store.state.token }`
+            }
+          })
+            .then(res => {
+              this.like = res.data.like_movies
+              console.log('LIKE', this.like)
+            })
+            .then(() => {
+              console.log('길이', this.like.length)
+              for (let i=0; i<this.like.length; i++) {
+                axios({
+                  method: 'get',
+                  url: `${API_URL}/api/v1/movies/${this.like[i]}/`
+                })
+                  .then(res => {
+                    this.like_movie.push(res.data)
+                  })
+                  .then(() => {
+                    console.log('LIKE_MOVIES', this.like_movie)
+                  })
+              }
+            })
+        })
+        .then(() => {
           if (this.movie_pk.length !== 0) {
             for (let i=0; i<this.movie_pk.length; i++) {
               axios({
                 method: 'get',
                 url: `${API_URL}/api/v1/genres/${this.movie_pk[i]}/`,
-                
               })
                 .then(res => {
                   this.movie_name.push(res.data.name)
@@ -196,9 +236,6 @@ export default {
   },
   created() {
     this.getMyMovie()
-    .then(
-      console.log(this.movie_list)
-    )
   },
 }
 </script>

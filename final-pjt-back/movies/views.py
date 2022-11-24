@@ -21,6 +21,14 @@ def movie_list(request):
         return Response(serializer.data)
 
 
+@api_view(['GET'])
+def movie_detail(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    serializer = MovieListSerializer(movie)
+
+    return Response(serializer.data)
+
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def movie_like_users(request, movie_pk):
@@ -57,14 +65,16 @@ def comment_create(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = CommentSerializer(data=request.data)
 
+
     if serializer.is_valid(raise_exception=True):
         serializer.save(movie=movie, user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['GET'])
-def comment_list(request):
-    comments = get_list_or_404(Comment)
+def comment_list(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    comments = get_list_or_404(Comment, movie=movie)
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
