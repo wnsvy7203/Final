@@ -3,7 +3,6 @@
 
 <template>
   <div class="check container">
-    
     <form @submit.prevent="signUp">
       <h2>Sign Up Page</h2>
       <div class="textForm">

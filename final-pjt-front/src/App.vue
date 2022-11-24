@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg bg-black">
+    <nav class="navbar navbar-expand-lg bg-black" v-show="$route.name !== 'home'">
       <div class="container-fluid">
         <router-link :to="{ name: 'movie' }" class="navbar-brand" style="font-size: 50px; color:white;">SIXth Sense</router-link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
