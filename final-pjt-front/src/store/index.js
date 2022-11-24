@@ -7,8 +7,9 @@ import router from '@/router'
 Vue.use(Vuex)
 
 const API_URL = 'http://127.0.0.1:8000'
-const YOUTUBE_URL = 'https://www.googleapis.com/youtube/v3/search'
-const YOUTUBE_KEY = 'AIzaSyDlxxWeu6OMB8ZmSn-RPbwlzEqPSB0RReU'
+
+
+
 
 export default new Vuex.Store({
   plugins: [
@@ -18,7 +19,7 @@ export default new Vuex.Store({
     MovieJsonData: [],
     token: null,
     comments: [],
-    youtubeVideos: [],
+
     genres: [],
     rated: [1,2,3,4,5],
     payload: {
@@ -26,6 +27,7 @@ export default new Vuex.Store({
       password: null
     },
     searchQuery: null,
+    likestatus: false,
   },
   getters: {
     isLogin(state) {
@@ -60,9 +62,7 @@ export default new Vuex.Store({
         password: payload.password
       }
     },
-    GET_YOUTUBE(state, res){
-      state.youtubeVideos = res.data.items
-    },
+
     DELETE_TOKEN(state) {
       state.token = null
       state.payload.username = null

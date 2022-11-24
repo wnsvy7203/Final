@@ -4,7 +4,7 @@
     <button class="btn btn-create" @click="createComment">댓글 작성</button>
 
     <CommentListItem
-      v-for="comment in comments"
+      v-for="comment in this.comments"
       :key="comment.id"
       :comment="comment"
       :movie="movie"
@@ -24,10 +24,10 @@ export default {
     components: {
       CommentListItem
     },
-    data() {
+    data(){
       return {
         content: null,
-        comments: [],
+        comments: []
       }
     },
     props:{
@@ -71,6 +71,9 @@ export default {
     created() {
       this.getCommentAll()
     },
+    mounted() {
+      this.getComment()
+    }
 }
 </script>
 

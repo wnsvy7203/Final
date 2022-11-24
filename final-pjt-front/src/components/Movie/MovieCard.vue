@@ -206,12 +206,10 @@ export default {
 }
 
 .bgImg{
-  height: 100vh;
-    background: no-repeat center;
-    background-size: cover;
-    width: 100%;
-    height: auto;
-
+  background: no-repeat center;
+  background-size: cover;
+  width: 100%;
+  height: auto;
 }
 
 </style>
