@@ -39,6 +39,15 @@ export default {
         this.updatedStatus = false
       }
     },
+    // getCommentAll() {
+    //   axios({
+    //     method: 'get',
+    //     url: `${API_URL}/api/v1/movies/${this.movie.id}/comments/`,
+    //   })
+    //     .then(res => {
+    //       this.comments = res.data
+    //     })
+    // },
     updateComment() {
       const commentItemSet = {
         comment_pk: this.comment.id,
@@ -58,9 +67,9 @@ export default {
       })
         .then(res => {
           console.log('격렬하게 바꾸고 싶다', res.data)
-        })
-        .catch(() => {
-
+          this.updateContent = null
+          this.updatedStatus = false
+          this.$emit('emit-data')
         })
     },
     deleteComment() {
@@ -77,9 +86,8 @@ export default {
       })
         .then(res => {
           console.log('격렬하게 지우고 싶다', res.data)
-        })
-        .catch(() => {
-
+          this.updateContent = null
+          this.$emit('emit-data')
         })
     },
     // updateComment () {

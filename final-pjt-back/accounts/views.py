@@ -6,7 +6,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .models import User
-from .serializers import UserGenreSerializer, UserSerializer, UserMovieSerializer
+from .serializers import (UserGenreSerializer, UserMovieSerializer,
+                          UserSerializer)
 
 
 # Create your views here.
