@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MovieView from '../views/movie/MovieView.vue'
-// import DetailView from '@/components/movie/DetailView'
+import HomeView from '@/views/movie/HomeView'
 import LogInView from '@/views/account/LogInView'
 import SignupView from '@/views/account/SignupView'
 import ProfileView from '@/views/account/ProfileView'

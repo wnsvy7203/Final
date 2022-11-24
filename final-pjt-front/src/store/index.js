@@ -8,9 +8,6 @@ Vue.use(Vuex)
 
 const API_URL = 'http://127.0.0.1:8000'
 
-
-
-
 export default new Vuex.Store({
   plugins: [
     createPersistedState()
@@ -160,25 +157,6 @@ export default new Vuex.Store({
         .then(res =>
           context.commit('GET_PROFILE', res.data)
         )
-    },
-    getYoutube(context, title){
-      const params={
-        q: title + 'movie',
-        key: YOUTUBE_KEY,
-        part: 'snippet',
-        type: 'video'
-      }
-      axios({
-        method: 'get',
-        url: YOUTUBE_URL,
-        params,
-      })
-        .then(res =>{
-          context.commit('GET_YOUTUBE', res)
-        })
-        .catch(err=>{
-          console.log(err)
-        })
     },
     sendQuery(context, query){
       context.commit('SEND_QUERY', query)
