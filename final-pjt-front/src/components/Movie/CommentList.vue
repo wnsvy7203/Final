@@ -1,16 +1,39 @@
 <template>
   <div class="app">
-    <CommentListItem
-      v-for="comment in this.comments"
-      :key="comment.id"
-      :comment="comment"
-      :movie="movie"
-      @emit-data="showAgain"
+    <div class="container ">
+      <div class="card " >
+        <div class="card-body"><textarea class="form-control " row="1" placeholder="댓글" @keyup.enter="createComment" v-model="content"></textarea>
+          <b-button id="btn" variant="outline-dark" @click="createComment" >등록</b-button>
+        </div>
+      </div>
+      <div class="card">
+    <div class="card-header">댓글리스트
+      <CommentListItem
+        v-for="comment in this.comments"
+        :key="comment.id"
+        :comment="comment"
+        :movie="movie"
+        @emit-data="showAgain"
+      />
 
-    />
-    <input type="text" placeholder="댓글 내용" @keyup.enter="createComment" v-model="content">
-    <button class="btn btn-create" @click="createComment">댓글 작성</button>
-  </div>
+    </div>
+        <!-- <div class="card-header">댓글리스트
+          <ul id="comment--box" class="list-group">
+            <li id="comment--1" class="list-group-item d-flex justify-content-between">
+              <div>댓글 내용입니다.</div>
+              <div class="d-flex">
+                <div class="font-italic">작성자 : 기면지 </div>
+                <button class="badge">삭제</button>
+              </div>
+            </li>
+          </ul>
+        </div> -->
+      </div>
+    </div>
+    </div>
+    <!-- <input type="text" placeholder="댓글 내용" @keyup.enter="createComment" v-model="content">
+    <button class="btn btn-create" @click="createComment">댓글 작성</button> -->
+  
 </template>
 
 <script>
@@ -80,4 +103,5 @@ export default {
   background-color: white;
   color: black
 }
+
 </style>
