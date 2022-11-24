@@ -1,7 +1,7 @@
 <template>
   <div class="search my-5 container" style="min-height:100vh; " >
     <input type="text" id="input1" v-model="query" @keyup="getResult(query)"
-    placeholder="제목을 검색해보세요">
+    placeholder="제목을 검색해보세요" style="text-align : center;">
     <div class="lineUp row row-cols-1 row-cols-md-5 gy-3">
       
       <MovieCard
@@ -9,10 +9,6 @@
         :key="movie.id"
         :movie="movie"  
       />
-      
-      <div v-if="!this.movies" style="height:75vh; ">
-        <div style=" margin-top:40%; ">검색 결과가 없습니다</div>
-      </div>
     </div>
     <div data-app>
       <MyComponent/>

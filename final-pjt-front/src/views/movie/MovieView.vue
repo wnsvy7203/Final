@@ -1,37 +1,11 @@
 <template>
   <div id="app" >
+    <h1 style="color:white; margin:50px">인기 영화</h1>
     <div class="row row-cols-1 row-cols-md-5 gy-3 imgmouserOver">
       <MovieCard
         v-for="(movie, idx) in totalMovie"
         :key="idx"
         :movie="movie"/>
-    </div>
-    
-    <h1>인기 영화</h1>
-    <div class="mt-3 mx-3">
-      <vue-glide class="glide__track"
-        data-glide-el="track"
-        ref="slider"
-        type="carousel"
-        :breakpoints="{3000: {perView: 7}, 1100: {perView: 6}, 600: {perView: 3}}"
-      >
-        <vue-glide-slide 
-          v-for="movie in totalMovie"
-          :key="movie.id"
-          class="imgmouserOver"
-          >
-          <div>
-            <MovieCard
-              :movie="movie"
-            />
-          </div>
-        </vue-glide-slide>
-      </vue-glide>
-    </div>
-
-    
-    <div>
-      <h1> 다음 영화 리스트</h1>
     </div>
     <div data-app>
       <MyComponent/>
@@ -40,15 +14,15 @@
 </template>
 
 <script>
-import { Glide, GlideSlide } from 'vue-glide-js'
+
 import MovieCard from '@/components/Movie/MovieCard'
 
 export default {
   name: 'MovieView',
   components: {
-    [Glide.name]: Glide,
-    [GlideSlide.name]: GlideSlide,
+    
     MovieCard,
+    
   },
   methods: {
     getMovieJson() {

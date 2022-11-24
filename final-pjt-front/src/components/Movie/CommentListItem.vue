@@ -4,6 +4,7 @@
       작성자 : {{comment.username}}<br>
               {{comment.content}}
     </div>
+    
     <div v-if="comment.user === user_">
       <input type="text" v-if="updatedStatus===true" v-model="updateContent" @keyup.enter="updateComment">
       <button class="btn btn-primary" @click="turnOn" v-if="updatedStatus===false">댓글 재작성</button>

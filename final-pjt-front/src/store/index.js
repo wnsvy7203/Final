@@ -38,9 +38,6 @@ export default new Vuex.Store({
       state.movies = state.MovieJsonData.slice(0, 25)
       return state.movies
     },
-    getComment(state){
-      return state.comments
-    },
     getSendQuery(state){
       return state.searchQuery
     }
