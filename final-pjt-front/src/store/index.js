@@ -105,6 +105,7 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('GET_MOVIE_JSON_DATA', response.data)
+          console.log(response.data)
         })
         .catch(error => {
           console.log(error)

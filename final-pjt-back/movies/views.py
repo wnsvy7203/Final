@@ -7,7 +7,8 @@ from rest_framework.response import Response
 
 from movies.models import Comment, Genre, Movie
 from movies.serializers import (CommentSerializer, GenreMovieSerializer,
-                                GenreSerializer, MovieListSerializer)
+                                GenreSerializer, MovieListSerializer,
+                                MovieSerializer)
 
 # Authentication Decorators
 # from rest_framework.decorators import authentication_classes
@@ -72,19 +73,23 @@ def comment_create(request, movie_pk):
 
 
 @api_view(['GET'])
-def comment_list(request, movie_pk):
-    movie = get_object_or_404(Movie, pk=movie_pk)
-    comments = get_list_or_404(Comment, movie=movie)
+def comment_list(request):
+    comments = get_list_or_404(Comment, movie=request.movie)
+    print(request.movie)
     serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def comment_change(request, comment_pk):
     comment = get_object_or_404(Comment, pk=comment_pk)
 
-    if request.method == 'PUT':
+    if request.method == 'GET':
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
         serializer = CommentSerializer(comment, data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()

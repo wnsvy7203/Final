@@ -7,14 +7,7 @@ class MovieListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Movie
-        fields = '__all__'
-
-class CommentListSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source='user.username', read_only=True)
-
-    class Meta:
-        model = Comment
-        fields = ('id', 'movie', 'content', 'user', 'username')
+        fields = ('id', 'title', 'released_date', 'vote_count', 'vote_average', 'overview', 'poster_path', 'genres', 'like_users', 'get_id', 'backdrop_path', 'comment_set',)
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -23,7 +16,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
-        read_only_fields = ('movie', 'user')
+        read_only_fields = ('movie', 'user', 'username')
 
 
 class GenreSerializer(serializers.ModelSerializer):

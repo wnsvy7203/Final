@@ -4,7 +4,7 @@
     <button class="btn btn-create" @click="createComment">댓글 작성</button>
 
     <CommentListItem
-      v-for="comment in this.comments"
+      v-for="comment in comments"
       :key="comment.id"
       :comment="comment"
       :movie="movie"
@@ -23,18 +23,34 @@ export default {
     components: {
       CommentListItem
     },
-    data(){
+    data() {
       return {
         content: null,
-        comments: []
+        comments: [],
       }
     },
     props:{
       movie: Object,
     },
     methods: {
-      getComment() {
-        const token = this.$store.state.token
+      getComment () {
+        if (this.movie.comment_set.length !== 0) {
+          for (let i=0; i<this.movie.comment_set.length; i++) {
+            axios({
+              method: 'get',
+              url: `${API_URL}/api/v1/comments/${this.movie.comment_set[i]}/`,
+              headers: {
+                Authorization: `Token ${this.$store.state.token}`
+              }
+            })
+              .then(res => {
+                this.comments.push(res.data)
+              })
+              .catch(() => {})
+          }
+        }
+      },
+      getCommentAll() {
         axios({
           method: 'get',
           url: `${API_URL}/api/v1/movies/${this.movie.id}/`,
@@ -42,9 +58,9 @@ export default {
             Authorization: `Token ${token}`
           }
         })
-          .then((res) =>{
-            this.comments = res
-            console.log('댓글', res)
+          .then(res => {
+            this.comments = res.data
+            console.log(res.data)
           })
       },
       createComment() {
@@ -59,16 +75,13 @@ export default {
           }
         })
           .then(
-            this.getComment()
+            this.getCommentAll()
           )
       },
     },
     created() {
       this.getComment()
     },
-    mounted() {
-      this.getComment()
-    }
 }
 </script>
 

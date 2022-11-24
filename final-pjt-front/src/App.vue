@@ -129,9 +129,6 @@ export default {
       return this.$store.getters.isLogin
     }
   },
-  created() {
-    this.isLogin()
-  }
 }
 
 </script>
