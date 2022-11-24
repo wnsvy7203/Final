@@ -23,32 +23,37 @@
       <div>
         
       </div>
+
       <h2>선호 장르</h2>
-      
-      <table class="checkBox">
-        <tbody>
-          <tr style="width: 70px; height: 30px"
-            v-for="(list, idx) in genres"
-            :key="idx">
-            <td
-              v-for="(item, idx) in list"
-              :key="idx"
-            >
-              <button
-                v-if="genre.includes(item)===false"
-                @click.prevent="getGenres(item)"
-              >{{ item }}</button>
-              <button
-                v-else
-                @click.prevent="deleteGenres(item)"
-              >{{ item }}</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
+        <table class="checkBox">
+          <tbody>
+            <tr 
+              v-for="(list, idx) in genres"
+              :key="idx">
+              <td 
+                v-for="(item, idx) in list"
+                :key="idx"
+              >
+                <button type="button" 
+                class="w-btn-outline w-btn-gray-outline"
+                  v-if="genre.includes(item)===false"
+                  @click.prevent="getGenres(item)"  
+                >{{ item }}</button>
+                <button
+                  v-else
+                  @click.prevent="deleteGenres(item)"
+                  class="changeClick"
+                >{{ item }}</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       <br>
-    <input type="submit" value="SignUp" style="width:150px; height: 50px; font-size: 30px; margin: 30px;">
+      <div class="wrap">
+        
+        <input type="button" class="button" value="SignUp" style="width:150px; height: 50px; font-size: 30px; margin: 30px;">
+
+      </div>
     </form>
     
   </div>
@@ -179,6 +184,95 @@ export default {
 
 .checkBox{
   display: inline;
-  
 }
+
+.btn{
+  /* box-shadow: inset -.3rem -.1rem 1.4rem  #FBFBFB, inset .3rem .4rem .8rem #BEC5D0; 
+    cursor: pointer; */
+    width:100%;
+    background-color: black;
+    color:white
+}
+
+#tdStyle{
+  border: 1px solid black;
+  border-radius: 100px;
+
+}
+
+.w-btn-outline {
+  position: relative;
+  padding: 15px 30px;
+  border-radius: 15px;
+  font-family: "paybooc-Light", sans-serif;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+}
+.w-btn-outline:hover {
+  letter-spacing: 2px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.w-btn-gray-outline {
+    border: 3px solid #a3a1a1;
+    color: #6e6e6e;
+}
+.w-btn-gray-outline:hover {
+  background-color: #a3a1a1;
+  color: #e3dede;
+}
+
+.changeClick{
+  position: relative;
+  padding: 15px 30px;
+  border-radius: 15px;
+  font-family: "paybooc-Light", sans-serif;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+  letter-spacing: 2px;
+  transform: scale(1.2);
+  cursor: pointer;
+  background-color: #a3a1a1;
+  color: #e3dede;
+}
+
+
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 140px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  }
+
+.button:hover {
+  background-color: black;
+  box-shadow: 0px 15px 20px gray;
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+
 </style>
