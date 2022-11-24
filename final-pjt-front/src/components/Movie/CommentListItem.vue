@@ -24,7 +24,7 @@ export default {
     movie: Object,
   },
   data(){
-    return{
+    return {
       content: this.comment.content,
       updatedStatus: false,
       updateContent: null,
@@ -42,7 +42,7 @@ export default {
     updateComment() {
       const commentItemSet = {
         comment_pk: this.comment.id,
-        content: this.comment.content,
+        content: this.updateContent,
         token: this.$store.state.token,
       }
       axios({
@@ -57,7 +57,7 @@ export default {
         }
       })
         .then(res => {
-          console.log('COMMENT', res)
+          console.log('격렬하게 바꾸고 싶다', res.data)
         })
         .catch(() => {
 
@@ -65,7 +65,7 @@ export default {
     },
     deleteComment() {
       const commentItemSet = {
-        comment_id: this.comment.id,
+        comment_pk: this.comment.id,
         token: this.$store.state.token,
       }
       axios({
@@ -75,8 +75,8 @@ export default {
           Authorization: `Token ${commentItemSet.token}`
         }
       })
-      .then(res => {
-          console.log('COMMENT', res)
+        .then(res => {
+          console.log('격렬하게 지우고 싶다', res.data)
         })
         .catch(() => {
 
