@@ -1,15 +1,15 @@
 <template>
   <div class="app">
-    <input type="text" placeholder="댓글 내용" @keyup.enter="createComment" v-model="content">
-    <button class="btn btn-create" @click="createComment">댓글 작성</button>
-
     <CommentListItem
       v-for="comment in this.comments"
       :key="comment.id"
       :comment="comment"
       :movie="movie"
       @emit-data="showAgain"
+
     />
+    <input type="text" placeholder="댓글 내용" @keyup.enter="createComment" v-model="content">
+    <button class="btn btn-create" @click="createComment">댓글 작성</button>
   </div>
 </template>
 
@@ -71,9 +71,7 @@ export default {
     created() {
       this.getCommentAll()
     },
-    mounted() {
-      this.getComment()
-    }
+
 }
 </script>
 
