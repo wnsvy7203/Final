@@ -1,17 +1,24 @@
 <template>
-  <div>
-    <div v-if="comment.movie===movie.id">
-      작성자 : {{comment.username}}<br>
-              {{comment.content}}
-    </div>
-    
-    <div v-if="comment.user === user_">
-      <input type="text" v-if="updatedStatus===true" v-model="updateContent" @keyup.enter="updateComment">
-      <button class="btn btn-primary" @click="turnOn" v-if="updatedStatus===false">댓글 재작성</button>
+  <div class="container">
+    <div class="card-header">
+          <ul id="comment--box" class="list-group">
+            <li id="comment--1" class="list-group-item d-flex justify-content-between align-items-center">
+              <div v-if="comment.movie===movie.id">{{comment.content}}</div>
+              <div class="d-flex">
+                <div class="font-italic owner" v-if="(comment.movie===movie.id) && (updatedStatus === false)">작성자 : {{comment.username}} </div>
+                <input class="form-control " row="1" type="text" v-if="updatedStatus===true" v-model="updateContent" @keyup.enter="updateComment">
 
-      <button class="btn btn-primary" @click="updateComment" v-if="updatedStatus===true">수정</button>
-      <button class="btn btn-danger" @click="deleteComment">삭제</button>
-    </div>
+                
+                <div v-if="comment.user === user_">
+                  <b-button id="btn" variant="outline-dark" @click="turnOn" v-if="updatedStatus===false">재작성</b-button>
+                  <b-button id="btn" variant="outline-dark" @click="updateComment" v-if="updatedStatus===true">수정</b-button>
+                  <b-button id="btn" variant="outline-dark" @click="deleteComment">삭제</b-button>
+                  
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
   </div>
 </template>
 
@@ -106,5 +113,13 @@ export default {
 </script>
 
 <style>
+#btn {
+  width: 75px;
+  align-items: center;
+}
+.owner{
+  align-items: center;
+  margin: 10px;
+}
 
 </style>
