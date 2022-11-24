@@ -34,13 +34,17 @@ export default {
     },
     methods: {
       getComment() {
+        const token = this.$store.state.token
         axios({
           method: 'get',
-          url: `${API_URL}/api/v1/movies/${this.movie.id}/comments/`,
+          url: `${API_URL}/api/v1/movies/${this.movie.id}/`,
+          headers: {
+            Authorization: `Token ${token}`
+          }
         })
           .then((res) =>{
-            this.comments = res.data
-            console.log(res.data)
+            this.comments = res
+            console.log('댓글', res)
           })
       },
       createComment() {

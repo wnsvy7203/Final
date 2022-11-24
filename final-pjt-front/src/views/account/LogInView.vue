@@ -9,7 +9,7 @@
     <b-form-group
         id="input-group-1"
         label-for="input-1"
-        style="col-3"
+        style="width: 90%;"
       >
       <div>
         <b-form-input
@@ -25,6 +25,7 @@
     <b-form-group
       id="input-group-2"
       label-for="input-2"
+      style="width: 90%;"
     >
       <b-form-input
       class="textForm"
@@ -116,6 +117,7 @@
   margin: 30px;
   padding: 10px 10px;
   width: 75%;
+
 }
 
 .id{
