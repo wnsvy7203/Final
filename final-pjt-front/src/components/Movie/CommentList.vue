@@ -57,6 +57,7 @@ export default {
         })
           .then(res => {
             this.comments = res.data
+            console.log(res.data)
           })
       },
       createComment() {
@@ -70,6 +71,9 @@ export default {
             Authorization: `Token ${this.$store.state.token}`
           }
         })
+          .then(
+            this.getCommentAll()
+          )
       },
     },
     created() {

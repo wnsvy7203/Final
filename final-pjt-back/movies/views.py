@@ -73,9 +73,10 @@ def comment_create(request, movie_pk):
 
 
 @api_view(['GET'])
-def comment_list(request, movie_pk):
-    movie = get_object_or_404(Movie, pk=movie_pk)
-    serializer = CommentSerializer(movie, many=True)
+def comment_list(request):
+    comments = get_list_or_404(Comment, movie=request.movie)
+    print(request.movie)
+    serializer = CommentSerializer(comments, many=True)
     return Response(serializer.data)
 
 
