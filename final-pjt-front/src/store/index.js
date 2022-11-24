@@ -260,19 +260,6 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    getUser(context){
-      axios({
-        method: 'post',
-        url: `${API_URL}/accounts/my/`,
-      })
-      .then(res=>{
-        console.log(res)
-        context.commit('GET_USER', res.data)
-      })
-      .catch(err=>{
-        console.log(err)
-      })
-    }
   },
   modules: {
   }

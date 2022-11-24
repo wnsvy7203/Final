@@ -1,44 +1,45 @@
 <template>
-  <div style="color: white" class="my-3">
-    <h1>LogIn Page</h1>
-    <b-form
+  <div style="color: white" class="check container">
+    <b-form class="LoginForm"
       @submit.prevent="logIn"
       @reset="onReset"
       v-if="show"
-    >
-      <b-form-group
+      >
+    <h2 style="font-size: 50px;  color:black">Log In</h2>
+    <b-form-group
         id="input-group-1"
         label-for="input-1"
         style="col-3"
       >
+      <div>
         <b-form-input
-          id="input-1"
+          class="textForm"
           v-model="form.username"
           type="username"
-          placeholder="Enter username"
-          required
+          id="input-1"
+          placeholder="Enter ID"
         ></b-form-input>
-      </b-form-group>
+      </div>
+    </b-form-group>
 
+    <b-form-group
+      id="input-group-2"
+      label-for="input-2"
+    >
+      <b-form-input
+      class="textForm"
+        type="password"
+        id="input-2"
+        v-model="form.password"
+        placeholder="Enter password"
+        required
+      ></b-form-input>
+    </b-form-group>
+
+      <b-button type="submit" variant="outline-dark">Submit</b-button>
+      <b-button type="reset" variant="outline-dark">Reset</b-button>
       <br>
-      <br>
-
-      <b-form-group
-        id="input-group-2"
-        label-for="input-2"
-      >
-        <b-form-input
-          type="password"
-          id="input-2"
-          v-model="form.password"
-          placeholder="Enter password"
-          required
-        ></b-form-input>
-      </b-form-group>
-
-      <b-button type="submit" variant="outline-primary">Submit</b-button>
-      <b-button type="reset" variant="outline-danger">Reset</b-button>
-      <b-button type="submit" variant="outline-success" @click="moveSignUp">회원가입 </b-button>
+      <b-button type="submit" variant="outline-dark" @click="moveSignUp">회원가입 </b-button>
     </b-form>
 
 
@@ -86,4 +87,55 @@
     }
   }
   </script>
+
+<style>
+.check{
+  background-color: white;
+}
+.LoginForm{
+  position:absolute;
+  width:400px;
+  height:400px;
+  padding: 30px, 20px;
+  background-color:#FFFFFF;
+  text-align:center;
+  top:40%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius: 15px;
+}
+
+.LoginForm h2{
+  text-align: center;
+  margin: 30px;
+}
+
+.textForm{
+  display:inline-flex;
+  border-bottom: 2px solid #adadad;
+  margin: 30px;
+  padding: 10px 10px;
+  width: 75%;
+}
+
+.id{
+  width: 75%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+
+.pwd{
+  width: 75%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:25px;
+  background: none;
+}
+</style>
   

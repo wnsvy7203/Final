@@ -18,7 +18,7 @@
               <router-link style="color:white" :to="{ name: 'signup' }" class="nav-link active" v-if="isLogin!==true"> 회원가입 </router-link>
             </li>
             <li class="nav-item">
-              <router-link style="color:white" :to="{ name: 'login' }" class="nav-link active" v-if="isLogin!==true"> 로그인 </router-link>
+              <router-link style="color:white" :to="{ name: 'login' }" class="nav-link active" v-if="isLogin!==true" @click="isLogin"> 로그인 </router-link>
               
             </li>
             <li class="nav-item">
@@ -118,12 +118,16 @@ export default {
     },
     sendQuery(){
       this.$store.dispatch('sendQuery', this.query)
-    }
+    },
+  
   },
-  computed: {
+  computed:{
     isLogin() {
       return this.$store.getters.isLogin
     }
+  },
+  created() {
+    this.isLogin()
   },
 }
 

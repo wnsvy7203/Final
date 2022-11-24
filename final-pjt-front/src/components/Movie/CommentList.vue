@@ -25,7 +25,7 @@ export default {
     data(){
       return {
         content: null,
-        comments: this.$store.state.comments
+        comments: null,
       }
     },
     props:{

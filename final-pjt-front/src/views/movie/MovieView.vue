@@ -34,7 +34,9 @@
       <h1> 다음 영화 리스트</h1>
     </div>
 
-
+    <div data-app>
+      <MyComponent />
+    </div>
 
   </div>
 </template>
