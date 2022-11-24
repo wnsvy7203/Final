@@ -8,8 +8,8 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'password', 'email', 'movies', 'comments', 'like_genres')
-        read_only_fields = ('movies', 'comments', 'like_genres')
+        fields = ('id', 'username', 'password', 'email', 'movies', 'comments', 'like_genres', 'like_movies')
+        read_only_fields = ('movies', 'comments', 'like_genres', 'like_movies')
 
 
 class UserGenreSerializer(serializers.ModelSerializer):
@@ -18,3 +18,11 @@ class UserGenreSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'like_genres')
         read_only_fields = ('id', 'like_genres')
+
+
+class UserMovieSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('id', 'like_movies')
+        read_only_fields = ('id', 'like_movies')

@@ -33,9 +33,9 @@
     <div>
       <h1> 다음 영화 리스트</h1>
     </div>
-
-
-
+    <div data-app>
+      <MyComponent/>
+    </div>
   </div>
 </template>
 
@@ -45,7 +45,7 @@ import MovieCard from '@/components/Movie/MovieCard'
 
 export default {
   name: 'MovieView',
-  components:{
+  components: {
     [Glide.name]: Glide,
     [GlideSlide.name]: GlideSlide,
     MovieCard,
@@ -72,6 +72,7 @@ export default {
   height: auto;
   margin: 0px auto;
 }
+
 .imgmouserOver:hover img{
   transform: scale(1.5,1.5); transition-duration: 0.5s;
   opacity: 1;

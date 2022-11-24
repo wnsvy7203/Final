@@ -125,6 +125,7 @@ export default new Vuex.Store({
       })
         .then((response) => {
           context.commit('SAVE_TOKEN', response.data.key)
+          context.commit('SET_USER_DATA', payload)
         })
         .then(() => {
           const push_genre = payload.genre
@@ -272,6 +273,11 @@ export default new Vuex.Store({
       .catch(err=>{
         console.log(err)
       })
+    },
+    makeDefault(context) {
+      if (this.getters.isLogin === true) {
+        context.commit('DELETE_TOKEN')
+      }
     }
   },
   modules: {

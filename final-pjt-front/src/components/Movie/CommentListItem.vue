@@ -13,9 +13,9 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 
-// const API_URL = 'http://127.0.0.1:8000'
+const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name:'CommentListItem',
@@ -39,60 +39,59 @@ export default {
         this.updatedStatus = false
       }
     },
-    // updateComment() {
-    //   const commentItemSet = {
-    //     comment_pk: this.comment.id,
-    //     content: this.comment.content,
-    //     token: this.$store.state.token,
-    //   }
-    //   axios({
-    //     method: 'put',
-    //     url: `${API_URL}/api/v1/comments/${commentItemSet.comment_pk}/`,
-    //     data: {
-    //       comment_pk: commentItemSet.comment_pk,
-    //       content: commentItemSet.content,
-    //     },
-    //     headers: {
-    //       Authorization: `Token ${commentItemSet.token}`
-    //     }
-    //   })
-    //     .then(res => {
-    //       console.log('COMMENT', res)
-    //     })
-    //     .catch(() => {
+    updateComment() {
+      const commentItemSet = {
+        comment_pk: this.comment.id,
+        content: this.comment.content,
+        token: this.$store.state.token,
+      }
+      axios({
+        method: 'put',
+        url: `${API_URL}/api/v1/comments/${commentItemSet.comment_pk}/`,
+        data: {
+          comment_pk: commentItemSet.comment_pk,
+          content: commentItemSet.content,
+        },
+        headers: {
+          Authorization: `Token ${commentItemSet.token}`
+        }
+      })
+        .then(res => {
+          console.log('COMMENT', res)
+        })
+        .catch(() => {
 
-    //     })
-    // },
-
-    // deleteComment() {
-    //   const commentItemSet = {
-    //     comment_id: this.comment.id,
-    //     token: this.$store.state.token,
-    //   }
-    //   axios({
-    //     method: 'delete',
-    //     url: `${API_URL}/api/v1/comments/${commentItemSet.comment_pk}/`,
-    //     headers:{
-    //       Authorization: `Token ${commentItemSet.token}`
-    //     }
-    //   })
-    //   .then(res => {
-    //       console.log('COMMENT', res)
-    //     })
-    //     .catch(() => {
-
-    //     })
-    // },
-    updateComment () {
-      console.log(this.updateContent)
-      const CommentItemSet = {
-        movie: this.movie.id,
-        content: this.updateContent,
+        })
+    },
+    deleteComment() {
+      const commentItemSet = {
         comment_id: this.comment.id,
         token: this.$store.state.token,
       }
-      this.$store.dispatch('updataComment',CommentItemSet)
+      axios({
+        method: 'delete',
+        url: `${API_URL}/api/v1/comments/${commentItemSet.comment_pk}/`,
+        headers:{
+          Authorization: `Token ${commentItemSet.token}`
+        }
+      })
+      .then(res => {
+          console.log('COMMENT', res)
+        })
+        .catch(() => {
+
+        })
     },
+    // updateComment () {
+    //   console.log(this.updateContent)
+    //   const CommentItemSet = {
+    //     movie: this.movie.id,
+    //     content: this.updateContent,
+    //     comment_id: this.comment.id,
+    //     token: this.$store.state.token,
+    //   }
+    //   this.$store.dispatch('updataComment',CommentItemSet)
+    // },
   }
 }
 </script>

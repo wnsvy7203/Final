@@ -25,74 +25,32 @@
       </div>
       <h2>선호 장르</h2>
       
-        <table class="checkBox">
-          <tbody>
-            <tr style="width: 70px; height: 30px"
-              v-for="(list, idx) in genres"
-              :key="idx">
-              <td
-                v-for="(item, idx) in list"
-                :key="idx"
-              >
-                <button
-                  v-if="genre.includes(item)===false"
-                  @click="getGenres(item)"
-                >{{ item }}</button>
-                <button
-                  v-else
-                  @click="deleteGenres(item)"
-                >{{ item }}</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <table class="checkBox">
+        <tbody>
+          <tr style="width: 70px; height: 30px"
+            v-for="(list, idx) in genres"
+            :key="idx">
+            <td
+              v-for="(item, idx) in list"
+              :key="idx"
+            >
+              <button
+                v-if="genre.includes(item)===false"
+                @click.prevent="getGenres(item)"
+              >{{ item }}</button>
+              <button
+                v-else
+                @click.prevent="deleteGenres(item)"
+              >{{ item }}</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
       
       <br>
     <input type="submit" value="SignUp" style="width:150px; height: 50px; font-size: 30px; margin: 30px;">
     </form>
     
-    
-
-
-
-
-    <!-- <div class="SignUpForm" style="color: white">
-      <form @submit.prevent="signUp">
-        <h1>Sign Up Page</h1>
-        <label for="username">username : </label>
-        <input type="text" id="username" v-model="username"><br>
-  
-        <label for="password1"> password : </label>
-        <input type="password" id="password1" v-model="password1"><br>
-  
-        <label for="password2"> password confirmation : </label>
-        <input type="password" id="password2" v-model="password2">
-        <br>
-        <input type="submit" value="SignUp">
-      </form>
-      
-      <table>
-          <tbody>
-            <tr style="width: 70px; height: 30px"
-              v-for="(list, idx) in genres"
-              :key="idx">
-              <td
-                v-for="(item, idx) in list"
-                :key="idx"
-              >
-                <button
-                  v-if="genre.includes(item)===false"
-                  @click="getGenres(item)"
-                >{{ item }}</button>
-                <button
-                  v-else
-                  @click="deleteGenres(item)"
-                >{{ item }}</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-    </div> -->
   </div>
 </template>
   

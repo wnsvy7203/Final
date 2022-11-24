@@ -15,6 +15,7 @@
 <script>
 import CommentListItem from '@/components/Movie/CommentListItem'
 import axios from 'axios'
+
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
@@ -25,37 +26,32 @@ export default {
     data(){
       return {
         content: null,
-        comments: this.$store.state.comments
+        comments: []
       }
     },
     props:{
-        movie: Object,
+      movie: Object,
     },
     methods: {
       getComment() {
         axios({
           method: 'get',
-          url: `${API_URL}/api/v1/comments/`,
+          url: `${API_URL}/api/v1/movies/${this.movie.id}/comments/`,
         })
           .then((res) =>{
             this.comments = res.data
+            console.log(res.data)
           })
       },
       createComment() {
-        const commentItemSet = {
-          movie_pk: this.movie.id,
-          content: this.content,
-          token: this.$store.state.token,
-        }
         axios({
           method: 'post',
-          url: `${API_URL}/api/v1/movies/${commentItemSet.movie_pk}/comment_create/`,
+          url: `${API_URL}/api/v1/movies/${this.movie.id}/comment_create/`,
           data: {
-            movie_pk: commentItemSet.movie_pk,
-            content: commentItemSet.content,
+            content: this.content,
           },
           headers: {
-            Authorization: `Token ${commentItemSet.token}`
+            Authorization: `Token ${this.$store.state.token}`
           }
         })
           .then(
@@ -63,9 +59,12 @@ export default {
           )
       },
     },
-    // created() {
-    //   this.getComment()
-    // }
+    created() {
+      this.getComment()
+    },
+    mounted() {
+      this.getComment()
+    }
 }
 </script>
 
