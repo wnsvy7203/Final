@@ -5,13 +5,15 @@
     :key="video.idx"
     :video="video"
     />    
+    
   </ul>
 </template>
 
 <script>
 import YoutubeListItem from '@/components/Movie/YoutubeListItem'
+import axios from 'axios'
 
-
+const API_KEY = '048f1b44f3f7ceec6752538826583420'
 export default {
   name: 'YoutubeList',
   props: {
@@ -22,12 +24,28 @@ export default {
   },
   data(){
     return{
-      youtubeVideo: this.$store.state.youtubeVideos
+      youtubeVideo: [],
+    }
+  },
+  methods:{
+    getYoutubeKey(){
+      axios({
+        method: 'get',
+        url: `https://api.themoviedb.org/3/movie/${this.movie.get_id}/videos?api_key=${API_KEY}&language=en-US`
+      })
+      .then(res => {
+        
+        this.youtubeVideo = res.data.results.slice(0,3)
+      })
     }
   },
   created(){
-    this.$store.dispatch('getYoutube', this.movie.title)
+    this.getYoutubeKey()
   }
+
+  // created(){
+  //   this.$store.dispatch('getYoutube', this.movie)
+  // }
 }
 </script>
 
