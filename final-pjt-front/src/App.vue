@@ -12,6 +12,7 @@
               <router-link style="color:white" :to="{ name: 'profile' }" class="nav-link active" v-if="isLogin===true"> 내 프로필 </router-link>
             </li>
             <li class="nav-item">
+
               <p class="nav-link active" style="color:white" @click="logOut" v-if="isLogin===true"> 로그아웃</p>
             </li>
             <li class="nav-item">
@@ -109,7 +110,7 @@ export default {
           this.$store.dispatch('logOut')
         )
         .then(
-          this.$router.push({ name : 'movie' })
+          this.$router.push({ name : 'home' })
         )
         .catch(() => {}
         )

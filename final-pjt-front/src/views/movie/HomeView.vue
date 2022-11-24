@@ -37,7 +37,7 @@
 #btn1{
   position: absolute;
   left: 900px;
-  bottom: 250px;
+  bottom: 200px;
   width: 300px;
   height: 50px;
   color:black;
@@ -46,7 +46,7 @@
 #btn2{
   position: absolute;
   left: 1300px;
-  bottom: 250px;
+  bottom: 200px;
   width: 300px;
   height: 50px;
   color:black;
