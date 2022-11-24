@@ -3,6 +3,8 @@
     <div v-if="comment.movie===movie.id">
       작성자 : {{comment.username}}<br>
               {{comment.content}}
+    </div>
+    <div v-if="comment.user === user_">
       <input type="text" v-if="updatedStatus===true" v-model="updateContent" @keyup.enter="updateComment">
       <button class="btn btn-primary" @click="turnOn" v-if="updatedStatus===false">댓글 재작성</button>
 
@@ -23,8 +25,9 @@ export default {
     comment: Object,
     movie: Object,
   },
-  data(){
+  data() {
     return {
+      user_: null,
       content: this.comment.content,
       updatedStatus: false,
       updateContent: null,
@@ -58,9 +61,9 @@ export default {
       })
         .then(res => {
           console.log('격렬하게 바꾸고 싶다', res.data)
-        })
-        .catch(() => {
-
+          this.updateContent = null
+          this.updatedStatus = false
+          this.$emit('emit-data')
         })
     },
     deleteComment() {
@@ -77,21 +80,26 @@ export default {
       })
         .then(res => {
           console.log('격렬하게 지우고 싶다', res.data)
-        })
-        .catch(() => {
-
+          this.updateContent = null
+          this.$emit('emit-data')
         })
     },
-    // updateComment () {
-    //   console.log(this.updateContent)
-    //   const CommentItemSet = {
-    //     movie: this.movie.id,
-    //     content: this.updateContent,
-    //     comment_id: this.comment.id,
-    //     token: this.$store.state.token,
-    //   }
-    //   this.$store.dispatch('updataComment',CommentItemSet)
-    // },
+    requested() {
+      axios({
+        method: 'post',
+        url: `${API_URL}/accounts/my/`,
+        headers: {
+          Authorization: `Token ${ this.$store.state.token }`
+        }
+      })
+        .then(res => {
+          console.log('요청 유저', res.data)
+          this.user_ = res.data.id
+        })
+    }
+  },
+  created() {
+    this.requested()
   }
 }
 </script>

@@ -14,6 +14,9 @@
         <div style=" margin-top:40%; ">검색 결과가 없습니다</div>
       </div>
     </div>
+    <div data-app>
+      <MyComponent/>
+    </div>
   </div>
 
 </template>

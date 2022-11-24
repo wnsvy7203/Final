@@ -82,20 +82,6 @@ export default new Vuex.Store({
     SEND_QUERY(state, query){
       state.searchQuery = query
     },
-    UPDATE_COMMENT(state, response){
-      state.comments = state.comments.map((comment)=>{
-        if (comment === response) {
-          return { ...comment, content: response.content}
-        }
-      })
-    }
-    // DELETE_COMMENT(state, res){
-    //   const index = state.comments.indexOf(res)
-    // }
-    // GET_USER(state,user){
-    //   state.user_id = user.pk
-    //   state.user_name = user.username
-    // }
   },
   actions: {
     getMovieJson(context) {
@@ -175,88 +161,45 @@ export default new Vuex.Store({
           context.commit('GET_PROFILE', res.data)
         )
     },
-    createComment(context, commentItemSet){
-      console.log(commentItemSet)
-      
+    getYoutube(context, title){
+      const params={
+        q: title + 'movie',
+        key: YOUTUBE_KEY,
+        part: 'snippet',
+        type: 'video'
+      }
       axios({
-        method: 'post',
-        url: `${API_URL}/api/v1/movies/${commentItemSet.movie}/comments/`,
-        data: {
-          movie: commentItemSet.movie,
-          content: commentItemSet.content,
-        },
-        headers: {
-          Authorization: `Token ${commentItemSet.token}`
-        }
+        method: 'get',
+        url: YOUTUBE_URL,
+        params,
       })
-        .then(res => {
-          console.log('res.data', res.data)
-          context.commit('CREATE_COMMENT', res.data)
+        .then(res =>{
+          context.commit('GET_YOUTUBE', res)
         })
         .catch(err=>{
           console.log(err)
         })
     },
-    getComment(context,token){
-      axios({
-        method:'get',
-        url: `${API_URL}/api/v1/comments/`,
-        headers: {
-          Authorization: `Token ${token}`
-        }
-      })
-        .then((res) =>{
-          context.commit('GET_COMMENTS', res)
-          console.log(res.data)
-        })
-        .catch(err=>{console.log(err)})
-    },
-    // deleteComment(context, commentItemSet){
-    //   axios({
-    //     method:'delete',
-    //     url: `${API_URL}/api/v1/comments/${commentItemSet.comment_id}/`,
-    //     headers: {
-    //       Authorization: `Token ${commentItemSet.token}`
-    //     }
-    //   })
-    //   .then((res)=>{
-    //     context.commit('DELETE_COMMENT', res.data)
-    //     console.log(res.data)
-    //   })
-    // },
     sendQuery(context, query){
       context.commit('SEND_QUERY', query)
     },
-    updataComment(context, commentItemSet){
+    likeMovie(context, likeItemSet){
       axios({
-        method:'put',
-        url:`${API_URL}/api/v1/comments/${commentItemSet.comment_id}/`,
-        data:commentItemSet,
-        headers: {
-          Authorization: `Token ${commentItemSet.token}`
+        method:'post',
+        url: `${API_URL}/api/v1/movies/${this.movie.id}/like_users/`,
+        data:{
+          movie: likeItemSet.movie,
+          likeStatus: likeItemSet.likeStatus
+        },
+        headers:{
+          Authorization: `Token ${this.$store.state.token}`
         }
       })
       .then((res)=>{
-        context.commit('UPDATE_COMMENT', res.data)
-      })
-      .catch(err=>{
-        console.log(err)
+        console.log('댓글',res)
+        context.commit('LIKE_MOVIE', res)
       })
     },
-
-    // getUser(context){
-    //   axios({
-    //     method: 'post',
-    //     url: `${API_URL}/accounts/my/`,
-    //   })
-    //   .then(res=>{
-    //     console.log(res)
-    //     context.commit('GET_USER', res.data)
-    //   })
-    //   .catch(err=>{
-    //     console.log(err)
-    //   })
-    // },
     makeDefault(context) {
       if (this.getters.isLogin === true) {
         context.commit('DELETE_TOKEN')

@@ -8,6 +8,7 @@
       :key="comment.id"
       :comment="comment"
       :movie="movie"
+      @emit-data="showAgain"
     />
   </div>
 </template>
@@ -33,18 +34,16 @@ export default {
       movie: Object,
     },
     methods: {
-      getComment() {
-        const token = this.$store.state.token
+      getCommentAll() {
         axios({
           method: 'get',
-          url: `${API_URL}/api/v1/movies/${this.movie.id}/`,
+          url: `${API_URL}/api/v1/movies/${this.movie.id}/comments`,
           headers: {
-            Authorization: `Token ${token}`
+            Authorization: `Token ${this.$store.state.token}`
           }
         })
-          .then((res) =>{
-            this.comments = res
-            console.log('댓글', res)
+          .then(res => {
+            this.comments = res.data
           })
       },
       createComment() {
@@ -58,13 +57,19 @@ export default {
             Authorization: `Token ${this.$store.state.token}`
           }
         })
-          .then(
-            this.getComment()
-          )
+          .then(() => {
+            this.getCommentAll()
+          })
+          .then(() => {
+            this.content = null
+          })
       },
+      showAgain() {
+        this.getCommentAll()
+      }
     },
     created() {
-      this.getComment()
+      this.getCommentAll()
     },
     mounted() {
       this.getComment()
