@@ -44,7 +44,6 @@ export default {
         })
           .then(res => {
             this.comments = res.data
-            console.log('뭐고 대체?',res.data, typeof res.data)
           })
       },
       createComment() {
