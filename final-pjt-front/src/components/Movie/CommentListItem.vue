@@ -39,15 +39,6 @@ export default {
         this.updatedStatus = false
       }
     },
-    // getCommentAll() {
-    //   axios({
-    //     method: 'get',
-    //     url: `${API_URL}/api/v1/movies/${this.movie.id}/comments/`,
-    //   })
-    //     .then(res => {
-    //       this.comments = res.data
-    //     })
-    // },
     updateComment() {
       const commentItemSet = {
         comment_pk: this.comment.id,
@@ -90,16 +81,6 @@ export default {
           this.$emit('emit-data')
         })
     },
-    // updateComment () {
-    //   console.log(this.updateContent)
-    //   const CommentItemSet = {
-    //     movie: this.movie.id,
-    //     content: this.updateContent,
-    //     comment_id: this.comment.id,
-    //     token: this.$store.state.token,
-    //   }
-    //   this.$store.dispatch('updataComment',CommentItemSet)
-    // },
   }
 }
 </script>

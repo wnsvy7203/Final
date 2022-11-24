@@ -8,7 +8,6 @@
       :key="comment.id"
       :comment="comment"
       :movie="movie"
-      :comments="comments"
       @emit-data="showAgain"
     />
   </div>
@@ -29,7 +28,6 @@ export default {
       return {
         content: null,
         comments: [],
-        
       }
     },
     props:{
@@ -39,13 +37,14 @@ export default {
       getCommentAll() {
         axios({
           method: 'get',
-          url: `${API_URL}/api/v1/movies/${this.movie.id}/`,
+          url: `${API_URL}/api/v1/movies/${this.movie.id}/comments`,
           headers: {
-            Authorization: `Token ${token}`
+            Authorization: `Token ${this.$store.state.token}`
           }
         })
           .then(res => {
             this.comments = res.data
+            console.log('뭐고 대체?',res.data, typeof res.data)
           })
       },
       createComment() {
