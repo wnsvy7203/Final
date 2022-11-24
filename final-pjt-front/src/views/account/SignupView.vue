@@ -50,9 +50,7 @@
         </table>
       <br>
       <div class="wrap">
-        
-        <input type="button" class="button" value="SignUp" style="width:150px; height: 50px; font-size: 30px; margin: 30px;">
-
+        <input type="button" class="button" value="SignUp" @click="signUp" style="width:150px; height: 50px; font-size: 30px; margin: 30px;">
       </div>
     </form>
     

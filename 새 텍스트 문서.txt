@@ -1,9 +1,12 @@
 npm i vue-glide-js
 npm install @nuxtjs/vuetify -D
 
+회원가입 O
+search O
+
 
 할거 
-search ㅇㅇ...;
+
 
 댓글 
 - 삭제 딜레이 원인찾아야함
@@ -12,8 +15,8 @@ search ㅇㅇ...;
 profile 영화 출력 한줄로 출력 
 - 다른 캐러셀 써두 안됩니당
 
-회원가입 버튼 어휴;; 
-버튼 박스 찾아서 새로 해야함
+
+
 
 
 댓글 창

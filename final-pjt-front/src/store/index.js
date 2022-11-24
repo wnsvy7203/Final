@@ -262,19 +262,36 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-    getUser(context){
+    likeMovie(context, likeItemSet){
       axios({
-        method: 'post',
-        url: `${API_URL}/accounts/my/`,
+        method:'post',
+        url: `${API_URL}/api/v1/movies/${this.movie.id}/like_users/`,
+        data:{
+          movie: likeItemSet.movie,
+          likeStatus: likeItemSet.likeStatus
+        },
+        headers:{
+          Authorization: `Token ${this.$store.state.token}`
+        }
       })
-      .then(res=>{
-        console.log(res)
-        context.commit('GET_USER', res.data)
-      })
-      .catch(err=>{
-        console.log(err)
+      .then((res)=>{
+        console.log('댓글',res)
+        context.commit('LIKE_MOVIE', res)
       })
     },
+    // getUser(context){
+    //   axios({
+    //     method: 'post',
+    //     url: `${API_URL}/accounts/my/`,
+    //   })
+    //   .then(res=>{
+    //     console.log(res)
+    //     context.commit('GET_USER', res.data)
+    //   })
+    //   .catch(err=>{
+    //     console.log(err)
+    //   })
+    // },
     makeDefault(context) {
       if (this.getters.isLogin === true) {
         context.commit('DELETE_TOKEN')

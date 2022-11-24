@@ -53,7 +53,10 @@ export default {
       getCommentAll() {
         axios({
           method: 'get',
-          url: `${API_URL}/api/v1/movies/${this.movie.id}/comments/`,
+          url: `${API_URL}/api/v1/movies/${this.movie.id}/`,
+          headers: {
+            Authorization: `Token ${token}`
+          }
         })
           .then(res => {
             this.comments = res.data
